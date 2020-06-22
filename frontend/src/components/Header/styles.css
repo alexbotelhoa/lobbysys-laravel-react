@@ -1,0 +1,32 @@
+.header {
+    margin: 30px auto 0;
+    background: transparent;
+    border: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+
+header#main-header {
+  background: #fff;
+  height: 72px;
+  border-bottom: 1px solid #ddd;
+}
+ 
+header#main-header .header-content {
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto;
+  height: 72px;
+  padding: 0 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.imageLogo {
+  height: 48px;
+}
