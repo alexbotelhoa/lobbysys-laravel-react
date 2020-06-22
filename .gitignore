@@ -1,3 +1,12 @@
+# Particular
+*/uploads/*
+backups/
+docs/
+*.code-workspace
+*.keystore
+*.psd
+*.sqlite
+
 /vendor/
 node_modules/
 npm-debug.log
