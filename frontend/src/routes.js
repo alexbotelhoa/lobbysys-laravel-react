@@ -1,21 +1,23 @@
-import React from 'react'
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import React from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-import Login from './pages/Login'
-import Dashboard from './pages/Dashboard'
-import Users from './pages/Users'
-import Visitors from './pages/Visitors'
-import Rooms from './pages/Rooms'
+import Login from './pages/Login';
+import Dashboard from './pages/Dashboard';
+import Users from './pages/Users';
+import Visitors from './pages/Visitors';
+import Rooms from './pages/Rooms';
+import Concierges from './pages/Concierges';
 
 export default function Routes() {
    return (
       <BrowserRouter>
          <Switch>
             <Route path="/" exact component={Login} />
-            <Route path="/dashboard" exact component={Dashboard} />
-            <Route path="/users" exact component={Users} />
-            <Route path="/visitors" exact component={Visitors} />
-            <Route path="/rooms" exact component={Rooms} />
+            <Route path="/dashboard" component={Dashboard} />
+            <Route path="/users" component={Users} />
+            <Route path="/visitors" component={Visitors} />
+            <Route path="/rooms" component={Rooms} />
+            <Route path="/concierges" component={Concierges} />
          </Switch>
       </BrowserRouter>
    )

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import './styles.css';
 import Header from '../../components/Header';
 
-export default function Users() {
+export default function Concierges() {
     return	( 
 		<>
 			<Header />

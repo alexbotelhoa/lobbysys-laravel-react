@@ -5,7 +5,7 @@ import api from '../../services/api';
 
 export default function Login({ history }) {
   const [mensage, setMensage] = useState(null);
-  const [email, setEmail] = useState('alexbotelho1@hotmail.com');
+  const [email, setEmail] = useState('fulanobotelho@hotmail.com');
   const [password, setPassword] = useState('123456');
 
   function checkInput(e) {
@@ -22,7 +22,7 @@ export default function Login({ history }) {
 
     // const { id } = res.data;
 
-    localStorage.setItem('user', 123456789);
+    localStorage.setItem('user', 65476541321854);
 
     history.push('/dashboard');
   }

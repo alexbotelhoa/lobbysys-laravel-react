@@ -1,11 +1,20 @@
 import React from 'react';
 import { RiBuilding3Line } from 'react-icons/ri';
-import { FaFacebookSquare, FaInstagramSquare, FaTwitterSquare } from 'react-icons/fa';
+import { Link, useHistory } from 'react-router-dom';
+import { FiLogOut } from 'react-icons/fi';
+import { FaLinkedin, FaFacebookSquare, FaInstagramSquare, FaTwitterSquare } from 'react-icons/fa';
 
 import './styles.css';
 import logo from '../../assets/logo.png';
 
 export default function Header() {
+  const history = useHistory();
+
+  function handleLogout() {
+    localStorage.clear();
+    history.push('/');
+  }
+
   return (
     <header id="main-header">
       <div className="header-content">
@@ -13,10 +22,40 @@ export default function Header() {
           <RiBuilding3Line size="32" className="imageLogo" />
           <img src={logo} alt="LobbySys"/>
         </span>
+
+
+        <div className="btnNavegacao">
+          <Link className="button" to="/users">
+            <button className="btn">Usuários</button>
+          </Link>
+          <Link className="button" to="/visitors">
+            <button className="btn">Visitantes</button>
+          </Link>
+          <Link className="button" to="/rooms">
+            <button className="btn">Salas</button>
+          </Link>
+          <Link className="button" to="/concierges">
+            <button className="btn">Portaria</button>
+          </Link>
+        </div>
+
+
         <span>
-          <FaFacebookSquare size="28" />&nbsp;
-          <FaInstagramSquare size="28" />&nbsp;
-          <FaTwitterSquare size="28" /> 
+          <a href="https://www.linkedin.com/in/alex-botelho-almeida/">
+            <FaLinkedin size="28" />
+          </a>
+          <a href="https://www.facebook.com/alexbotelhoa">
+            <FaFacebookSquare size="28" />
+          </a>
+          <a href="https://www.instagram.com/alexbotelhoa">
+            <FaInstagramSquare size="28" />
+          </a>
+          <a href="https://www.instagram.com/alexbotelhoa">
+            <FaTwitterSquare size="28" />
+          </a>
+          <button className="logout" type="button" onClick={handleLogout}>
+            <FiLogOut size="28" /> 
+          </button>
         </span>
       </div>
     </header>

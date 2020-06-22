@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 
 import './styles.css';
+import Header from '../../components/Header';
 
-export default function Teste() {
+export default function Dashboard() {
     return	( 
 		<>
-			<h1>Teste</h1>
+			<Header />
+			<h1></h1>
 		</>
 	)
 }

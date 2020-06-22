@@ -27,6 +27,62 @@ header#main-header .header-content {
   justify-content: space-between;
 }
 
+header#main-header .header-content span a {
+  color: #000;
+  margin-left: 6px;
+}
+
 .imageLogo {
   height: 48px;
+}
+
+
+
+
+
+
+
+
+.btnNavegacao {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.btn {
+  border: 0;
+  border-radius: 2px;
+  width: 120px;
+  height: 42px;
+  padding: 0 20px;
+  font-size: 16px;
+  font-weight: bold;
+  background: #c5beb8;
+  color: #fff;
+  cursor: pointer;
+  margin-right: 2px;
+}
+
+.btn:hover {
+  background: #d3a277;
+}
+
+
+
+
+
+
+.logout {
+  height: 40px;
+  width: 40px;
+  border-radius: 4px;
+  border: 0px solid #fff;
+  background: transparent;
+  margin-left: 16px;
+  transition: border-color 0.2s;
+}
+
+.logout:hover {
+  background: #dcdce6;
+  cursor: pointer;
 }
