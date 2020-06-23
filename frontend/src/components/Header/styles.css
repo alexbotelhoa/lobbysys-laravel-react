@@ -5,13 +5,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-
+}
 
 header#main-header {
   background: #fff;
   padding-top: 5px;
-  /* border-bottom: 1px solid #ddd; */
 }
  
 header#main-header .header-content {
@@ -20,7 +18,6 @@ header#main-header .header-content {
   margin: 0 auto;
   height: 72px;
   padding: 0 20px;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -34,13 +31,6 @@ header#main-header .header-content span a {
 .imageLogo {
   height: 48px;
 }
-
-
-
-
-
-
-
 
 .btnNavegacao {
   display: flex;
@@ -63,14 +53,8 @@ header#main-header .header-content span a {
 }
 
 .btn:hover {
-  /* background: #c5beb8; */
   background: #dcdce6;
 }
-
-
-
-
-
 
 .logout {
   height: 36px;

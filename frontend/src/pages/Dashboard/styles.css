@@ -11,63 +11,124 @@
 
 
 
+.contentMain {
+    width: 75%;
+    height: 100%;
+    background: #f3f3f3;
+    /* background: #dd0909; */
+    border-radius: 10px;
+    padding: 20px;
+    margin-right: 10px;
+    /* flex-direction: column; */
+}
+
 
 
 
 .contentVisitors {
-    width: 75%;
-    height: 100%;
+    height: 45px;
     background: #f3f3f3;
-    border-radius: 10px;
-    padding: 20px;
+    /* background: #4008db; */
+    /* padding: 20px; */
+    /* align-self: center; */
+    margin-bottom: 10px;
+    /* flex-direction: column; */
+}
+
+
+
+.contentVisitors form {
+    display: flex;
+    justify-content: space-between;
+}
+
+.contentVisitors form select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: #F0F0F5;
+    flex: 1;
+
     margin-right: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    height: 45px;
+    width: 260px;
+    padding: 0 15px;
+    font-size: 14px;
+}
+
+.contentVisitors  form .selected {
+    background: #E1FAEC;
+    border: 2px solid #34CB79;
+}
+
+
+
+.contentVisitors button.btnLogin {
+    border: 0;
+    border-radius: 5px;
+    width: 120px;
+    height: 45px;
+    padding: 0 20px;
+    font-size: 16px;
+    font-weight: bold;
+    background: lightgrey;
+    color: #fff;
+    cursor: pointer;
+    transition: border-color 0.2s;
+}
+
+.contentVisitors button.btnLogin:hover {
+    background: #d3a277;
+}
+
+
+
+
+.contentRooms {
+    background: #f3f3f3;
     flex-direction: column;
 }
 
-.contentVisitors ul {
+.contentRooms ul {
     display: grid;
     grid-gap: 20px;
     padding-bottom: 20px;
     grid-template-columns: repeat(3, 1fr);
 }
 
-.contentVisitors ul li {
+.contentRooms ul li {
     display: flex;
     background-color: lightgrey;
     border-radius: 10px;
     padding: 5px;
 }
 
-.contentVisitors ul li span {
+.contentRooms ul li span {
     text-align: center;
     align-self: center;
-    /* border: 1px solid rgb(1, 47, 251); */
 }
 
-.contentVisitors ul li span img {
+.contentRooms ul li span img {
     max-width: 70%;
 }
 
-.contentVisitors ul li footer {
+.contentRooms ul li footer {
     flex: 1;
     text-align: left;
-    /* border: 1px solid rgb(1, 47, 251); */
 }
 
-.contentVisitors ul li footer strong {
+.contentRooms ul li footer strong {
     font-size: 14px;
     color: #333;
 }
 
-.contentVisitors ul li footer p {
+.contentRooms ul li footer p {
     font-size: 12px;
     line-height: 15px;
     color: rgb(76, 76, 76);
 }
-
-
-
-
 
 
 
@@ -98,7 +159,6 @@
 .contentQueues ul li span {
     text-align: center;
     align-self: center;
-    /* border: 1px solid rgb(1, 47, 251); */
 }
 
 .contentQueues ul li span img {
@@ -108,7 +168,6 @@
 .contentQueues ul li footer {
     flex: 1;
     text-align: left;
-    /* border: 1px solid rgb(1, 47, 251); */
 }
 
 .contentQueues ul li footer strong {
