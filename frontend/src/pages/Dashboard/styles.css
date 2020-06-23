@@ -1,41 +1,26 @@
 .containerDashboard {
-    height: 80vh;
+    height: 85vh;
     margin: 10px auto 0;
-    max-width: 950px;
+    max-width: 1000px;
     width: 100%;
     display: flex;
     align-items: center;
     border-radius: 5px;
 }
-
-
-
-
 .contentMain {
-    width: 75%;
+    width: 73%;
     height: 100%;
     background: #f3f3f3;
-    /* background: #dd0909; */
     border-radius: 10px;
     padding: 20px;
     margin-right: 10px;
-    /* flex-direction: column; */
 }
-
-
-
 
 .contentVisitors {
     height: 45px;
     background: #f3f3f3;
-    /* background: #4008db; */
-    /* padding: 20px; */
-    /* align-self: center; */
     margin-bottom: 10px;
-    /* flex-direction: column; */
 }
-
-
 
 .contentVisitors form {
     display: flex;
@@ -48,7 +33,6 @@
     appearance: none;
     background: #F0F0F5;
     flex: 1;
-
     margin-right: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
@@ -58,14 +42,7 @@
     font-size: 14px;
 }
 
-.contentVisitors  form .selected {
-    background: #E1FAEC;
-    border: 2px solid #34CB79;
-}
-
-
-
-.contentVisitors button.btnLogin {
+.contentVisitors button.btnCheckin {
     border: 0;
     border-radius: 5px;
     width: 120px;
@@ -73,110 +50,101 @@
     padding: 0 20px;
     font-size: 16px;
     font-weight: bold;
-    background: lightgrey;
-    color: #fff;
+    background: rgb(230, 228, 228);
+    color: #7e7e07;
     cursor: pointer;
     transition: border-color 0.2s;
 }
 
-.contentVisitors button.btnLogin:hover {
-    background: #d3a277;
+.contentVisitors button.btnCheckin:hover {
+    background: lightgrey;
 }
-
-
-
 
 .contentRooms {
     background: #f3f3f3;
-    flex-direction: column;
+    height: 70vh;
+    overflow-y: scroll;
 }
 
 .contentRooms ul {
     display: grid;
-    grid-gap: 20px;
-    padding-bottom: 20px;
+    grid-gap: 10px;
+    padding-bottom: 10px;
     grid-template-columns: repeat(3, 1fr);
 }
 
-.contentRooms ul li {
+.cardPerson {
     display: flex;
-    background-color: lightgrey;
+    background: rgb(230, 228, 228);
     border-radius: 10px;
-    padding: 5px;
 }
 
-.contentRooms ul li span {
+.cardPerson span {
     text-align: center;
-    align-self: center;
+    background-color: lightgrey;
+    border-radius: 10px 0 0 10px;
 }
 
-.contentRooms ul li span img {
+.cardPerson span img {
+    margin-top: 5px;
     max-width: 70%;
 }
 
-.contentRooms ul li footer {
+.cardPerson footer {
     flex: 1;
-    text-align: left;
+    text-align: center;
+    background: rgb(230, 228, 228);
+    padding-top: 3px;
 }
 
-.contentRooms ul li footer strong {
+.cardPerson footer strong {
     font-size: 14px;
     color: #333;
 }
 
-.contentRooms ul li footer p {
+.cardPerson footer p {
     font-size: 12px;
-    line-height: 15px;
     color: rgb(76, 76, 76);
 }
 
+.cardPerson footer h6 {
+    font-size: 10px;
+    color: rgb(76, 76, 76);
+}
 
+.btnCheckout {
+    font-size: 12px;
+    color: #7e7e07;
+    background-color: transparent;
+    border: 0px;
+    width: 30px;
+    border-radius: 0 10px 10px 0;
+    cursor: pointer;
+}
 
-
-
-
+.btnCheckout:hover {
+    background: lightgrey;
+}
 
 .contentQueues {
-    width: 25%;
+    width: 27%;
     height: 100%;
     background: #f3f3f3;
     border-radius: 10px;
-    padding: 20px;
+    padding: 5px 20px;
 }
 
-.contentQueues ul {
-    display: grid;
-    grid-gap: 20px;
-}
-
-.contentQueues ul li {
-    display: flex;
-    background-color: lightgrey;
-    border-radius: 10px;
-    padding: 5px;
-}
-
-.contentQueues ul li span {
+.contentQueues div {
     text-align: center;
-    align-self: center;
+    margin-bottom: 5px;
 }
 
-.contentQueues ul li span img {
-    max-width: 70%;
+.contentQueues .queuePerson {
+    height: 93%;
+    overflow-y: scroll;
 }
 
-.contentQueues ul li footer {
-    flex: 1;
-    text-align: left;
-}
-
-.contentQueues ul li footer strong {
-    font-size: 14px;
-    color: #333;
-}
-
-.contentQueues ul li footer p {
-    font-size: 12px;
-    line-height: 15px;
-    color: rgb(76, 76, 76);
+.contentQueues .queuePerson ul {
+    display: grid;
+    grid-gap: 10px;
 }

@@ -2,8 +2,8 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 class CreateArrivalsTable extends Migration
 {
@@ -20,7 +20,7 @@ class CreateArrivalsTable extends Migration
             $table->foreign('visitor_id')->references('id')->on('visitors');
             $table->integer('room_id')->unsigned();
             $table->foreign('room_id')->references('id')->on('rooms');
-            $table->date('checkIn')->default(Carbon::now());
+            $table->timestamp('checkIn');
             $table->timestamps();
         });
     }

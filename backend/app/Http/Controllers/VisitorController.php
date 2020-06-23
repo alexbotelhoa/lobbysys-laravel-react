@@ -14,7 +14,7 @@ class VisitorController extends Controller
      */
     public function index()
     {
-        $visitors = Visitor::all();
+        $visitors = Visitor::orderBy('name')->get();
 
         return response($visitors, 200);
     }

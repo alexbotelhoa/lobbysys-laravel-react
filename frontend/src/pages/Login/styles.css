@@ -58,14 +58,14 @@
     padding: 0 20px;
     font-size: 16px;
     font-weight: bold;
-    background: #c5beb8;
-    color: #fff;
+    background: rgb(230, 228, 228);
+    color: #7e7e07;
     cursor: pointer;
     transition: border-color 0.2s;
 }
 
 .content button.btnLogin:hover {
-    background: #d3a277;
+    background: lightgrey;
 }
 
 .validation-container {

@@ -20,8 +20,8 @@ class CreateConciergesTable extends Migration
             $table->foreign('visitor_id')->references('id')->on('visitors');
             $table->integer('room_id')->unsigned();
             $table->foreign('room_id')->references('id')->on('rooms');
-            $table->date('checkIn');
-            $table->date('checkOut')->default(Carbon::now());
+            $table->timestamp('checkIn');
+            $table->timestamp('checkOut');
             $table->timestamps();
         });
     }
