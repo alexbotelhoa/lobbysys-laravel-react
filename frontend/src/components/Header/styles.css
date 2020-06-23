@@ -1,5 +1,4 @@
 .header {
-    margin: 30px auto 0;
     background: transparent;
     border: 0;
     width: 100%;
@@ -11,8 +10,8 @@
 
 header#main-header {
   background: #fff;
-  height: 72px;
-  border-bottom: 1px solid #ddd;
+  padding-top: 5px;
+  /* border-bottom: 1px solid #ddd; */
 }
  
 header#main-header .header-content {
@@ -20,7 +19,7 @@ header#main-header .header-content {
   max-width: 980px;
   margin: 0 auto;
   height: 72px;
-  padding: 0 30px;
+  padding: 0 20px;
 
   display: flex;
   align-items: center;
@@ -29,7 +28,7 @@ header#main-header .header-content {
 
 header#main-header .header-content span a {
   color: #000;
-  margin-left: 6px;
+  margin-left: 2px;
 }
 
 .imageLogo {
@@ -51,20 +50,21 @@ header#main-header .header-content span a {
 
 .btn {
   border: 0;
-  border-radius: 2px;
-  width: 120px;
-  height: 42px;
+  border-radius: 5px;
+  width: 110px;
+  height: 32px;
   padding: 0 20px;
   font-size: 16px;
   font-weight: bold;
-  background: #c5beb8;
-  color: #fff;
+  background: transparent;
+  color: #7e7e07;
   cursor: pointer;
   margin-right: 2px;
 }
 
 .btn:hover {
-  background: #d3a277;
+  /* background: #c5beb8; */
+  background: #dcdce6;
 }
 
 
@@ -73,16 +73,17 @@ header#main-header .header-content span a {
 
 
 .logout {
-  height: 40px;
-  width: 40px;
-  border-radius: 4px;
+  height: 36px;
+  width: 36px;
+  border-radius: 5px;
   border: 0px solid #fff;
+  color: #7e7e07;
   background: transparent;
   margin-left: 16px;
   transition: border-color 0.2s;
 }
 
 .logout:hover {
-  background: #dcdce6;
+  background: lightgrey;
   cursor: pointer;
 }

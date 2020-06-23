@@ -25,6 +25,9 @@ export default function Header() {
 
 
         <div className="btnNavegacao">
+          <Link className="button" to="/dashboard">
+            <button className="btn">Dashboard</button>
+          </Link>
           <Link className="button" to="/users">
             <button className="btn">Usuários</button>
           </Link>

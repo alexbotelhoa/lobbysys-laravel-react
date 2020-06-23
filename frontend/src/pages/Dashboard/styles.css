@@ -1,0 +1,123 @@
+.containerDashboard {
+    height: 80vh;
+    margin: 10px auto 0;
+    max-width: 950px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+}
+
+
+
+
+
+
+
+.contentVisitors {
+    width: 75%;
+    height: 100%;
+    background: #f3f3f3;
+    border-radius: 10px;
+    padding: 20px;
+    margin-right: 10px;
+    flex-direction: column;
+}
+
+.contentVisitors ul {
+    display: grid;
+    grid-gap: 20px;
+    padding-bottom: 20px;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.contentVisitors ul li {
+    display: flex;
+    background-color: lightgrey;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.contentVisitors ul li span {
+    text-align: center;
+    align-self: center;
+    /* border: 1px solid rgb(1, 47, 251); */
+}
+
+.contentVisitors ul li span img {
+    max-width: 70%;
+}
+
+.contentVisitors ul li footer {
+    flex: 1;
+    text-align: left;
+    /* border: 1px solid rgb(1, 47, 251); */
+}
+
+.contentVisitors ul li footer strong {
+    font-size: 14px;
+    color: #333;
+}
+
+.contentVisitors ul li footer p {
+    font-size: 12px;
+    line-height: 15px;
+    color: rgb(76, 76, 76);
+}
+
+
+
+
+
+
+
+
+
+
+
+.contentQueues {
+    width: 25%;
+    height: 100%;
+    background: #f3f3f3;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.contentQueues ul {
+    display: grid;
+    grid-gap: 20px;
+}
+
+.contentQueues ul li {
+    display: flex;
+    background-color: lightgrey;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.contentQueues ul li span {
+    text-align: center;
+    align-self: center;
+    /* border: 1px solid rgb(1, 47, 251); */
+}
+
+.contentQueues ul li span img {
+    max-width: 70%;
+}
+
+.contentQueues ul li footer {
+    flex: 1;
+    text-align: left;
+    /* border: 1px solid rgb(1, 47, 251); */
+}
+
+.contentQueues ul li footer strong {
+    font-size: 14px;
+    color: #333;
+}
+
+.contentQueues ul li footer p {
+    font-size: 12px;
+    line-height: 15px;
+    color: rgb(76, 76, 76);
+}
