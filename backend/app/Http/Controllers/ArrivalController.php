@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Arrival;
+use App\Models\Queue;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -19,6 +20,7 @@ class ArrivalController extends Controller
             ->join('visitors', 'arrivals.visitor_id', '=', 'visitors.id')
             ->join('rooms', 'arrivals.room_id', '=', 'rooms.id')
             ->select('arrivals.*', 'visitors.name', 'visitors.cpf', 'rooms.nrRoom')
+            ->orderBy('rooms.nrRoom')
             ->get();
 
         return response($arrivals, 200);
@@ -32,13 +34,34 @@ class ArrivalController extends Controller
      */
     public function store(Request $request)
     {
-        try {
-            $arrival = Arrival::create($request->all());
-        } catch (\Exception $e) {
-            return response([ "message" => "Arrival Bad Request"], 400);
+        $countArrival = Arrival::where('room_id', $request->room_id)->count();
+
+        if ($countArrival < 3) {
+            try {
+                $arrival = Arrival::create($request->all());
+            } catch (\Exception $e) {
+                return response([ "message" => "Arrival Bad Request"], 400);
+            }
+        } else {
+            return response($countArrival, 203);
         }
 
         return response($arrival, 201);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $arrival = Arrival::where('room_id', $id)->count();
+
+        if (!$arrival) return response([ "message" => "Arrival Not Found!" ], 404);
+
+        return response($arrival, 302);
     }
 
     /**

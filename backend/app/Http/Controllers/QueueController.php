@@ -19,6 +19,7 @@ class QueueController extends Controller
             ->join('visitors', 'queues.visitor_id', '=', 'visitors.id')
             ->join('rooms', 'queues.room_id', '=', 'rooms.id')
             ->select('queues.*', 'visitors.name', 'visitors.cpf', 'rooms.nrRoom')
+            ->orderBy('queues.created_at')
             ->get();
 
         return response($queue, 200);
@@ -32,10 +33,16 @@ class QueueController extends Controller
      */
     public function store(Request $request)
     {
-        try {
-            $queuePosition = Queue::create($request->all());
-        } catch (\Exception $e) {
-            return response([ "message" => "Queue Position Bad Request"], 400);
+        $visitorCount = Queue::where('visitor_id', $request->visitor_id)->count();
+
+        if ($visitorCount === 0 ) {
+            try {
+                $queuePosition = Queue::create($request->all());
+            } catch (\Exception $e) {
+                return response([ "message" => "Queue Position Bad Request"], 400);
+            }
+        } else {
+            return response($visitorCount, 203);
         }
 
         return response($queuePosition, 201);

@@ -30,13 +30,14 @@ Route::resource('visitors', 'VisitorController');
 Route::resource('rooms', 'RoomController');
 
 // Criação da Fila de Espera
-Route::get('/queue', 'QueueController@index');
-Route::post('/queue', 'QueueController@store');
-Route::delete('/queue/{id}', 'QueueController@destroy');
+Route::get('/queues', 'QueueController@index');
+Route::post('/queues', 'QueueController@store');
+Route::delete('/queues/{id}', 'QueueController@destroy');
 
 // Criação dos Registros de Entrada de Visitantes
 Route::get('/arrivals', 'ArrivalController@index');
 Route::post('/arrivals', 'ArrivalController@store');
+Route::get('/arrivals/{id}', 'ArrivalController@show');
 Route::delete('/arrivals/{id}', 'ArrivalController@destroy');
 
 // Criação do Histórico dos Registros de Portaria

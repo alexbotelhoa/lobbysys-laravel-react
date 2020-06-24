@@ -22,26 +22,26 @@ export default function Dashboard() {
 
 
     useEffect(() => {
-        api.get('visitors').then(res => {
-            setVisitors(res.data)
+        api.get('visitors').then(response => {
+            setVisitors(response.data)
         })
 	}, []);
 	
 	useEffect(() => {
-        api.get('rooms').then(res => {
-            setRooms(res.data)
+        api.get('rooms').then(response => {
+            setRooms(response.data)
         })
 	}, []);
 	
 	useEffect(() => {
-		api.get('arrivals').then(res => {
-			setArrivals(res.data)
+		api.get('arrivals').then(response => {
+			setArrivals(response.data)
 		})
 	}, []);
 	
 	useEffect(() => {
-		api.get('queue').then(res => {
-			setQueues(res.data)
+		api.get('queues').then(response => {
+			setQueues(response.data)
 		})
     }, []);
 
@@ -49,39 +49,16 @@ export default function Dashboard() {
 
 
 
+	function checkInputsForm(event) {	
+		event.preventDefault();
 
-	function checkInput(e) {
-		e.preventDefault();
-	
 		if (selectedVisitor === '0') return setMensage('Selecione um visitante!');
 		if (selectedRoom === '0') return setMensage('Selecione uma sala!');
-	
-		handleSubmit();
+		
+		createPositionArrival();
 	};
 
-
-
-
-
-
-
-	function handleSelectVisitor(e) {
-        const visitor = e.target.value;
-        setSelectedVisitor(visitor);
-	};
-	
-	function handleSelectRoom(e) {
-        const room = e.target.value;
-        setSelectedRoom(room);
-    };
-
-
-
-
-
-
-
-	async function handleSubmit() {
+	async function createPositionArrival() {
 		const visitor = selectedVisitor.split(',');
 		const room = selectedRoom.split(',');
 		const dataTime = new Date().toLocaleString();
@@ -93,30 +70,78 @@ export default function Dashboard() {
 
 		const arrival = await api.post('arrivals', data);
 
-		const nameVisitorAndNrRoom = [{
-			name: visitor[1],
-			nrRoom: room[1]
-		}];
+		if (arrival.data.id) {
+			const nameVisitorAndNrRoom = [{
+				name: visitor[1],
+				nrRoom: room[1]
+			}];
 
-		Object.assign(arrival.data, nameVisitorAndNrRoom[0])
+			Object.assign(arrival.data, nameVisitorAndNrRoom[0]);
 
-		setArrivals([ ...arrivals, arrival.data ]);
+			setArrivals([ ...arrivals, arrival.data ]);
+		} else {
+			createPositionQueue();
+		}
+	}
+
+	async function createPositionQueue() {
+		const visitor = selectedVisitor.split(',');
+		const room = selectedRoom.split(',');
+
+		const data = new FormData();
+		data.append('visitor_id', visitor[0]);
+        data.append('room_id', room[0]);
+
+		const queue = await api.post('queues', data);
+
+		if (queue.data.id) {
+			const nameVisitorAndNrRoom = [{
+				name: visitor[1],
+				nrRoom: room[1]
+			}];
+
+			Object.assign(queue.data, nameVisitorAndNrRoom[0])
+
+			setQueues([ ...queues, queue.data ]);
+
+			return true;
+		} else {
+			return setMensage('Visitante já se encontra na fila de espera!');
+		}
 	}
 
 
 
 
 
-	function handleCheckOut(id) {
-		api.delete(`arrivals/${id}`);
 
-        setArrivals(arrivals.filter(req => req.id !== id));
+
+
+
+
+
+
+
+	function handleSelectVisitor(event) {
+        const visitor = event.target.value;
+        setSelectedVisitor(visitor);
 	};
 	
-	function handleExit(id) {
-		api.delete(`arrivals/${id}`);
+	function handleSelectRoom(event) {
+        const room = event.target.value;
+        setSelectedRoom(room);
+    };
 
-        setArrivals(arrivals.filter(req => req.id !== id));
+	async function handleCheckOut(id) {
+		await api.delete(`/arrivals/${id}`);
+
+        setArrivals(arrivals.filter(arrival => arrival.id !== id));
+	};
+	
+	async function handleExitQueue(id) {
+		await api.delete(`/queues/${id}`);
+
+        setQueues(queues.filter(queue => queue.id !== id));
     };	
 
 
@@ -130,7 +155,7 @@ export default function Dashboard() {
 			<div className="containerDashboard">
 				<div className="contentMain">
 					<div className="contentVisitors">
-						<form onSubmit={checkInput}>
+						<form onSubmit={checkInputsForm}>
 							<select 
 								id="visitor" 
 								name="visitor"
@@ -198,7 +223,7 @@ export default function Dashboard() {
 										<p>{queue.name}</p>
 										<h6>{queue.create_at}</h6>						
 									</footer>
-									<button className="btnCheckout" onClick={() => handleExit(queue.id)}>
+									<button className="btnCheckout" onClick={() => handleExitQueue(queue.id)}>
 										<GiExitDoor size="26" title="Exit" />
 									</button>
 								</li>

@@ -49,8 +49,6 @@ class ConciergeController extends Controller
      */
     public function show($id)
     {
-//        $concierge = Concierge::find($id);
-
         $concierge = DB::table('concierges')
             ->join('visitors', 'concierges.visitor_id', '=', 'visitors.id')
             ->join('rooms', 'concierges.room_id', '=', 'rooms.id')
