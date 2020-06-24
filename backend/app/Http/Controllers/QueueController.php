@@ -35,14 +35,12 @@ class QueueController extends Controller
     {
         $visitorCount = Queue::where('visitor_id', $request->visitor_id)->count();
 
-        if ($visitorCount === 0 ) {
-            try {
-                $queuePosition = Queue::create($request->all());
-            } catch (\Exception $e) {
-                return response([ "message" => "Queue Position Bad Request"], 400);
-            }
-        } else {
-            return response($visitorCount, 203);
+        if ($visitorCount > 0 ) return response(0, 203);
+
+        try {
+            $queuePosition = Queue::create($request->all());
+        } catch (\Exception $e) {
+            return response([ "message" => "Queue Position Bad Request"], 400);
         }
 
         return response($queuePosition, 201);

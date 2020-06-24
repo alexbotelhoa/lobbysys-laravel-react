@@ -34,16 +34,21 @@ class ArrivalController extends Controller
      */
     public function store(Request $request)
     {
+        $visitorAndRoomExist = Arrival::where([
+            ['visitor_id', '=', $request->visitor_id],
+            ['room_id', '=', $request->room_id]
+        ])->count();
+
+        if ($visitorAndRoomExist > 0) return response(0, 203);
+
         $countArrival = Arrival::where('room_id', $request->room_id)->count();
 
-        if ($countArrival < 3) {
-            try {
-                $arrival = Arrival::create($request->all());
-            } catch (\Exception $e) {
-                return response([ "message" => "Arrival Bad Request"], 400);
-            }
-        } else {
-            return response($countArrival, 203);
+        if ($countArrival > 2) return response(1, 203);
+
+        try {
+            $arrival = Arrival::create($request->all());
+        } catch (\Exception $e) {
+            return response([ "message" => "Arrival Bad Request"], 400);
         }
 
         return response($arrival, 201);

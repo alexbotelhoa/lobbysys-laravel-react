@@ -21,6 +21,8 @@ export default function Dashboard() {
 
 
 
+
+
     useEffect(() => {
         api.get('visitors').then(response => {
             setVisitors(response.data)
@@ -49,10 +51,13 @@ export default function Dashboard() {
 
 
 
+
+
 	function checkInputsForm(event) {	
 		event.preventDefault();
 
 		if (selectedVisitor === '0') return setMensage('Selecione um visitante!');
+
 		if (selectedRoom === '0') return setMensage('Selecione uma sala!');
 		
 		createPositionArrival();
@@ -80,6 +85,8 @@ export default function Dashboard() {
 
 			setArrivals([ ...arrivals, arrival.data ]);
 		} else {
+			if (arrival.data === 0) return setMensage('Visitante já está cadastrado nessa sala!');
+			
 			createPositionQueue();
 		}
 	}
@@ -103,17 +110,10 @@ export default function Dashboard() {
 			Object.assign(queue.data, nameVisitorAndNrRoom[0])
 
 			setQueues([ ...queues, queue.data ]);
-
-			return true;
 		} else {
 			return setMensage('Visitante já se encontra na fila de espera!');
 		}
 	}
-
-
-
-
-
 
 
 
@@ -143,6 +143,7 @@ export default function Dashboard() {
 
         setQueues(queues.filter(queue => queue.id !== id));
     };	
+
 
 
 
