@@ -37,7 +37,7 @@ Route::delete('/queues/{id}', 'QueueController@destroy');
 // Criação dos Registros de Entrada de Visitantes
 Route::get('/arrivals', 'ArrivalController@index');
 Route::post('/arrivals', 'ArrivalController@store');
-Route::get('/arrivals/{id}', 'ArrivalController@show');
+// Route::get('/arrivals/{id}', 'ArrivalController@show');
 Route::delete('/arrivals/{id}', 'ArrivalController@destroy');
 
 // Criação do Histórico dos Registros de Portaria

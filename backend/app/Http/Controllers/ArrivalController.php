@@ -39,11 +39,11 @@ class ArrivalController extends Controller
             ['room_id', '=', $request->room_id]
         ])->count();
 
-        if ($visitorAndRoomExist > 0) return response(0, 203);
+        if ($visitorAndRoomExist > 0) return response([ "message" => "Visitor already registered in the room"], 203);
 
         $countArrival = Arrival::where('room_id', $request->room_id)->count();
 
-        if ($countArrival > 2) return response(1, 203);
+        if ($countArrival > 2) return response([ "message" => "Limit of visitors in the room exceeded"], 226);
 
         try {
             $arrival = Arrival::create($request->all());

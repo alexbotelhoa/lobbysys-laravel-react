@@ -35,7 +35,7 @@ class QueueController extends Controller
     {
         $visitorCount = Queue::where('visitor_id', $request->visitor_id)->count();
 
-        if ($visitorCount > 0 ) return response(0, 203);
+        if ($visitorCount > 0 ) return response([ "message" => "Visitor is already in the queue"], 203);
 
         try {
             $queuePosition = Queue::create($request->all());

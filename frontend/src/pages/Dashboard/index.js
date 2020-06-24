@@ -18,11 +18,6 @@ export default function Dashboard() {
 	const [selectedVisitor, setSelectedVisitor] = useState('0');
 	const [selectedRoom, setSelectedRoom] = useState('0');
 
-
-
-
-
-
     useEffect(() => {
         api.get('visitors').then(response => {
             setVisitors(response.data)
@@ -47,12 +42,6 @@ export default function Dashboard() {
 		})
     }, []);
 
-
-
-
-
-
-
 	function checkInputsForm(event) {	
 		event.preventDefault();
 
@@ -73,9 +62,17 @@ export default function Dashboard() {
         data.append('room_id', room[0]);
         data.append('checkIn', dataTime);
 
-		const arrival = await api.post('arrivals', data);
+		let arrival;
 
-		if (arrival.data.id) {
+		try {
+			arrival = await api.post('arrivals', data);
+		} catch (err) {
+			alert('Erro ao tentar realizar o CHECKIN do visitante!\nTente novamente em alguns instantes!');
+		}
+
+		console.log(arrival)
+
+		if (arrival.status === 201) {
 			const nameVisitorAndNrRoom = [{
 				name: visitor[1],
 				nrRoom: room[1]
@@ -85,7 +82,7 @@ export default function Dashboard() {
 
 			setArrivals([ ...arrivals, arrival.data ]);
 		} else {
-			if (arrival.data === 0) return setMensage('Visitante já está cadastrado nessa sala!');
+			if (arrival.status === 203) return setMensage('Visitante já está cadastrado nessa sala!');
 			
 			createPositionQueue();
 		}
@@ -99,9 +96,15 @@ export default function Dashboard() {
 		data.append('visitor_id', visitor[0]);
         data.append('room_id', room[0]);
 
-		const queue = await api.post('queues', data);
+		let queue;
 
-		if (queue.data.id) {
+		try {
+			queue = await api.post('queues', data);
+		} catch (err) {
+			alert('Erro ao tentar realizar o CHECKIN do visitante!\nTente novamente em alguns instantes!');
+		}
+
+		if (queue.status === 201) {
 			const nameVisitorAndNrRoom = [{
 				name: visitor[1],
 				nrRoom: room[1]
@@ -115,13 +118,6 @@ export default function Dashboard() {
 		}
 	}
 
-
-
-
-
-
-
-
 	function handleSelectVisitor(event) {
         const visitor = event.target.value;
         setSelectedVisitor(visitor);
@@ -133,29 +129,32 @@ export default function Dashboard() {
     };
 
 	async function handleCheckOut(id) {
-		await api.delete(`/arrivals/${id}`);
+		try {
+			await api.delete(`/arrivals/${id}`);
 
-        setArrivals(arrivals.filter(arrival => arrival.id !== id));
+			setArrivals(arrivals.filter(arrival => arrival.id !== id));
+		} catch (err) {
+			alert('Erro ao tentar realizar o CHECKOUT do visitante!\nTente novamente em alguns instantes!');
+		}		
 	};
 	
 	async function handleExitQueue(id) {
-		await api.delete(`/queues/${id}`);
+		try {
+			await api.delete(`/queues/${id}`);
 
-        setQueues(queues.filter(queue => queue.id !== id));
+			setQueues(queues.filter(queue => queue.id !== id));
+		} catch (err) {
+			alert('Erro ao tentar RETIRAR o visitante da fila de espera!\nTente novamente em alguns instantes!');
+		}
     };	
-
-
-
-
-
 
 	return	( 
 		<>
 			<Header />
 			
-			<div className="containerDashboard">
-				<div className="contentMain">
-					<div className="contentVisitors">
+			<div className="containerMain">
+				<div className="contentLeft">
+					<div className="contentDashboardVisitors">
 						<form onSubmit={checkInputsForm}>
 							<select 
 								id="visitor" 
@@ -186,20 +185,19 @@ export default function Dashboard() {
 							</button>
 						</form>
 					</div>
-
-					<div className="contentRooms">
+					<div className="contentDashboardRooms">
 						<ul>
 						{arrivals.map(arrival => (
 							<li className="cardPerson" key={arrival.id}>
 								<span>
-									<img src={person} title="Visitante" />
+									<img src={person} title="Visitante" alt="" />
 								</span>
 								<footer>
 									<strong>Sala {arrival.nrRoom}</strong>
 									<p>{arrival.name}</p>
 									<h6>{arrival.checkIn}</h6>
 								</footer>
-								<button className="btnCheckout" onClick={() => handleCheckOut(arrival.id)}>
+								<button className="btnCard" onClick={() => handleCheckOut(arrival.id)}>
 									<BsBoxArrowRight size="26" title="CheckOut" />
 								</button>
 							</li>							
@@ -208,9 +206,9 @@ export default function Dashboard() {
 					</div>
 				</div>
 
-				<div className="contentQueues">
-					<div>
-						Fila de Espera
+				<div className="contentRight">
+					<div className="contentDashboardQueues">
+						<p>Fila de Espera</p>
 					</div>
 					<div className="queuePerson">
 						<ul>
@@ -224,7 +222,7 @@ export default function Dashboard() {
 										<p>{queue.name}</p>
 										<h6>{queue.create_at}</h6>						
 									</footer>
-									<button className="btnCheckout" onClick={() => handleExitQueue(queue.id)}>
+									<button className="btnCard" onClick={() => handleExitQueue(queue.id)}>
 										<GiExitDoor size="26" title="Exit" />
 									</button>
 								</li>
