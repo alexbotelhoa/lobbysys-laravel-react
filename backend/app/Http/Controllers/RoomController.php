@@ -27,7 +27,7 @@ class RoomController extends Controller
      */
     public function store(Request $request)
     {
-        $countRoom = Visitor::where('nrRoom', $request->nrRoom)->count();
+        $countRoom = Room::where('nrRoom', $request->nrRoom)->count();
 
         if ($countRoom > 0) return response([ "message" => "Room already registered"], 226);
 

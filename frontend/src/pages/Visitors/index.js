@@ -10,10 +10,10 @@ export default function Visitors() {
 	const [mensage, setMensage] = useState(null);
 	const [visitors, setVisitors] = useState([]);
 
-	const [name, setName] = useState('Alano de Almeida');
-	const [cpf, setCpf] = useState('999.999.999-99');
-	const [birth, setBirth] = useState('2000-01-01');
-	const [email, setEmail] = useState('fulanoalmeida@lobbysys.com');
+	const [name, setName] = useState('');
+	const [cpf, setCpf] = useState('');
+	const [birth, setBirth] = useState('');
+	const [email, setEmail] = useState('');
 
 
 	
@@ -78,7 +78,7 @@ export default function Visitors() {
         
             setVisitors(visitors.filter(visitor => visitor.id !== id));
         } catch (err) {
-			alert('Erro ao tentar DELETAR o visitante!\nVerifique se o visitante já contém registro em seu nome.\nCaso não tenha, tente novamente em alguns instantes!');
+			alert('Erro ao tentar DELETAR o visitante!\nVerifique se o visitante contém registro(s) de "checkin".\nCaso não tenha, tente novamente em alguns instantes!');
         }
 	};
 	
@@ -157,7 +157,7 @@ export default function Visitors() {
 							
 							<div className="btnSalveVisitor">	
 								<span>
-									<FiSave size="26" title="CkeckIn" />
+									<FiSave size="26" title="Novo Visitante" />
 								</span>
 								<button type="submit" onClick={() => {}}>
 									<strong>Cadastrar novo visitante</strong>

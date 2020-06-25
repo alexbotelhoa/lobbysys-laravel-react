@@ -1,6 +1,6 @@
 .container{
     height: 100%;
-    margin: 20px auto 20px;
+    margin: 19px auto 20px;
     max-width: 1000px;
     display: flex;
     align-items: center;
@@ -124,7 +124,7 @@
 
 
 .contentVisitors {
-    height: 50vh;
+    height: 53.8vh;
     overflow-y: scroll;
     border: 1px solid #ddd;
     border-radius: 10px 0 0 10px;    
@@ -158,13 +158,14 @@
 }
 
 .contentVisitors ul li button {
-    width: 30px;
+    width: 35px;
     height: 25px;
     text-align: center;
     border: 0;
     border-radius: 3px;
     cursor: pointer;
     color: #7e7e07;
+    background: rgb(230, 228, 228);
 }
 
 .contentVisitors ul li button:hover {
