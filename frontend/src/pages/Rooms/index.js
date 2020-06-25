@@ -12,20 +12,11 @@ export default function Rooms() {
 
 	const [nrRoom, setNrRoom] = useState('4567');
 
-
-
-
-
 	useEffect(() => {
         api.get('rooms').then(response => {
             setRooms(response.data)
         })
 	}, []);
-
-
-
-
-
 
 	function checkInputsForm(event) {	
 		event.preventDefault();
@@ -34,15 +25,6 @@ export default function Rooms() {
 		
 		createRoom();
 	};
-
-
-
-
-
-
-
-
-
 
 	async function createRoom() {
 		const data = new FormData();
@@ -73,29 +55,14 @@ export default function Rooms() {
         }
 	};
 
-
-
-
-
-
     return	( 
 		<>
 			<Header />
 
-
-
-
-
-
 			<div className="container">
 				<div className="contentMain">
-
-
 					<div className="contentRoom">
 						<form onSubmit={checkInputsForm}>
-
-
-
 							<div className="field-group">
 								<div className="field">
 									<label htmlFor="name">Número da Sala *</label>
@@ -117,33 +84,23 @@ export default function Rooms() {
 									</button>
 								</div>	
 							</div>
-
-
-
 						</form>
 					</div>
 
 					<div className="contentRooms">
-						
-
 						<ul>
-
-						{rooms.map(room => (
-							<li key={room.id}>
-								<header>{room.nrRoom}</header>
-								<button onClick={() => handleDeleteRoom(room.id)}>
-									<RiDeleteBinLine size="16" />
-								</button>
-							</li>
-						))}
-							
+							{rooms.map(room => (
+								<li key={room.id}>
+									<header>{room.nrRoom}</header>
+									<button onClick={() => handleDeleteRoom(room.id)}>
+										<RiDeleteBinLine size="16" />
+									</button>
+								</li>
+							))}							
 						</ul>
-
-
 					</div>
 				</div>
 			</div>
-
 
 			{ mensage && (
 			<div className="validation-container">
@@ -151,9 +108,6 @@ export default function Rooms() {
 				<button type="button" onClick={() => setMensage(null)}>FECHAR</button>
 			</div>
 			) }
-
-
-
 		</>
 	)
 }

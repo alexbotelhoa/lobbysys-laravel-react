@@ -16,10 +16,6 @@ export default function Concierges() {
 
 	const [concierges, setConcierges] = useState([]);
 
-
-
-
-
     useEffect(() => {
         api.get('visitors').then(response => {
             setVisitors(response.data)
@@ -32,11 +28,6 @@ export default function Concierges() {
         })
 	}, []);
 
-
-
-
-
-
 	function checkInputsForm(event) {	
 		event.preventDefault();
 
@@ -44,10 +35,6 @@ export default function Concierges() {
 		
 		searchVisitors();
 	};
-
-
-
-
 
 	async function searchVisitors() {
 		const visitor = selectedVisitor.split(',');
@@ -74,19 +61,14 @@ export default function Concierges() {
 		}
 	};
 
-
-
     return	( 
 		<>
 			<Header />
 
-
 			<div className="container">
 				<div className="contentMain">
-
 					<div className="contentConcierge">
 						<form onSubmit={checkInputsForm}>
-
 							<div className="field-group">
 								<div className="field">
 									<select 
@@ -137,27 +119,20 @@ export default function Concierges() {
 									</button>
 								</div>	
 							</div>
-
 						</form>
 					</div>
 
-					<div className="contentConcierges">
-						
-
+					<div className="contentConcierges">					
 						<ul>
-
-						{concierges.map(concierge => (
-							<li key={concierge.id}>
-								<header>{concierge.name}</header>
-								<span>{concierge.nrRoom}</span>
-								<p>{concierge.checkIn}</p>
-								<footer>{concierge.checkOut}</footer>
-							</li>
-						))}
-							
+							{concierges.map(concierge => (
+								<li key={concierge.id}>
+									<header>{concierge.name}</header>
+									<span>{concierge.nrRoom}</span>
+									<p>{concierge.checkIn}</p>
+									<footer>{concierge.checkOut}</footer>
+								</li>
+							))}							
 						</ul>
-
-
 					</div>
 				</div>
 			</div>
@@ -168,8 +143,6 @@ export default function Concierges() {
 					<button type="button" onClick={() => setMensage(null)}>FECHAR</button>
 				</div>
         	) }
-
-
 		</>
 	)
 }

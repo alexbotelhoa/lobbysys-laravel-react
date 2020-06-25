@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Arrival;
 use App\Models\Queue;
+use App\Models\Concierge;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -77,10 +78,50 @@ class ArrivalController extends Controller
      */
     public function destroy($id)
     {
-        $arrival = Arrival::where('id', $id)->delete($id);
+        $arrival = Arrival::find($id);
 
         if (!$arrival) return response([ "message" => "Arrival Not Found!" ], 404);
 
-        return response('', 204);
+        $personQueue = DB::table('queues')
+            ->join('visitors', 'queues.visitor_id', '=', 'visitors.id')
+            ->join('rooms', 'queues.room_id', '=', 'rooms.id')
+            ->select('queues.*', 'visitors.name', 'visitors.cpf', 'rooms.nrRoom')
+            ->where('room_id', $arrival->room_id)
+            ->orderBy('created_at')
+            ->limit(1)
+            ->get();
+
+        DB::beginTransaction();
+
+        try {
+            DB::table('concierges')->insert([
+                'visitor_id' => $arrival->visitor_id,
+                'room_id' => $arrival->room_id,
+                'checkIn' => $arrival->checkIn,
+                'checkOut' => now()
+            ]);
+
+            DB::table('arrivals')->where('id', $id)->delete($id);
+
+            if (count($personQueue) > 0) {
+                DB::table('arrivals')->insert([
+                    'visitor_id' => $arrival->visitor_id,
+                    'room_id' => $arrival->room_id,
+                    'checkIn' => now()
+                ]);
+                
+                DB::table('queues')->where('id', $personQueue[0]->id)->delete($personQueue[0]->id);
+            }
+        
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
+        };
+
+        if (count($personQueue) > 0) {
+            return response($personQueue, 201);
+        } else {
+            return response('', 204);
+        }
     }
 }

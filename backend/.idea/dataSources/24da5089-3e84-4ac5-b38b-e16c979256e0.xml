@@ -38,9 +38,8 @@
     </column>
     <column id="17" parent="6" name="checkIn">
       <Position>3</Position>
-      <DataType>date|0</DataType>
+      <DataType>datetime|0</DataType>
       <NotNull>1</NotNull>
-      <DefaultExpression>&apos;2020-06-22 11:39:29&apos;</DefaultExpression>
     </column>
     <column id="18" parent="6" name="created_at">
       <Position>4</Position>
@@ -81,14 +80,13 @@
     </column>
     <column id="26" parent="7" name="checkIn">
       <Position>3</Position>
-      <DataType>date|0</DataType>
+      <DataType>datetime|0</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="27" parent="7" name="checkOut">
       <Position>4</Position>
-      <DataType>date|0</DataType>
+      <DataType>datetime|0</DataType>
       <NotNull>1</NotNull>
-      <DefaultExpression>&apos;2020-06-22 11:39:29&apos;</DefaultExpression>
     </column>
     <column id="28" parent="7" name="created_at">
       <Position>5</Position>
@@ -249,7 +247,12 @@
       <Position>6</Position>
       <DataType>datetime|0</DataType>
     </column>
-    <key id="65" parent="13">
+    <index id="65" parent="13" name="visitors_cpf_unique">
+      <ColNames>cpf</ColNames>
+      <ColumnCollations></ColumnCollations>
+      <Unique>1</Unique>
+    </index>
+    <key id="66" parent="13">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>

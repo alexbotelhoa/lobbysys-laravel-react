@@ -22,7 +22,6 @@ class CreateConciergesTable extends Migration
             $table->foreign('room_id')->references('id')->on('rooms');
             $table->timestamp('checkIn');
             $table->timestamp('checkOut');
-            $table->timestamps();
         });
     }
 

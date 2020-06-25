@@ -19,7 +19,8 @@ class QueueController extends Controller
             ->join('visitors', 'queues.visitor_id', '=', 'visitors.id')
             ->join('rooms', 'queues.room_id', '=', 'rooms.id')
             ->select('queues.*', 'visitors.name', 'visitors.cpf', 'rooms.nrRoom')
-            ->orderBy('queues.created_at')
+            ->orderBy('rooms.nrRoom')
+            ->orderBy('visitors.name')
             ->get();
 
         return response($queue, 200);

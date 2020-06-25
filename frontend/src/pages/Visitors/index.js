@@ -15,20 +15,11 @@ export default function Visitors() {
 	const [birth, setBirth] = useState('');
 	const [email, setEmail] = useState('');
 
-
-	
-
-
 	useEffect(() => {
         api.get('visitors').then(response => {
             setVisitors(response.data)
         })
 	}, []);
-
-
-
-
-
 
 	function checkInputsForm(event) {	
 		event.preventDefault();
@@ -38,17 +29,6 @@ export default function Visitors() {
 		
 		createVisitor();
 	};
-
-
-
-
-
-
-
-
-
-
-
 
 	async function createVisitor() {
 		const data = new FormData();
@@ -82,26 +62,14 @@ export default function Visitors() {
         }
 	};
 	
-
-
-
-
-
-
     return	( 
 		<>
 			<Header />
 
-
 			<div className="container">
 				<div className="contentMain">
-
-
 					<div className="contentVisitor">
-						<form onSubmit={checkInputsForm}>
-
-
-								
+						<form onSubmit={checkInputsForm}>						
 							<div className="field-group">
 								<div className="field">
 									<label htmlFor="name">Nome *</label>
@@ -150,11 +118,7 @@ export default function Visitors() {
 										onChange={e => setEmail(e.target.value)}
 									/>
 								</div>
-							</div>
-
-
-
-							
+							</div>							
 							<div className="btnSalveVisitor">	
 								<span>
 									<FiSave size="26" title="Novo Visitante" />
@@ -162,50 +126,28 @@ export default function Visitors() {
 								<button type="submit" onClick={() => {}}>
 									<strong>Cadastrar novo visitante</strong>
 								</button>
-							</div>								
-
-
-
-
-							
+							</div>															
 						</form>
 					</div>
 
-					<div className="contentVisitors">
-						
-
+					<div className="contentVisitors">			
 						<ul>
-
-						{visitors.map(visitor => (
-							<li key={visitor.id}>
-								<header>{visitor.name}</header>
-								<span>{visitor.email}</span>
-								<p>{visitor.cpf}</p>
-								<footer>{visitor.birth}</footer>
-								<button onClick={() => handleDeleteVisitor(visitor.id)}>
-									<RiDeleteBinLine size="16" />
-								</button>
-							</li>
-						))}
-							
+							{visitors.map(visitor => (
+								<li key={visitor.id}>
+									<header>{visitor.name}</header>
+									<span>{visitor.email}</span>
+									<p>{visitor.cpf}</p>
+									<footer>{visitor.birth}</footer>
+									<button onClick={() => handleDeleteVisitor(visitor.id)}>
+										<RiDeleteBinLine size="16" />
+									</button>
+								</li>
+							))}							
 						</ul>
-
-
 					</div>
-
-
-
 				</div>
 			</div>
-
-
-
-
-
-
-
-
-
+			
 			{ mensage && (
 				<div className="validation-container">
 					<strong className="mensageError">{mensage}</strong>

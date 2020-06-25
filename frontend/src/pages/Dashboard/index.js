@@ -31,16 +31,24 @@ export default function Dashboard() {
 	}, []);
 	
 	useEffect(() => {
-		api.get('arrivals').then(response => {
-			setArrivals(response.data)
-		})
+		loadArrivals();
 	}, []);
 	
 	useEffect(() => {
+		loadQueues();
+    }, []);
+
+	function loadArrivals() {
+		api.get('arrivals').then(response => {
+			setArrivals(response.data)
+		});
+	};
+
+	function loadQueues() {
 		api.get('queues').then(response => {
 			setQueues(response.data)
-		})
-    }, []);
+		});
+	};
 
 	function checkInputsForm(event) {	
 		event.preventDefault();
@@ -68,7 +76,7 @@ export default function Dashboard() {
 			arrival = await api.post('arrivals', data);
 		} catch (err) {
 			alert('Erro ao tentar realizar o CHECKIN do visitante!\nTente novamente em alguns instantes!');
-		}
+		};
 
 		if (arrival.status === 201) {
 			const nameVisitorAndNrRoom = [{
@@ -87,13 +95,6 @@ export default function Dashboard() {
 	}
 
 	async function createPositionQueue(data, name, nrRoom) {
-		// const visitor = selectedVisitor.split(',');
-		// const room = selectedRoom.split(',');
-
-		// const data = new FormData();
-		// data.append('visitor_id', visitor[0]);
-        // data.append('room_id', room[0]);
-
 		let queue;
 
 		try {
@@ -116,23 +117,21 @@ export default function Dashboard() {
 		}
 	}
 
-	function handleSelectVisitor(event) {
-        const visitor = event.target.value;
-        setSelectedVisitor(visitor);
-	};
-	
-	function handleSelectRoom(event) {
-        const room = event.target.value;
-        setSelectedRoom(room);
-    };
-
 	async function handleCheckOut(id) {
-		try {
-			await api.delete(`/arrivals/${id}`);
+		let arrival;
 
-			setArrivals(arrivals.filter(arrival => arrival.id !== id));
+		try {
+			arrival = await api.delete(`/arrivals/${id}`);
 		} catch (err) {
 			alert('Erro ao tentar realizar o CHECKOUT do visitante!\nTente novamente em alguns instantes!');
+		}
+		
+		if (arrival.status === 201)  {
+			loadArrivals();
+
+			loadQueues();
+		} else {
+			setArrivals(arrivals.filter(arrival => arrival.id !== id));
 		}		
 	};
 	
@@ -158,7 +157,7 @@ export default function Dashboard() {
 								id="visitor" 
 								name="visitor"
 								value={selectedVisitor} 
-								onChange={handleSelectVisitor}
+								onChange={e => setSelectedVisitor(e.target.value)}
 							>
 								<option value="0">Selecione um Visitante</option>
 								{visitors.map(visitor => (
@@ -170,7 +169,7 @@ export default function Dashboard() {
 								id="room" 
 								name="room"
 								value={selectedRoom} 
-								onChange={handleSelectRoom}
+								onChange={e => setSelectedRoom(e.target.value)}
 							>
 								<option value="0">Selecione uma Sala</option>
 								{rooms.map(room => (
