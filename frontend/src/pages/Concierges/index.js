@@ -40,7 +40,7 @@ export default function Concierges() {
 	function checkInputsForm(event) {	
 		event.preventDefault();
 
-		if (selectedVisitor === '0' || selectedRoom === '0' || selectedCheckIn === '') return setMensage('Selecione pelo manos um opção!');
+		if (selectedVisitor === '0' || selectedRoom === '0' || selectedCheckIn === '') return setMensage('Selecione pelo menos um opção!');
 		
 		searchVisitors();
 	};

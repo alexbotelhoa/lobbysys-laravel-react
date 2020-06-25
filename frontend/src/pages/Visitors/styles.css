@@ -7,11 +7,6 @@
     border-radius: 10px;
 }
 
-
-
-
-
-
 .contentMain {
     width: 100%;
     height: 100%;
@@ -19,11 +14,6 @@
     border-radius: 10px;
     background: #f3f3f3;
 }
-
-
-
-
-
 
 .contentVisitor {
     margin-bottom: 20px;
@@ -45,7 +35,7 @@
 .contentVisitor form .field label {
     display: flex;
     font-size: 14px;
-    margin-left: 75px;
+    margin-left: 85px;
     color: #7e7e07;
     font-weight: bold;
 }
@@ -62,16 +52,6 @@
     color: #6C6C80;
     border-radius: 5px;
 }
-
-.contentVisitor form .field input::placeholder {
-    color: #A0A0B2;
-}
-
-
-
-
-
-
 
 .contentVisitor form .btnSalveVisitor {
     display: flex;
@@ -112,16 +92,6 @@
     align-self: center;
     font-size: 14px;
 }
-
-
-
-
-
-
-
-
-
-
 
 .contentVisitors {
     height: 53.8vh;
