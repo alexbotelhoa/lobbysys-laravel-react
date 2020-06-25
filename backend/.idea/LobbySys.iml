@@ -26,6 +26,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/hamcrest/hamcrest-php" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/laravel/framework" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/laravel/tinker" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/laravel/ui" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/league/commonmark" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/league/flysystem" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/mockery/mockery" />
@@ -142,6 +143,7 @@
           <root url="file://$MODULE_DIR$/vendor/hamcrest/hamcrest-php" />
           <root url="file://$MODULE_DIR$/vendor/laravel/framework" />
           <root url="file://$MODULE_DIR$/vendor/laravel/tinker" />
+          <root url="file://$MODULE_DIR$/vendor/laravel/ui" />
           <root url="file://$MODULE_DIR$/vendor/league/commonmark" />
           <root url="file://$MODULE_DIR$/vendor/league/flysystem" />
           <root url="file://$MODULE_DIR$/vendor/mockery/mockery" />
@@ -242,6 +244,7 @@
           <root url="file://$MODULE_DIR$/vendor/hamcrest/hamcrest-php" />
           <root url="file://$MODULE_DIR$/vendor/laravel/framework" />
           <root url="file://$MODULE_DIR$/vendor/laravel/tinker" />
+          <root url="file://$MODULE_DIR$/vendor/laravel/ui" />
           <root url="file://$MODULE_DIR$/vendor/league/commonmark" />
           <root url="file://$MODULE_DIR$/vendor/league/flysystem" />
           <root url="file://$MODULE_DIR$/vendor/mockery/mockery" />
