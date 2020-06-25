@@ -47,11 +47,10 @@ export default function Concierges() {
 			alert('Erro ao tentar pesquisar as informações!\nTente novamente em alguns instantes!');
 		}	
 
-		console.log('response: ', concierge);
-
-		if (concierge.status === 200) {
+		if (concierge.data.length > 0) {
 			setConcierges(concierge.data);
 		} else {
+			setConcierges([]);
 			return setMensage('Não há registros nessa pesquisa. Tente novamente!');
 		}
 	};
@@ -78,7 +77,7 @@ export default function Concierges() {
 									>
 										<option value="">Selecione um Visitante</option>
 										{visitors.map(visitor => (
-											<option key={visitor.id} value={visitor.id}>{visitor.id} - {visitor.name}</option>
+											<option key={visitor.id} value={visitor.id}>{visitor.name}</option>
 										))}
 									</select>
 								</div>
@@ -91,7 +90,7 @@ export default function Concierges() {
 									>
 										<option value="">Selecione uma Sala</option>
 										{rooms.map(room => (
-											<option key={room.id} value={room.id}>{room.id} - {room.nrRoom}</option>
+											<option key={room.id} value={room.id}>{room.nrRoom}</option>
 										))}
 									</select>
 								</div>

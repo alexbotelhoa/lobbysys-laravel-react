@@ -1,6 +1,7 @@
 import React, { useState, useEffect }  from 'react';
-import { FiSave } from 'react-icons/fi';
 import { RiDeleteBinLine } from 'react-icons/ri';
+import { FiSave } from 'react-icons/fi';
+import InputMask from 'react-input-mask';
 
 import './styles.css';
 import api from '../../services/api';
@@ -66,11 +67,12 @@ export default function Rooms() {
 							<div className="field-group">
 								<div className="field">
 									<label htmlFor="name">Número da Sala *</label>
-									<input 
+									<InputMask 
 										id="nrRoom" 
 										name="nrRoom"
 										value={nrRoom}
-										type="number"
+										mask="9999"
+										maskChar=""
 										placeholder="Informe o NÚMERO da sala"
 										onChange={e => setNrRoom(e.target.value)}
 									/>

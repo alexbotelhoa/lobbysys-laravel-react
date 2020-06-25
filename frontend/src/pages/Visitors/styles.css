@@ -40,9 +40,7 @@
     font-weight: bold;
 }
 
-.contentVisitor form .field input[type=text],
-.contentVisitor form .field input[type=date],
-.contentVisitor form .field input[type=email] {
+.contentVisitor form .field input {
     width: 330px;
     height: 45px;
     background: #F0F0F5;
@@ -96,8 +94,9 @@
 .contentVisitors {
     height: 53.8vh;
     overflow-y: scroll;
+    color: #6C6C80;
     border: 1px solid #ddd;
-    border-radius: 10px 0 0 10px;    
+    border-radius: 10px 0 0 10px;
 }
 
 .contentVisitors ul {
@@ -112,17 +111,25 @@
     padding: 10px;
 }
 
+.contentVisitors ul li h3 {
+    width: 30px;
+    text-align: center;
+}
+
 .contentVisitors ul li header {
     width: 300px;
 }
-.contentVisitors ul li span {
-    width: 250px;
-}
+
 .contentVisitors ul li p {
     width: 120px;
     text-align: center;
 }
+
 .contentVisitors ul li footer {
+    width: 250px;
+}
+
+.contentVisitors ul li span {
     width: 100px;
     text-align: center;
 }

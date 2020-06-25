@@ -1,6 +1,7 @@
 import React, { useState, useEffect }  from 'react';
-import { FiSave } from 'react-icons/fi';
 import { RiDeleteBinLine } from 'react-icons/ri';
+import { FiSave } from 'react-icons/fi';
+import InputMask from 'react-input-mask';
 
 import './styles.css';
 import api from '../../services/api';
@@ -78,17 +79,19 @@ export default function Visitors() {
 										name="name"
 										value={name}
 										type="text"
+										maxLength="50"
 										placeholder="Informe seu NOME"
 										onChange={e => setName(e.target.value)}
 									/>
 								</div>
 								<div className="field">
 									<label htmlFor="cpf">CPF *</label>
-									<input 
+									<InputMask 
 										id="cpf" 
 										name="cpf"
 										value={cpf}
-										type="text"
+										mask="999.999.999-99"
+										maskChar=""
 										placeholder="Informe seu CPF"
 										onChange={e => setCpf(e.target.value)}
 									/>
@@ -132,12 +135,13 @@ export default function Visitors() {
 
 					<div className="contentVisitors">			
 						<ul>
-							{visitors.map(visitor => (
+							{visitors.map((visitor, index) => (
 								<li key={visitor.id}>
+									<h3>{index + 1}</h3>
 									<header>{visitor.name}</header>
-									<span>{visitor.email}</span>
 									<p>{visitor.cpf}</p>
-									<footer>{visitor.birth}</footer>
+									<span>{visitor.birth}</span>
+									<footer>{visitor.email}</footer>
 									<button onClick={() => handleDeleteVisitor(visitor.id)}>
 										<RiDeleteBinLine size="16" />
 									</button>

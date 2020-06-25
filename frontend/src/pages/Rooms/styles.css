@@ -23,7 +23,7 @@
     font-weight: bold;
 }
 
-.contentRoom form .field input[type=number] {
+.contentRoom form .field input {
     width: 330px;
     height: 20px;
     background: #F0F0F5;
