@@ -70,8 +70,6 @@ export default function Dashboard() {
 			alert('Erro ao tentar realizar o CHECKIN do visitante!\nTente novamente em alguns instantes!');
 		}
 
-		console.log(arrival)
-
 		if (arrival.status === 201) {
 			const nameVisitorAndNrRoom = [{
 				name: visitor[1],
@@ -84,17 +82,17 @@ export default function Dashboard() {
 		} else {
 			if (arrival.status === 203) return setMensage('Visitante já está cadastrado nessa sala!');
 			
-			createPositionQueue();
+			createPositionQueue(data, visitor[1], room[1]);
 		}
 	}
 
-	async function createPositionQueue() {
-		const visitor = selectedVisitor.split(',');
-		const room = selectedRoom.split(',');
+	async function createPositionQueue(data, name, nrRoom) {
+		// const visitor = selectedVisitor.split(',');
+		// const room = selectedRoom.split(',');
 
-		const data = new FormData();
-		data.append('visitor_id', visitor[0]);
-        data.append('room_id', room[0]);
+		// const data = new FormData();
+		// data.append('visitor_id', visitor[0]);
+        // data.append('room_id', room[0]);
 
 		let queue;
 
@@ -106,8 +104,8 @@ export default function Dashboard() {
 
 		if (queue.status === 201) {
 			const nameVisitorAndNrRoom = [{
-				name: visitor[1],
-				nrRoom: room[1]
+				name: name,
+				nrRoom: nrRoom
 			}];
 
 			Object.assign(queue.data, nameVisitorAndNrRoom[0])

@@ -40,6 +40,5 @@ Route::post('/arrivals', 'ArrivalController@store');
 Route::delete('/arrivals/{id}', 'ArrivalController@destroy');
 
 // Criação do Histórico dos Registros de Portaria
-Route::get('/concierges', 'ConciergeController@index');
 Route::post('/concierges', 'ConciergeController@store');
-Route::get('/concierges/{id}', 'ConciergeController@show');
+Route::get('/concierges', 'ConciergeController@show');

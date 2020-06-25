@@ -48,8 +48,6 @@ export default function Rooms() {
 		const data = new FormData();
 		data.append('nrRoom', nrRoom);
 		
-		console.log(nrRoom)
-
 		let room;
 
 		try {
@@ -57,8 +55,6 @@ export default function Rooms() {
 		} catch (err) {
 			alert('Erro ao tentar ADICIONAR a sala!\nVerifique se a mesma já não está cadastrada.\nCaso não, tente novamente em alguns instantes!');
 		}	
-
-		console.log(room)
 
 		if (room.status === 201) {
 			setRooms([ room.data, ...rooms ]);
