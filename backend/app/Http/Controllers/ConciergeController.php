@@ -26,22 +26,20 @@ class ConciergeController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request)
+    public function filter(Request $request)
     {
         try {
             $concierge = DB::table('concierges')
                 ->join('visitors', 'concierges.visitor_id', '=', 'visitors.id')
                 ->join('rooms', 'concierges.room_id', '=', 'rooms.id')
-                ->where([
-                    ['concierges.visitor_id', '=', $request->visitor_id],
-                    ['concierges.room_id', '=', $request->room_id],
-                    ['concierges.checkIn', '=', $request->checkIn]
-                ])
+                ->where('concierges.visitor_id', 'LIKE', '%' . $request->visitor . '%')
+                ->where('concierges.room_id', 'LIKE', '%' . $request->room . '%')
+                ->where('concierges.checkIn', 'LIKE', '%' . $request->date . '%')
                 ->select('concierges.*', 'visitors.name', 'visitors.cpf', 'rooms.nrRoom')
                 ->get();
         } catch (\Exception $e) {
@@ -50,6 +48,6 @@ class ConciergeController extends Controller
 
         if (!$concierge) return response([ "message" => "Concierge Not Found!" ], 404);
 
-        return response($concierge, 302);
+        return response($concierge, 200);        
     }
 }

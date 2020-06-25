@@ -48,7 +48,7 @@ export default function Visitors() {
 		if (visitor.status === 201) {
 			setVisitors([ visitor.data, ...visitors ]);
 		} else {
-			return setMensage('Visitante já se encontra cadastrado!');
+			if (visitor.status === 226) return setMensage('Visitante já se encontra cadastrado!');
 		}
 	}
 

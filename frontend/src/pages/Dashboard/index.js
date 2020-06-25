@@ -88,8 +88,8 @@ export default function Dashboard() {
 
 			setArrivals([ ...arrivals, arrival.data ]);
 		} else {
-			if (arrival.status === 203) return setMensage('Visitante já está cadastrado nessa sala!');
-			
+			if (arrival.status === 226) return setMensage('Visitante já está cadastrado nessa sala!');
+
 			createPositionQueue(data, visitor[1], room[1]);
 		}
 	}
@@ -113,7 +113,7 @@ export default function Dashboard() {
 
 			setQueues([ ...queues, queue.data ]);
 		} else {
-			return setMensage('Visitante já se encontra na fila de espera!');
+			if (queue.status === 203) return setMensage('Visitante já se encontra na fila de espera!');
 		}
 	}
 

@@ -41,7 +41,7 @@ export default function Rooms() {
 		if (room.status === 201) {
 			setRooms([ room.data, ...rooms ]);
 		} else {
-			return setMensage('Sala já se encontra cadastrada!');
+			if (room.status === 226) return setMensage('Sala já se encontra cadastrada!');
 		}
 	}
 

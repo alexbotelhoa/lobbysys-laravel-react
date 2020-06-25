@@ -1,5 +1,5 @@
 import React, { useState, useEffect }  from 'react';
-import { FaSearch } from 'react-icons/fa';
+import { FaSearch, FaTrash } from 'react-icons/fa';
 
 import './styles.css';
 import api from '../../services/api';
@@ -10,8 +10,8 @@ export default function Concierges() {
 	const [visitors, setVisitors] = useState([]);
 	const [rooms, setRooms] = useState([]);
 
-	const [selectedVisitor, setSelectedVisitor] = useState('0');
-	const [selectedRoom, setSelectedRoom] = useState('0');
+	const [selectedVisitor, setSelectedVisitor] = useState('');
+	const [selectedRoom, setSelectedRoom] = useState('');
 	const [selectedCheckIn, setSelectedCheckIn] = useState('');
 
 	const [concierges, setConcierges] = useState([]);
@@ -31,35 +31,34 @@ export default function Concierges() {
 	function checkInputsForm(event) {	
 		event.preventDefault();
 
-		if (selectedVisitor === '0' || selectedRoom === '0' || selectedCheckIn === '') return setMensage('Selecione pelo menos um opção!');
+		console.log(selectedVisitor, selectedRoom, selectedCheckIn);
+
+		if (selectedVisitor === '' && selectedRoom === '' && selectedCheckIn === '') return setMensage('Selecione pelo menos um opção!');
 		
 		searchVisitors();
 	};
 
 	async function searchVisitors() {
-		const visitor = selectedVisitor.split(',');
-		const room = selectedRoom.split(',');
-		const checkIn = selectedCheckIn;
-
-		const data = new FormData();
-		data.append('visitor_id', visitor[0]);
-        data.append('room_id', room[0]);
-        data.append('checkIn', checkIn);
-
 		let concierge;
 
 		try {
-			concierge = await api.get('concierges', data);
+			concierge = await api.get(`concierges?visitor=${selectedVisitor}&room=${selectedRoom}&date=${selectedCheckIn}`);
 		} catch (err) {
 			alert('Erro ao tentar pesquisar as informações!\nTente novamente em alguns instantes!');
 		}	
 
-		if (concierge.status === 302) {
-			setConcierges(concierge);
+		console.log('response: ', concierge);
+
+		if (concierge.status === 200) {
+			setConcierges(concierge.data);
 		} else {
-			if (concierge.status === 404) return setMensage('Não há registros nessa pesquisa. Tente novamente!');
+			return setMensage('Não há registros nessa pesquisa. Tente novamente!');
 		}
 	};
+
+	function handleClearFilter() {
+		setConcierges([]);
+	}
 
     return	( 
 		<>
@@ -77,9 +76,9 @@ export default function Concierges() {
 										value={selectedVisitor} 
 										onChange={e => setSelectedVisitor(e.target.value)}
 									>
-										<option value="0">Selecione um Visitante</option>
+										<option value="">Selecione um Visitante</option>
 										{visitors.map(visitor => (
-											<option key={visitor.id} value={[visitor.id, visitor.name]}>{visitor.name}</option>
+											<option key={visitor.id} value={visitor.id}>{visitor.id} - {visitor.name}</option>
 										))}
 									</select>
 								</div>
@@ -90,9 +89,9 @@ export default function Concierges() {
 										value={selectedRoom} 
 										onChange={e => setSelectedRoom(e.target.value)}
 									>
-										<option value="0">Selecione uma Sala</option>
+										<option value="">Selecione uma Sala</option>
 										{rooms.map(room => (
-											<option key={room.id} value={[room.id, room.nrRoom]}>{room.nrRoom}</option>
+											<option key={room.id} value={room.id}>{room.id} - {room.nrRoom}</option>
 										))}
 									</select>
 								</div>
@@ -110,9 +109,16 @@ export default function Concierges() {
 										onChange={e => setSelectedCheckIn(e.target.value)}
 									/>
 								</div>
-								<div className="btnSearchConcierge">	
+								<div className="btnsConcierge">	
 									<span>
-										<FaSearch size="26" title="Pesquisar" />
+										<FaTrash size="24" title="Limpar" />
+									</span>
+									<button type="reset" onClick={handleClearFilter}>
+										<strong>Limpar</strong>
+									</button>
+
+									<span>
+										<FaSearch size="24" title="Pesquisar" />
 									</span>
 									<button type="submit" onClick={() => {}}>
 										<strong>Pesquisar</strong>
@@ -124,12 +130,22 @@ export default function Concierges() {
 
 					<div className="contentConcierges">					
 						<ul>
-							{concierges.map(concierge => (
-								<li key={concierge.id}>
+							<li className="titleFilteredConcierges">
+								<div style={{ width: '30px' }}>Nr</div>
+								<div style={{ width: '250px' }}>Nome do Visitante</div>
+								<div style={{ width: '120px' }}>CPF</div>
+								<div style={{ width: '60px' }}>Nr Sala</div>
+								<div style={{ width: '200px' }}>Data e Hora do CheckIn</div>
+								<div style={{ width: '200px' }}>Data e Hora do CkeckOut</div>
+							</li>
+							{concierges.map((concierge, index )=> (
+								<li key={concierge.id} className="contentFilteredConcierges">
+									<h3>{index + 1}</h3>
 									<header>{concierge.name}</header>
-									<span>{concierge.nrRoom}</span>
+									<span>{concierge.cpf}</span>
+									<h4>{concierge.nrRoom}</h4>
 									<p>{concierge.checkIn}</p>
-									<footer>{concierge.checkOut}</footer>
+									<p>{concierge.checkOut}</p>
 								</li>
 							))}							
 						</ul>

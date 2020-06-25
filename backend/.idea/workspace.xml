@@ -2,12 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="87b9a09a-5cf0-4df6-ad01-44e3646d5e8b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/24da5089-3e84-4ac5-b38b-e16c979256e0.xml" afterPath="$PROJECT_DIR$/.idea/dataSources/24da5089-3e84-4ac5-b38b-e16c979256e0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ArrivalController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ArrivalController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/QueueController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/QueueController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Models/Concierge.php" afterPath="$PROJECT_DIR$/app/Models/Concierge.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/2020_06_22_120402_create_concierges_table.php" afterPath="$PROJECT_DIR$/database/migrations/2020_06_22_120402_create_concierges_table.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ConciergeController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ConciergeController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/api.php" afterPath="$PROJECT_DIR$/routes/api.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/src/pages/Concierges/index.js" afterPath="$PROJECT_DIR$/../frontend/src/pages/Concierges/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/src/pages/Concierges/styles.css" afterPath="$PROJECT_DIR$/../frontend/src/pages/Concierges/styles.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/src/pages/Dashboard/index.js" afterPath="$PROJECT_DIR$/../frontend/src/pages/Dashboard/index.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/src/pages/Rooms/index.js" afterPath="$PROJECT_DIR$/../frontend/src/pages/Rooms/index.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/src/pages/Visitors/index.js" afterPath="$PROJECT_DIR$/../frontend/src/pages/Visitors/index.js" />
@@ -352,12 +352,13 @@
       <workItem from="1592830645801" duration="3488000" />
       <workItem from="1592836350108" duration="457000" />
       <workItem from="1592837396571" duration="1455000" />
-      <workItem from="1593062420066" duration="2270000" />
+      <workItem from="1593062420066" duration="3391000" />
+      <workItem from="1593096390337" duration="583000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7670000" />
+    <option name="totallyTimeSpent" value="9374000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-2" width="1936" height="1056" extended-state="7" />
@@ -402,11 +403,31 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="das://table:/db9d53e7/24da5089-3e84-4ac5-b38b-e16c979256e0/main.queues">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/db9d53e7/24da5089-3e84-4ac5-b38b-e16c979256e0/main.arrivals">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/db9d53e7/24da5089-3e84-4ac5-b38b-e16c979256e0/main.concierges">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ArrivalController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -414,9 +435,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#40#97#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -470,7 +488,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -514,7 +531,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -522,7 +538,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -530,7 +545,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -644,7 +658,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -652,7 +665,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>

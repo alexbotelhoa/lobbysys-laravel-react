@@ -40,11 +40,11 @@ class ArrivalController extends Controller
             ['room_id', '=', $request->room_id]
         ])->count();
 
-        if ($visitorAndRoomExist > 0) return response([ "message" => "Visitor already registered in the room"], 203);
+        if ($visitorAndRoomExist > 0) return response([ "message" => "Visitor already registered in the room"], 226);
 
         $countArrival = Arrival::where('room_id', $request->room_id)->count();
 
-        if ($countArrival > 2) return response([ "message" => "Limit of visitors in the room exceeded"], 226);
+        if ($countArrival > 2) return response([ "message" => "Limit of visitors in the room exceeded"], 203);
 
         try {
             $arrival = Arrival::create($request->all());
@@ -55,20 +55,20 @@ class ArrivalController extends Controller
         return response($arrival, 201);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $arrival = Arrival::where('room_id', $id)->count();
+    // /**
+    //  * Display the specified resource.
+    //  *
+    //  * @param  int  $id
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function show($id)
+    // {
+    //     $arrival = Arrival::where('room_id', $id)->count();
 
-        if (!$arrival) return response([ "message" => "Arrival Not Found!" ], 404);
+    //     if (!$arrival) return response([ "message" => "Arrival Not Found!" ], 404);
 
-        return response($arrival, 302);
-    }
+    //     return response($arrival, 302);
+    // }
 
     /**
      * Remove the specified resource from storage.
@@ -105,8 +105,8 @@ class ArrivalController extends Controller
 
             if (count($personQueue) > 0) {
                 DB::table('arrivals')->insert([
-                    'visitor_id' => $arrival->visitor_id,
-                    'room_id' => $arrival->room_id,
+                    'visitor_id' => $personQueue[0]->visitor_id,
+                    'room_id' => $personQueue[0]->room_id,
                     'checkIn' => now()
                 ]);
                 
