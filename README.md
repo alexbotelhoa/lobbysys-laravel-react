@@ -1,2 +1,8 @@
 # lobbysys
- Sistema de Controle de Portaria
+ Sistema de Controle de Portaria 
+ 
+ Backend:
+ - PHP/Laravel
+ 
+ Frontend:
+ - Javascript/React
