@@ -90,6 +90,8 @@
 
 .cardPerson span {
     display: flex;
+    width: 50px;
+    min-height: 55px;
     align-items: center;
     justify-content: center;
     background-color: lightgrey;
@@ -97,7 +99,6 @@
 }
 
 .cardPerson span img {
-    block-size: 80%;
     margin-left: 6px;
     margin-right: 6px;
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
 import './App.css';
-import Routes from './routes';
+import Routes from './Routes';
 
 export default function App() {
   return (

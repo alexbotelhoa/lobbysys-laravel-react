@@ -6,7 +6,7 @@ import { BsBoxArrowRight } from 'react-icons/bs';
 import './styles.css';
 import api from '../../services/api';
 import Header from '../../components/Header';
-import person from '../../assets/person.png'
+import person from '../../assets/person.gif'
 
 export default function Dashboard() {
 	const [mensage, setMensage] = useState(null);
