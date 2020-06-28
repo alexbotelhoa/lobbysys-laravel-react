@@ -20,7 +20,7 @@
 </p>
 
 <p align="center">
-  <img alt="https://github.com/alexbotelhoa/lobbysys-laravel-react/issues/2#issue-646940439" width="100%">
+  <img alt="https://github.com/alexbotelhoa/lobbysys-laravel-react/issues/3#issue-647007780" width="100%">
 </p>
 
 <p align="center">
