@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -28,20 +29,45 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        $countUser = User::where('email', $request->email)->count();
+//    public function store(Request $request)
+//    {
+//        $countUser = User::where('email', $request->email)->count();
+//
+//        if ($countUser > 0) return response([ "message" => "User already registered"], 226);
+//
+//        try {
+//            $user = User::create($request->all());
+//        } catch (\Exception $e) {
+//            return response([ "message" => "User Bad Request"], 400);
+//        }
+//
+//        return response($user, 201);
+//    }
 
-        if ($countUser > 0) return response([ "message" => "User already registered"], 226);
 
-        try {
-            $user = User::create($request->all());
-        } catch (\Exception $e) {
-            return response([ "message" => "User Bad Request"], 400);
+    public function store(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+        if ($validator->fails())
+        {
+            return response(['errors'=>$validator->errors()->all()], 422);
         }
+        $request['password']=Hash::make($request['password']);
+        $request['remember_token'] = Str::random(10);
 
-        return response($user, 201);
+        $user = User::create($request->toArray());
+
+        $token = $user->createToken('Laravel Password Grant Client')->accessToken;
+
+        $response = ['token' => $token];
+
+        return response($response, 200);
     }
+
+
 
     /**
      * Remove the specified resource from storage.

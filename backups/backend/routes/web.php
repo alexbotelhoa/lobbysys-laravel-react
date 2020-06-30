@@ -15,4 +15,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-})->name('welcome');
+});
+
+// Routas de Controle de Autenticação
+Route::post('/login', 'AuthController@login');
+Route::post('/logout', 'AuthController@logout');

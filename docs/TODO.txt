@@ -1,1 +1,21 @@
 - Aprender como instalar Framework Laravel via VSCode
+- Sistema de Login via JavaScript
+    1. Via Javascript 
+        . Utizando o sistema de Login do Laravel (feito...)
+        . Ou criando um novo Controller com os seus métodos (feito...)
+
+- Validadores de Form no React
+    1. Mask (feito...)
+    2. Lenght (feito...) 
+    3. Min e Max (feito...)
+
+- Validadores no Controller com retorno no input
+    1. Requered
+    2. ...
+
+- Criar os testes
+    1. Backend
+
+- Postar projeto
+
+- Criar Frameworks do Laravel e do React

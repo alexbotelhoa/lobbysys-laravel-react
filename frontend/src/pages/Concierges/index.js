@@ -1,5 +1,6 @@
 import React, { useState, useEffect }  from 'react';
 import { FaSearch, FaTrash } from 'react-icons/fa';
+import Cookies from 'js-cookie';
 
 import './styles.css';
 import api from '../../services/api';
@@ -17,13 +18,21 @@ export default function Concierges() {
 	const [concierges, setConcierges] = useState([]);
 
     useEffect(() => {
-        api.get('visitors').then(response => {
+		api.get('visitors', '', {
+			headers: {
+			  Authorization: `Bearer ${Cookies.get('token')}`
+			}
+		}).then(response => {
             setVisitors(response.data)
         })
 	}, []);
 	
 	useEffect(() => {
-        api.get('rooms').then(response => {
+        api.get('rooms', '', {
+			headers: {
+			  Authorization: `Bearer ${Cookies.get('token')}`
+			}
+		}).then(response => {
             setRooms(response.data)
         })
 	}, []);
@@ -42,7 +51,11 @@ export default function Concierges() {
 		let concierge;
 
 		try {
-			concierge = await api.get(`concierges?visitor=${selectedVisitor}&room=${selectedRoom}&date=${selectedCheckIn}`);
+			concierge = await api.get(`concierges?visitor=${selectedVisitor}&room=${selectedRoom}&date=${selectedCheckIn}`, '', {
+				headers: {
+				  Authorization: `Bearer ${Cookies.get('token')}`
+				}
+			});
 		} catch (err) {
 			alert('Erro ao tentar pesquisar as informações!\nTente novamente em alguns instantes!');
 		}	

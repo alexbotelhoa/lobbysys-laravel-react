@@ -29,12 +29,12 @@ class RoomController extends Controller
     {
         $countRoom = Room::where('nrRoom', $request->nrRoom)->count();
 
-        if ($countRoom > 0) return response([ "message" => "Room already registered"], 226);
+        if ($countRoom > 0) return response([ "message" => "Room already registered" ], 226);
 
         try {
             $room = Room::create($request->all());
         } catch (\Exception $e) {
-            return response([ "message" => "Room Bad Request"], 400);
+            return response([ "message" => "Room Bad Request" ], 400);
         }
 
         return response($room, 201);

@@ -24,6 +24,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+// Routas de Controle de Autenticação
+Route::post('/login', 'AuthController@login');
+Route::post('/logout', 'AuthController@logout');
+
 // Routas de Controle de Usuários
 Route::get('/users', 'UserController@index');
 Route::post('/users', 'UserController@store');

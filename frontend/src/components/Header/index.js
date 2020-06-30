@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { FiLogOut } from 'react-icons/fi';
 import { FaLinkedin, FaFacebookSquare, FaInstagramSquare, FaTwitterSquare } from 'react-icons/fa';
+import { FiLogOut } from 'react-icons/fi';
+import Cookies from 'js-cookie';
 
 import './styles.css';
 import api from '../../services/api';
@@ -10,33 +11,20 @@ import logo from '../../assets/logo.png';
 export default function Header() {
   const history = useHistory();
 
+  useEffect(() => {
+    const cookies = Cookies.get('token');  
 
-    function getCookie(cname) {
-        const name = cname + "=";
-        const decodedCookie = decodeURIComponent(document.cookie);
-        const ca = decodedCookie.split(';');
-        for(var i = 0; i <ca.length; i++) {
-            var c = ca[i];
-            while (c.charAt(0) == ' ') {
-                c = c.substring(1);
-            }
-            if (c.indexOf(name) == 0) {
-                return c.substring(name.length, c.length);
-            }
-        }
-        return "";
-    }
-
+    if (!cookies) history.push('/'); 
+  }, []);
 
   function handleLogout() {
-    const cookie = getCookie('XSRF-TOKEN');
+    api.post('logout', '', {
+      headers: {
+        Authorization: `Bearer ${Cookies.get('token')}`
+      }
+    });
 
-    const data = new FormData();
-    data.append('_token', cookie);
-
-    console.log(cookie);
-
-    api.post('logout', data);
+    Cookies.remove('token');
 
     history.push('/');
   }

@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
+import Cookies from 'js-cookie';
 
 import './styles.css';
-// import api from '../../services/api';
+import api from '../../services/api';
 
 export default function Login({ history }) {
   const [mensage, setMensage] = useState(null);
-  const [email, setEmail] = useState('fulanobotelho@hotmail.com');
-  const [password, setPassword] = useState('123456');
+  const [email, setEmail] = useState('alexbotelho1@hotmail.com');
+  const [password, setPassword] = useState('12345678');
 
   function checkInput(e) {
     e.preventDefault();
@@ -18,11 +19,11 @@ export default function Login({ history }) {
   };
 
   async function handleSubmit() {
-    // const res = await api.post('/login', { email, password });
+    const res = await api.post('login', { email, password });
 
-    // const { id } = res.data;
+    const { token } = res.data;
 
-    // localStorage.setItem('user', 65476541321854);
+    Cookies.set('token', token, { expires: 1, path: '' });
 
     history.push('/dashboard');
   }

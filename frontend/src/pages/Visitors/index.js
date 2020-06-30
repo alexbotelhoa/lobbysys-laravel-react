@@ -2,6 +2,7 @@ import React, { useState, useEffect }  from 'react';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { FiSave } from 'react-icons/fi';
 import InputMask from 'react-input-mask';
+import Cookies from 'js-cookie';
 
 import './styles.css';
 import api from '../../services/api';
@@ -17,7 +18,11 @@ export default function Visitors() {
 	const [email, setEmail] = useState('');
 
 	useEffect(() => {
-        api.get('visitors').then(response => {
+        api.get('visitors', '', {
+			headers: {
+			  Authorization: `Bearer ${Cookies.get('token')}`
+			}
+		}).then(response => {
             setVisitors(response.data)
         })
 	}, []);
@@ -41,7 +46,11 @@ export default function Visitors() {
 		let visitor;
 
 		try {
-			visitor = await api.post('visitors', data);
+			visitor = await api.post('visitors', data, {
+				headers: {
+				  Authorization: `Bearer ${Cookies.get('token')}`
+				}
+			});
 		} catch (err) {
 			alert('Erro ao tentar ADICIONAR o visitante!\nVerifique se o CPF já foi cadastrado.\nCaso não, tente novamente em alguns instantes!');
 		}	
@@ -55,7 +64,11 @@ export default function Visitors() {
 
 	async function handleDeleteVisitor(id) {
         try {
-            await api.delete(`/visitors/${id}`);
+            await api.delete(`/visitors/${id}`, '', {
+				headers: {
+				  Authorization: `Bearer ${Cookies.get('token')}`
+				}
+			});
         
             setVisitors(visitors.filter(visitor => visitor.id !== id));
         } catch (err) {

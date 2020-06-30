@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { FiSave } from 'react-icons/fi';
+import Cookies from 'js-cookie';
 
 import './styles.css';
 import api from '../../services/api';
@@ -16,7 +17,11 @@ export default function Users() {
     const [passwordConfirm, setPasswordConfirm] = useState('');
 
     useEffect(() => {
-        api.get('users').then(response => {
+        api.get('users', '', {
+			headers: {
+			  Authorization: `Bearer ${Cookies.get('token')}`
+			}
+		}).then(response => {
             setUsers(response.data)
         })
     }, []);
@@ -42,7 +47,11 @@ export default function Users() {
         let user;
 
         try {
-            user = await api.post('users', data);
+            user = await api.post('users', data, {
+				headers: {
+				  Authorization: `Bearer ${Cookies.get('token')}`
+				}
+			});
         } catch (err) {
             alert('Erro ao tentar ADICIONAR o usuário!\nVerifique se esse E-MAIL já foi cadastrado.\nCaso não, tente novamente em alguns instantes!');
         }
@@ -56,7 +65,11 @@ export default function Users() {
 
     async function handleDeleteUser(id) {
         try {
-            await api.delete(`/users/${id}`);
+            await api.delete(`/users/${id}`, '', {
+				headers: {
+				  Authorization: `Bearer ${Cookies.get('token')}`
+				}
+			});
 
             setUsers(users.filter(user => user.id !== id));
         } catch (err) {

@@ -2,6 +2,7 @@ import React, { useState, useEffect }  from 'react';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { FiSave } from 'react-icons/fi';
 import InputMask from 'react-input-mask';
+import Cookies from 'js-cookie';
 
 import './styles.css';
 import api from '../../services/api';
@@ -14,7 +15,11 @@ export default function Rooms() {
 	const [nrRoom, setNrRoom] = useState('4567');
 
 	useEffect(() => {
-        api.get('rooms').then(response => {
+        api.get('rooms', '', {
+			headers: {
+			  Authorization: `Bearer ${Cookies.get('token')}`
+			}
+		}).then(response => {
             setRooms(response.data)
         })
 	}, []);
@@ -34,7 +39,11 @@ export default function Rooms() {
 		let room;
 
 		try {
-			room = await api.post('rooms', data);
+			room = await api.post('rooms', data, {
+				headers: {
+				  Authorization: `Bearer ${Cookies.get('token')}`
+				}
+			});
 		} catch (err) {
 			alert('Erro ao tentar ADICIONAR a sala!\nVerifique se a mesma já não está cadastrada.\nCaso não, tente novamente em alguns instantes!');
 		}	
@@ -48,7 +57,11 @@ export default function Rooms() {
 
 	async function handleDeleteRoom(id) {
         try {
-            await api.delete(`/rooms/${id}`);
+            await api.delete(`/rooms/${id}`, '', {
+				headers: {
+				  Authorization: `Bearer ${Cookies.get('token')}`
+				}
+			});
         
             setRooms(rooms.filter(room => room.id !== id));
         } catch (err) {

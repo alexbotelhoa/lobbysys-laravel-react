@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { GiExitDoor } from 'react-icons/gi';
 import { FaAddressCard } from 'react-icons/fa';
 import { BsBoxArrowRight } from 'react-icons/bs';
+import Cookies from 'js-cookie';
 
 import './styles.css';
 import api from '../../services/api';
@@ -19,13 +20,21 @@ export default function Dashboard() {
 	const [selectedRoom, setSelectedRoom] = useState('0');
 
     useEffect(() => {
-        api.get('visitors').then(response => {
+        api.get('visitors', '', {
+			headers: {
+			  Authorization: `Bearer ${Cookies.get('token')}`
+			}
+		}).then(response => {
             setVisitors(response.data)
         })
 	}, []);
 	
 	useEffect(() => {
-        api.get('rooms').then(response => {
+        api.get('rooms', '', {
+			headers: {
+			  Authorization: `Bearer ${Cookies.get('token')}`
+			}
+		}).then(response => {
             setRooms(response.data)
         })
 	}, []);
@@ -39,13 +48,21 @@ export default function Dashboard() {
     }, []);
 
 	function loadArrivals() {
-		api.get('arrivals').then(response => {
+		api.get('arrivals', '', {
+			headers: {
+			  Authorization: `Bearer ${Cookies.get('token')}`
+			}
+		}).then(response => {
 			setArrivals(response.data)
 		});
 	};
 
 	function loadQueues() {
-		api.get('queues').then(response => {
+		api.get('queues', '', {
+			headers: {
+			  Authorization: `Bearer ${Cookies.get('token')}`
+			}
+		}).then(response => {
 			setQueues(response.data)
 		});
 	};
@@ -73,7 +90,11 @@ export default function Dashboard() {
 		let arrival;
 
 		try {
-			arrival = await api.post('arrivals', data);
+			arrival = await api.post('arrivals', data, {
+				headers: {
+				  Authorization: `Bearer ${Cookies.get('token')}`
+				}
+			});
 		} catch (err) {
 			alert('Erro ao tentar realizar o CHECKIN do visitante!\nTente novamente em alguns instantes!');
 		};
@@ -98,7 +119,11 @@ export default function Dashboard() {
 		let queue;
 
 		try {
-			queue = await api.post('queues', data);
+			queue = await api.post('queues', data, {
+				headers: {
+				  Authorization: `Bearer ${Cookies.get('token')}`
+				}
+			});
 		} catch (err) {
 			alert('Erro ao tentar realizar o CHECKIN do visitante!\nTente novamente em alguns instantes!');
 		}
@@ -121,7 +146,11 @@ export default function Dashboard() {
 		let arrival;
 
 		try {
-			arrival = await api.delete(`/arrivals/${id}`);
+			arrival = await api.delete(`/arrivals/${id}`, '', {
+				headers: {
+				  Authorization: `Bearer ${Cookies.get('token')}`
+				}
+			});
 		} catch (err) {
 			alert('Erro ao tentar realizar o CHECKOUT do visitante!\nTente novamente em alguns instantes!');
 		}
@@ -137,7 +166,11 @@ export default function Dashboard() {
 	
 	async function handleExitQueue(id) {
 		try {
-			await api.delete(`/queues/${id}`);
+			await api.delete(`/queues/${id}`, {
+				headers: {
+				  Authorization: `Bearer ${Cookies.get('token')}`
+				}
+			});
 
 			setQueues(queues.filter(queue => queue.id !== id));
 		} catch (err) {

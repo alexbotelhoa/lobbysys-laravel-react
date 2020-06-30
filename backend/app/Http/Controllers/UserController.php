@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -28,16 +26,25 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    protected function store(Request $request)
     {
-        $countUser = User::where('email', $request->email)->count();
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:30',
+            'email' => 'required|string|email|max:30|unique:users',
+            'password' => 'required|string|min:6',
+            'c_password' => 'required|same:password',
+        ]);
 
-        if ($countUser > 0) return response([ "message" => "User already registered"], 226);
+        if ($validator->fails()) return response([ 'error' => $validator->errors() ], 401);
 
         try {
-            $user = User::create($request->all());
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => bcrypt($request->password),
+            ]);
         } catch (\Exception $e) {
-            return response([ "message" => "User Bad Request"], 400);
+            return response([ "message" => "User Bad Request" ], 400);
         }
 
         return response($user, 201);
@@ -53,9 +60,7 @@ class UserController extends Controller
     {
         $user = User::where('id', $id)->delete($id);
 
-        if (!$user) {
-            return response(["message" => "User Not Found!"], 404);
-        }
+        if (!$user) return response(["message" => "User Not Found!"], 404);
 
         return response('', 204);
     }
