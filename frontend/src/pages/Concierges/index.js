@@ -18,7 +18,7 @@ export default function Concierges() {
 	const [concierges, setConcierges] = useState([]);
 
     useEffect(() => {
-		api.get('visitors', '', {
+		api.get('visitors', {
 			headers: {
 			  Authorization: `Bearer ${Cookies.get('token')}`
 			}
@@ -28,7 +28,7 @@ export default function Concierges() {
 	}, []);
 	
 	useEffect(() => {
-        api.get('rooms', '', {
+        api.get('rooms', {
 			headers: {
 			  Authorization: `Bearer ${Cookies.get('token')}`
 			}
@@ -51,7 +51,7 @@ export default function Concierges() {
 		let concierge;
 
 		try {
-			concierge = await api.get(`concierges?visitor=${selectedVisitor}&room=${selectedRoom}&date=${selectedCheckIn}`, '', {
+			concierge = await api.get(`concierges?visitor=${selectedVisitor}&room=${selectedRoom}&date=${selectedCheckIn}`, {
 				headers: {
 				  Authorization: `Bearer ${Cookies.get('token')}`
 				}
@@ -156,8 +156,8 @@ export default function Concierges() {
 									<header>{concierge.name}</header>
 									<span>{concierge.cpf}</span>
 									<h4>{concierge.nrRoom}</h4>
-									<p>{concierge.checkIn}</p>
-									<p>{concierge.checkOut}</p>
+									<p>{new Date(concierge.checkIn).toLocaleString().replace(/[,]+/g, '')}</p>
+									<p>{new Date(concierge.checkOut).toLocaleString().replace(/[,]+/g, '')}</p>
 								</li>
 							))}							
 						</ul>

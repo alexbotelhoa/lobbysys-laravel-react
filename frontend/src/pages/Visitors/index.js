@@ -18,7 +18,7 @@ export default function Visitors() {
 	const [email, setEmail] = useState('');
 
 	useEffect(() => {
-        api.get('visitors', '', {
+        api.get('visitors', {
 			headers: {
 			  Authorization: `Bearer ${Cookies.get('token')}`
 			}
@@ -64,7 +64,7 @@ export default function Visitors() {
 
 	async function handleDeleteVisitor(id) {
         try {
-            await api.delete(`/visitors/${id}`, '', {
+            await api.delete(`/visitors/${id}`, {
 				headers: {
 				  Authorization: `Bearer ${Cookies.get('token')}`
 				}
@@ -86,13 +86,13 @@ export default function Visitors() {
 						<form onSubmit={checkInputsForm}>						
 							<div className="field-group">
 								<div className="field">
-									<label htmlFor="name">Nome *</label>
+									<label htmlFor="name">Nome * (Máximo de 30 caracteres)</label>
 									<input 
 										id="name" 
 										name="name"
 										value={name}
 										type="text"
-										maxLength="50"
+										maxLength="30"
 										placeholder="Informe seu NOME"
 										onChange={e => setName(e.target.value)}
 									/>
@@ -124,12 +124,13 @@ export default function Visitors() {
 									/>
 								</div>
 								<div className="field">
-									<label htmlFor="email">E-mail</label>
+									<label htmlFor="email">E-mail * (Máximo de 30 caracteres)</label>
 									<input 
 										id="email" 
 										name="email"
 										value={email}
 										type="email"
+										maxLength="30"
 										placeholder="Informe seu E-MAIL"
 										onChange={e => setEmail(e.target.value)}
 									/>
@@ -153,7 +154,7 @@ export default function Visitors() {
 									<h3>{index + 1}</h3>
 									<header>{visitor.name}</header>
 									<p>{visitor.cpf}</p>
-									<span>{visitor.birth}</span>
+									<span>{new Date(visitor.birth).toLocaleDateString()}</span>
 									<footer>{visitor.email}</footer>
 									<button onClick={() => handleDeleteVisitor(visitor.id)}>
 										<RiDeleteBinLine size="16" />

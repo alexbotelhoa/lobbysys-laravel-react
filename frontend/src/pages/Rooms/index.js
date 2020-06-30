@@ -15,7 +15,7 @@ export default function Rooms() {
 	const [nrRoom, setNrRoom] = useState('4567');
 
 	useEffect(() => {
-        api.get('rooms', '', {
+        api.get('rooms', {
 			headers: {
 			  Authorization: `Bearer ${Cookies.get('token')}`
 			}
@@ -57,7 +57,7 @@ export default function Rooms() {
 
 	async function handleDeleteRoom(id) {
         try {
-            await api.delete(`/rooms/${id}`, '', {
+            await api.delete(`/rooms/${id}`, {
 				headers: {
 				  Authorization: `Bearer ${Cookies.get('token')}`
 				}

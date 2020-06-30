@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Arrival;
-use App\Models\Queue;
-use App\Models\Concierge;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 

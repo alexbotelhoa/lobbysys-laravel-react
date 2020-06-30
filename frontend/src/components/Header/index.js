@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { FaLinkedin, FaFacebookSquare, FaInstagramSquare, FaTwitterSquare } from 'react-icons/fa';
 import { FiLogOut } from 'react-icons/fi';
@@ -11,11 +11,8 @@ import logo from '../../assets/logo.png';
 export default function Header() {
   const history = useHistory();
 
-  useEffect(() => {
-    const cookies = Cookies.get('token');  
-
-    if (!cookies) history.push('/'); 
-  }, []);
+  const cookies = Cookies.get('token');  
+  if (!cookies) history.push('/');
 
   function handleLogout() {
     api.post('logout', '', {

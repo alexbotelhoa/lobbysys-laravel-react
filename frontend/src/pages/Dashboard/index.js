@@ -20,7 +20,7 @@ export default function Dashboard() {
 	const [selectedRoom, setSelectedRoom] = useState('0');
 
     useEffect(() => {
-        api.get('visitors', '', {
+        api.get('visitors', {
 			headers: {
 			  Authorization: `Bearer ${Cookies.get('token')}`
 			}
@@ -30,7 +30,7 @@ export default function Dashboard() {
 	}, []);
 	
 	useEffect(() => {
-        api.get('rooms', '', {
+        api.get('rooms', {
 			headers: {
 			  Authorization: `Bearer ${Cookies.get('token')}`
 			}
@@ -48,7 +48,7 @@ export default function Dashboard() {
     }, []);
 
 	function loadArrivals() {
-		api.get('arrivals', '', {
+		api.get('arrivals', {
 			headers: {
 			  Authorization: `Bearer ${Cookies.get('token')}`
 			}
@@ -58,7 +58,7 @@ export default function Dashboard() {
 	};
 
 	function loadQueues() {
-		api.get('queues', '', {
+		api.get('queues', {
 			headers: {
 			  Authorization: `Bearer ${Cookies.get('token')}`
 			}
@@ -80,12 +80,10 @@ export default function Dashboard() {
 	async function createPositionArrival() {
 		const visitor = selectedVisitor.split(',');
 		const room = selectedRoom.split(',');
-		const dataTime = new Date().toLocaleString();
-
+		
 		const data = new FormData();
 		data.append('visitor_id', visitor[0]);
         data.append('room_id', room[0]);
-        data.append('checkIn', dataTime);
 
 		let arrival;
 
@@ -131,7 +129,8 @@ export default function Dashboard() {
 		if (queue.status === 201) {
 			const nameVisitorAndNrRoom = [{
 				name: name,
-				nrRoom: nrRoom
+				nrRoom: nrRoom,
+				// checkIn: now()
 			}];
 
 			Object.assign(queue.data, nameVisitorAndNrRoom[0])
@@ -146,7 +145,7 @@ export default function Dashboard() {
 		let arrival;
 
 		try {
-			arrival = await api.delete(`/arrivals/${id}`, '', {
+			arrival = await api.delete(`/arrivals/${id}`, {
 				headers: {
 				  Authorization: `Bearer ${Cookies.get('token')}`
 				}
@@ -224,8 +223,8 @@ export default function Dashboard() {
 								</span>
 								<footer>
 									<strong>Sala {arrival.nrRoom}</strong>
-									<p>{arrival.name}</p>
-									<h6>{arrival.checkIn}</h6>
+									<p>{String(arrival.name).substring(0,18)}...</p>
+									<h6>{new Date(arrival.checkIn).toLocaleString().replace(/[,]+/g, '')}</h6>
 								</footer>
 								<button className="btnCard" onClick={() => handleCheckOut(arrival.id)}>
 									<BsBoxArrowRight size="26" title="CheckOut" />
@@ -249,8 +248,8 @@ export default function Dashboard() {
 									</span>
 									<footer>
 										<strong>Sala {queue.nrRoom}</strong>
-										<p>{queue.name}</p>
-										<h6>{queue.create_at}</h6>						
+										<p>{String(queue.name).substring(0,18)}...</p>
+										<h6>{new Date(queue.created_at).toLocaleString().replace(/[,]+/g, '')}</h6>						
 									</footer>
 									<button className="btnCard" onClick={() => handleExitQueue(queue.id)}>
 										<GiExitDoor size="26" title="Exit" />

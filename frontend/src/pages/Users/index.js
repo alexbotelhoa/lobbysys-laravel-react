@@ -17,7 +17,7 @@ export default function Users() {
     const [passwordConfirm, setPasswordConfirm] = useState('');
 
     useEffect(() => {
-        api.get('users', '', {
+        api.get('users', {
 			headers: {
 			  Authorization: `Bearer ${Cookies.get('token')}`
 			}
@@ -43,6 +43,7 @@ export default function Users() {
         data.append('name', name);
         data.append('email', email);
         data.append('password', password);
+        data.append('c_password', passwordConfirm);
 
         let user;
 
@@ -65,7 +66,7 @@ export default function Users() {
 
     async function handleDeleteUser(id) {
         try {
-            await api.delete(`/users/${id}`, '', {
+            await api.delete(`/users/${id}`, {
 				headers: {
 				  Authorization: `Bearer ${Cookies.get('token')}`
 				}
@@ -87,12 +88,12 @@ export default function Users() {
 						<form onSubmit={checkInputsForm}>
 							<div className="field-group">
 								<div className="field">
-									<label htmlFor="name">Nome * (Máximo de 20 caracteres)</label>
+									<label htmlFor="name">Nome * (Máx. de 30 caracteres)</label>
 									<input
 										id="name"
 										name="name"
 										type="text"
-										maxLength="20"
+										maxLength="30"
 										placeholder="Informe seu NOME"
 										value={name}
 										onChange={e => setName(e.target.value)}
@@ -100,11 +101,12 @@ export default function Users() {
 								</div>
 
 								<div className="field">
-									<label htmlFor="email">E-mail *</label>
+									<label htmlFor="email">E-mail * (Máx. de 30 caracteres)</label>
 									<input
 										id="email"
 										name="email"
 										type="email"
+										maxLength="30"
 										placeholder="Informe seu E-MAIL"
 										value={email}
 										onChange={e => setEmail(e.target.value)}

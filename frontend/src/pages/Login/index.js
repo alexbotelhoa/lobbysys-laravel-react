@@ -6,7 +6,7 @@ import api from '../../services/api';
 
 export default function Login({ history }) {
   const [mensage, setMensage] = useState(null);
-  const [email, setEmail] = useState('alexbotelho1@hotmail.com');
+  const [email, setEmail] = useState('admin@lobbysys.com');
   const [password, setPassword] = useState('12345678');
 
   function checkInput(e) {
@@ -19,13 +19,19 @@ export default function Login({ history }) {
   };
 
   async function handleSubmit() {
-    const res = await api.post('login', { email, password });
+    let login;
 
-    const { token } = res.data;
+    try {
+      login = await api.post('login', { email, password });
 
-    Cookies.set('token', token, { expires: 1, path: '' });
+      const { token } = login.data;
 
-    history.push('/dashboard');
+      Cookies.set('token', token, { expires: 1, path: '' });
+
+      history.push('/dashboard');
+    } catch (err) {
+			setMensage('Login não autorizado!');
+    }   
   }
 
   return (
