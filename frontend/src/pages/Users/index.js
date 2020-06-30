@@ -88,12 +88,12 @@ export default function Users() {
 						<form onSubmit={checkInputsForm}>
 							<div className="field-group">
 								<div className="field">
-									<label htmlFor="name">Nome * (Máx. de 30 caracteres)</label>
+									<label htmlFor="name">Nome * (Máx. de 50 caracteres)</label>
 									<input
 										id="name"
 										name="name"
 										type="text"
-										maxLength="30"
+										maxLength="50"
 										placeholder="Informe seu NOME"
 										value={name}
 										onChange={e => setName(e.target.value)}

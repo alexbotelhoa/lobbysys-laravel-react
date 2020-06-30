@@ -40,8 +40,6 @@ export default function Concierges() {
 	function checkInputsForm(event) {	
 		event.preventDefault();
 
-		console.log(selectedVisitor, selectedRoom, selectedCheckIn);
-
 		if (selectedVisitor === '' && selectedRoom === '' && selectedCheckIn === '') return setMensage('Selecione pelo menos um opção!');
 		
 		searchVisitors();

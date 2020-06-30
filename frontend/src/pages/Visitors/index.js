@@ -86,13 +86,13 @@ export default function Visitors() {
 						<form onSubmit={checkInputsForm}>						
 							<div className="field-group">
 								<div className="field">
-									<label htmlFor="name">Nome * (Máximo de 30 caracteres)</label>
+									<label htmlFor="name">Nome * (Máx. de 50 caracteres)</label>
 									<input 
 										id="name" 
 										name="name"
 										value={name}
 										type="text"
-										maxLength="30"
+										maxLength="50"
 										placeholder="Informe seu NOME"
 										onChange={e => setName(e.target.value)}
 									/>
@@ -103,6 +103,7 @@ export default function Visitors() {
 										id="cpf" 
 										name="cpf"
 										value={cpf}
+										type="text"
 										mask="999.999.999-99"
 										maskChar=""
 										placeholder="Informe seu CPF"
@@ -124,7 +125,7 @@ export default function Visitors() {
 									/>
 								</div>
 								<div className="field">
-									<label htmlFor="email">E-mail * (Máximo de 30 caracteres)</label>
+									<label htmlFor="email">E-mail * (Máx. de 30 caracteres)</label>
 									<input 
 										id="email" 
 										name="email"
