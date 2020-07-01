@@ -15,6 +15,11 @@
 
 - Criar os testes
     1. Backend
+    2. frontend (prompt => 'yarn test' |-| package.json => 'react-scripts test --watchAll=false')
+
+- Tirar regras de negocio do Dashboard (frontend) para o Backend
+
+- Colocar realce na opção do menu selecionado
 
 - Postar projeto
 

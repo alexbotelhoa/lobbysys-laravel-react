@@ -6,7 +6,6 @@ import Cookies from 'js-cookie';
 
 import './styles.css';
 import api from '../../services/api';
-import Header from '../../components/Header';
 
 export default function Visitors() {
 	const [mensage, setMensage] = useState(null);
@@ -78,17 +77,15 @@ export default function Visitors() {
 	
     return	( 
 		<>
-			<Header />
-
 			<div className="container">
 				<div className="contentMain">
-					<div className="contentVisitor">
+					<div className="contentVisitor" data-testid="contentVisitor">
 						<form onSubmit={checkInputsForm}>						
 							<div className="field-group">
 								<div className="field">
 									<label htmlFor="name">Nome * (Máx. 50 caracteres)</label>
 									<input 
-										id="name" 
+										data-testid="name" 
 										name="name"
 										value={name}
 										type="text"
@@ -100,7 +97,7 @@ export default function Visitors() {
 								<div className="field">
 									<label htmlFor="cpf">CPF *</label>
 									<InputMask 
-										id="cpf" 
+										data-testid="cpf" 
 										name="cpf"
 										value={cpf}
 										type="text"
@@ -116,7 +113,7 @@ export default function Visitors() {
 								<div className="field">
 									<label htmlFor="birth">Data de Nascimento</label>
 									<input 
-										id="birth" 
+										data-testid="birth" 
 										name="birth"
 										value={birth}
 										type="date"
@@ -127,7 +124,7 @@ export default function Visitors() {
 								<div className="field">
 									<label htmlFor="email">E-mail (Máx. 30 caracteres)</label>
 									<input 
-										id="email" 
+										data-testid="email" 
 										name="email"
 										value={email}
 										type="email"
@@ -141,14 +138,14 @@ export default function Visitors() {
 								<span>
 									<FiSave size="26" title="Novo Visitante" />
 								</span>
-								<button type="submit" onClick={() => {}}>
+								<button data-testid="btnSalveVisitor" type="submit" onClick={() => {}}>
 									<strong>Cadastrar novo visitante</strong>
 								</button>
 							</div>															
 						</form>
 					</div>
 
-					<div className="contentVisitors">			
+					<div className="contentVisitors" data-testid="contentVisitors">			
 						<ul>
 							{visitors.map((visitor, index) => (
 								<li key={visitor.id}>

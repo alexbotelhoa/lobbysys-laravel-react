@@ -6,7 +6,6 @@ import Cookies from 'js-cookie';
 
 import './styles.css';
 import api from '../../services/api';
-import Header from '../../components/Header';
 
 export default function Rooms() {
 	const [mensage, setMensage] = useState(null);
@@ -71,17 +70,15 @@ export default function Rooms() {
 
     return	( 
 		<>
-			<Header />
-
 			<div className="container">
 				<div className="contentMain">
-					<div className="contentRoom">
+					<div className="contentRoom" data-testid="contentRoom">
 						<form onSubmit={checkInputsForm}>
 							<div className="field-group">
 								<div className="field">
 									<label htmlFor="name">Número da Sala * (Máx. 4 dígitos)</label>
 									<InputMask 
-										id="nrRoom" 
+										data-testid="nrRoom" 
 										name="nrRoom"
 										value={nrRoom}
 										mask="9999"
@@ -94,7 +91,7 @@ export default function Rooms() {
 									<span>
 										<FiSave size="26" title="Nova Sala" />
 									</span>
-									<button type="submit" onClick={() => {}}>
+									<button data-testid="btnSalveRoom" type="submit" onClick={() => {}}>
 										<strong>Cadastrar nova sala</strong>
 									</button>
 								</div>	
@@ -102,7 +99,7 @@ export default function Rooms() {
 						</form>
 					</div>
 
-					<div className="contentRooms">
+					<div className="contentRooms" data-testid="contentRooms">
 						<ul>
 							{rooms.map(room => (
 								<li key={room.id}>

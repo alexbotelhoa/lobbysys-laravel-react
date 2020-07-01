@@ -60,24 +60,22 @@
     margin: 10px 0 0px 0px;
 }
 
-.contentDashboardQueues {
+.titleQueue {
     height: 45px;
     margin-bottom: 20px;
 }
 
-.contentDashboardQueues p {
-    /* text-align: center; */
-    /* margin-bottom: 5px; */
+.titleQueue p {
     font-weight: bold;
     color: #7e7e07;
 }
 
-.queuePerson {
+.contentDashboardQueue {
     height: 70vh;
     overflow-y: scroll;
 }
 
-.queuePerson ul {
+.contentDashboardQueue ul {
     display: grid;
     grid-gap: 10px;
 }

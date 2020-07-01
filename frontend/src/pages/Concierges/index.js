@@ -4,7 +4,6 @@ import Cookies from 'js-cookie';
 
 import './styles.css';
 import api from '../../services/api';
-import Header from '../../components/Header';
 
 export default function Concierges() {
 	const [mensage, setMensage] = useState(null);
@@ -72,16 +71,14 @@ export default function Concierges() {
 
     return	( 
 		<>
-			<Header />
-
 			<div className="container">
 				<div className="contentMain">
-					<div className="contentConcierge">
+					<div className="contentConcierge" data-testid="contentConcierge">
 						<form onSubmit={checkInputsForm}>
 							<div className="field-group">
 								<div className="field">
 									<select 
-										id="visitor" 
+										data-testid="visitor" 
 										name="visitor"
 										value={selectedVisitor} 
 										onChange={e => setSelectedVisitor(e.target.value)}
@@ -94,7 +91,7 @@ export default function Concierges() {
 								</div>
 								<div className="field">
 									<select 
-										id="room" 
+										data-testid="room" 
 										name="room"
 										value={selectedRoom} 
 										onChange={e => setSelectedRoom(e.target.value)}
@@ -111,7 +108,7 @@ export default function Concierges() {
 								<div className="field">
 									<label htmlFor="name">Selecione uma Data</label>
 									<input 
-										id="checkIn" 
+										data-testid="checkIn" 
 										name="checkIn"
 										value={selectedCheckIn}
 										type="date"
@@ -123,14 +120,14 @@ export default function Concierges() {
 									<span>
 										<FaTrash size="24" title="Limpar" />
 									</span>
-									<button type="reset" onClick={handleClearFilter}>
+									<button data-testid="btnResetConcierge" type="reset" onClick={handleClearFilter}>
 										<strong>Limpar</strong>
 									</button>
 
 									<span>
 										<FaSearch size="24" title="Pesquisar" />
 									</span>
-									<button type="submit" onClick={() => {}}>
+									<button data-testid="btnSearchConcierge" type="submit" onClick={() => {}}>
 										<strong>Pesquisar</strong>
 									</button>
 								</div>	
@@ -138,7 +135,7 @@ export default function Concierges() {
 						</form>
 					</div>
 
-					<div className="contentConcierges">					
+					<div className="contentConcierges" data-testid="contentConcierges">					
 						<ul>
 							<li className="titleFilteredConcierges">
 								<div style={{ width: '30px' }}>Nr</div>

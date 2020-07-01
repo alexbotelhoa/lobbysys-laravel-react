@@ -7,12 +7,12 @@
     align-items: center;
 }
 
-header#main-header {
+header#mainHeader {
   background: #fff;
   padding-top: 5px;
 }
  
-header#main-header .header-content {
+header#mainHeader .contentHeader {
   width: 100%;
   max-width: 980px;
   margin: 0 auto;
@@ -23,7 +23,7 @@ header#main-header .header-content {
   justify-content: space-between;
 }
 
-header#main-header .header-content span a {
+header#mainHeader .contentHeader span a {
   color: #000;
   margin-left: 2px;
 }

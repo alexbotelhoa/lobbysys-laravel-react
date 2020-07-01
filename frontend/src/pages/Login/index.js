@@ -43,16 +43,16 @@ export default function Login({ history }) {
           <form onSubmit={checkInput}>
             <label htmlFor="email">E-MAIL *</label>
             <input 
-              id="email" 
+              data-testid="email" 
               type="email" 
               placeholder="Seu e-mail de cadastro"
               value={email}
               onChange={event => setEmail(event.target.value)}
             />
 
-            <label htmlFor="email">SENHA *</label>
+            <label htmlFor="password">SENHA *</label>
             <input 
-              id="password" 
+              data-testid="password" 
               type="password" 
               placeholder="Informe sua senha"
               value={password}

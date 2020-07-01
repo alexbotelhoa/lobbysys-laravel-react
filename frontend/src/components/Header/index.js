@@ -11,9 +11,6 @@ import logo from '../../assets/logo.png';
 export default function Header() {
   const history = useHistory();
 
-  const cookies = Cookies.get('token');  
-  if (!cookies) history.push('/');
-
   function handleLogout() {
     api.post('logout', '', {
       headers: {
@@ -27,15 +24,15 @@ export default function Header() {
   }
 
   return (
-    <header id="main-header">
-      <div className="header-content">
+    <header id="mainHeader">
+      <div className="contentHeader">
         <span>
-          <img src={logo} alt="LobbySys"/>
+          <img data-testid="imageLogo" src={logo} alt="LobbySys"/>
         </span>
 
         <div className="btnNavegacao">
           <Link className="button" to="/dashboard">
-            <button className="btn">Dashboard</button>
+            <button className="btn" title="Dashboard">Dashboard</button>
           </Link>
           <Link className="button" to="/users">
             <button className="btn">Usuários</button>
@@ -51,7 +48,7 @@ export default function Header() {
           </Link>
         </div>
 
-        <span>
+        <span data-testid="links">
           <a href="https://www.linkedin.com/in/alex-botelho-almeida/">
             <FaLinkedin size="28" />
           </a>

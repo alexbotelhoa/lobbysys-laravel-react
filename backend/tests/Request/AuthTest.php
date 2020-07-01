@@ -16,12 +16,11 @@ class AuthTest extends TestCase
     {
         $login = new AuthController();
 
-        $login->login([
-            "email" => "alexbotelho1@hotmail.com",
-            "password" => "12345678",
-        ]);
+        $login->login([ "email" => "alexbotelho1@hotmail.com", "password" => "12345678"]);
 
         $this->assertCount(1, $login);
+
+
 //        $stack = [];
 //        $this->assertEquals(0, count($stack));
     }

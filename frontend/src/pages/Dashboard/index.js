@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+// import { useHistory } from 'react-router-dom';
 import { GiExitDoor } from 'react-icons/gi';
 import { FaAddressCard } from 'react-icons/fa';
 import { BsBoxArrowRight } from 'react-icons/bs';
@@ -6,8 +7,11 @@ import Cookies from 'js-cookie';
 
 import './styles.css';
 import api from '../../services/api';
-import Header from '../../components/Header';
 import person from '../../assets/person.gif'
+
+// const history = useHistory();
+// const cookies = Cookies.get('token'); 
+// if (!cookies) history.push('/');
 
 export default function Dashboard() {
 	const [mensage, setMensage] = useState(null);
@@ -127,7 +131,6 @@ export default function Dashboard() {
 				const nameVisitorAndNrRoom = [{
 					name: name,
 					nrRoom: nrRoom,
-					// checkIn: now()
 				}];
 	
 				Object.assign(queue.data, nameVisitorAndNrRoom[0])
@@ -179,14 +182,12 @@ export default function Dashboard() {
 
 	return	( 
 		<>
-			<Header />
-			
 			<div className="containerMain">
 				<div className="contentLeft">
-					<div className="contentDashboardVisitors">
+					<div className="contentDashboardVisitors" data-testid="contentVisitors">
 						<form onSubmit={checkInputsForm}>
 							<select 
-								id="visitor" 
+								data-testid="visitor" 
 								name="visitor"
 								value={selectedVisitor} 
 								onChange={e => setSelectedVisitor(e.target.value)}
@@ -198,7 +199,7 @@ export default function Dashboard() {
 							</select>
 
 							<select 
-								id="room" 
+								data-testid="room" 
 								name="room"
 								value={selectedRoom} 
 								onChange={e => setSelectedRoom(e.target.value)}
@@ -214,7 +215,7 @@ export default function Dashboard() {
 							</button>
 						</form>
 					</div>
-					<div className="contentDashboardRooms">
+					<div className="contentDashboardRooms" data-testid="contentRooms">
 						<ul>
 						{arrivals.map(arrival => (
 							<li className="cardPerson" key={arrival.id}>
@@ -236,10 +237,10 @@ export default function Dashboard() {
 				</div>
 
 				<div className="contentRight">
-					<div className="contentDashboardQueues">
+					<div className="titleQueue">
 						<p>Fila de Espera</p>
 					</div>
-					<div className="queuePerson">
+					<div className="contentDashboardQueue" data-testid="contentQueue">
 						<ul>
 							{queues.map(queue => (
 								<li className="cardPerson" key={queue.id}>
@@ -264,7 +265,7 @@ export default function Dashboard() {
 			{ mensage && (
 				<div className="validation-container">
 					<strong className="mensageError">{mensage}</strong>
-					<button type="button" onClick={() => setMensage(null)}>FECHAR</button>
+					<button type="button" onClick={() => setMensage(null)} title="Fechar">FECHAR</button>
 				</div>
         	) }
 		</>

@@ -5,7 +5,6 @@ import Cookies from 'js-cookie';
 
 import './styles.css';
 import api from '../../services/api';
-import Header from '../../components/Header';
 
 export default function Users() {
     const [mensage, setMensage] = useState(null);
@@ -80,17 +79,15 @@ export default function Users() {
 
     return	(
 		<>
-			<Header />
-
 			<div className="container">
 				<div className="contentMain">
-					<div className="contentUser">
+					<div className="contentUser" data-testid="contentUser">
 						<form onSubmit={checkInputsForm}>
 							<div className="field-group">
 								<div className="field">
 									<label htmlFor="name">Nome * (Máx. 50 caracteres)</label>
 									<input
-										id="name"
+										data-testid="name"
 										name="name"
 										type="text"
 										maxLength="50"
@@ -103,7 +100,7 @@ export default function Users() {
 								<div className="field">
 									<label htmlFor="email">E-mail * (Máx. 30 caracteres)</label>
 									<input
-										id="email"
+										data-testid="email"
 										name="email"
 										type="email"
 										maxLength="30"
@@ -118,7 +115,7 @@ export default function Users() {
 								<div className="field">
 									<label htmlFor="password">Password * (Min. 6 caracteres)</label>
 									<input
-										id="password"
+										data-testid="password"
 										name="password"
 										type="password"
 										placeholder="Informe uma SENHA"
@@ -129,7 +126,7 @@ export default function Users() {
 								<div className="field">
 									<label htmlFor="password-confirm">Confirme Password * (Min. 6 caracteres)</label>
 									<input
-										id="passwordConfirm"
+										data-testid="passwordConfirm"
 										name="passwordConfirm"
 										type="password"
 										placeholder="Confirme sua SENHA"
@@ -142,14 +139,14 @@ export default function Users() {
 									<span>
 										<FiSave size="26" title="Novo Usuário" />
 									</span>
-								<button type="submit" onClick={() => {}}>
+								<button data-testid="btnSalveUser" type="submit" onClick={() => {}}>
 									<strong>Cadastrar novo usuário</strong>
 								</button>
 							</div>
 						</form>
 					</div>
 
-					<div className="contentUsers">
+					<div className="contentUsers" data-testid="contentUsers">
 						<ul>
 							{users.map((user, index) => (
 								<li key={user.id}>
