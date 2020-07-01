@@ -29,7 +29,7 @@ class UserController extends Controller
     protected function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:30',
+            'name' => 'required|string|max:50',
             'email' => 'required|string|email|max:30|unique:users',
             'password' => 'required|string|min:6',
             'c_password' => 'required|same:password',
@@ -43,11 +43,11 @@ class UserController extends Controller
                 'email' => $request->email,
                 'password' => bcrypt($request->password),
             ]);
+
+            return response($user, 201);
         } catch (\Exception $e) {
             return response([ "message" => "User Bad Request" ], 400);
         }
-
-        return response($user, 201);
     }
 
     /**

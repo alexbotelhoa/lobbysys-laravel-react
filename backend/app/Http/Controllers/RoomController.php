@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Room;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class RoomController extends Controller
 {
@@ -27,17 +28,23 @@ class RoomController extends Controller
      */
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'nrRoom' => 'required|string|max:4|unique:rooms',
+        ]);
+
+        if ($validator->fails()) return response([ 'error' => $validator->errors() ], 401);
+
         $countRoom = Room::where('nrRoom', $request->nrRoom)->count();
 
         if ($countRoom > 0) return response([ "message" => "Room already registered" ], 226);
 
         try {
             $room = Room::create($request->all());
+
+            return response($room, 201);
         } catch (\Exception $e) {
             return response([ "message" => "Room Bad Request" ], 400);
         }
-
-        return response($room, 201);
     }
 
     /**

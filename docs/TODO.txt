@@ -10,8 +10,8 @@
     3. Min e Max (feito...)
 
 - Validadores no Controller com retorno no input
-    1. Requered
-    2. ...
+    1. Backend (feito...)
+    2. Frontend (feito...)
 
 - Criar os testes
     1. Backend

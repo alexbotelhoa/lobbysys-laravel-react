@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Queue;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class QueueController extends Controller
 {
@@ -34,17 +35,24 @@ class QueueController extends Controller
      */
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'visitor_id' => 'numeric',
+            'room_id' => 'numeric',
+        ]);
+
+        if ($validator->fails()) return response([ 'error' => $validator->errors() ], 401);
+
         $visitorCount = Queue::where('visitor_id', $request->visitor_id)->count();
 
         if ($visitorCount > 0 ) return response([ "message" => "Visitor is already in the queue"], 203);
 
         try {
             $queuePosition = Queue::create($request->all());
+
+            return response($queuePosition, 201);
         } catch (\Exception $e) {
             return response([ "message" => "Queue Position Bad Request"], 400);
         }
-
-        return response($queuePosition, 201);
     }
 
     /**

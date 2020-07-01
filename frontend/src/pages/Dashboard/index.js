@@ -93,24 +93,24 @@ export default function Dashboard() {
 				  Authorization: `Bearer ${Cookies.get('token')}`
 				}
 			});
+
+			if (arrival.status === 201) {
+				const nameVisitorAndNrRoom = [{
+					name: visitor[1],
+					nrRoom: room[1]
+				}];
+	
+				Object.assign(arrival.data, nameVisitorAndNrRoom[0]);
+	
+				setArrivals([ ...arrivals, arrival.data ]);
+			} else {
+				if (arrival.status === 226) return setMensage('Visitante já está cadastrado nessa sala!');
+	
+				createPositionQueue(data, visitor[1], room[1]);
+			}
 		} catch (err) {
 			alert('Erro ao tentar realizar o CHECKIN do visitante!\nTente novamente em alguns instantes!');
 		};
-
-		if (arrival.status === 201) {
-			const nameVisitorAndNrRoom = [{
-				name: visitor[1],
-				nrRoom: room[1]
-			}];
-
-			Object.assign(arrival.data, nameVisitorAndNrRoom[0]);
-
-			setArrivals([ ...arrivals, arrival.data ]);
-		} else {
-			if (arrival.status === 226) return setMensage('Visitante já está cadastrado nessa sala!');
-
-			createPositionQueue(data, visitor[1], room[1]);
-		}
 	}
 
 	async function createPositionQueue(data, name, nrRoom) {
@@ -122,22 +122,22 @@ export default function Dashboard() {
 				  Authorization: `Bearer ${Cookies.get('token')}`
 				}
 			});
+
+			if (queue.status === 201) {
+				const nameVisitorAndNrRoom = [{
+					name: name,
+					nrRoom: nrRoom,
+					// checkIn: now()
+				}];
+	
+				Object.assign(queue.data, nameVisitorAndNrRoom[0])
+	
+				setQueues([ ...queues, queue.data ]);
+			} else {
+				if (queue.status === 203) return setMensage('Visitante já se encontra na fila de espera!');
+			}
 		} catch (err) {
 			alert('Erro ao tentar realizar o CHECKIN do visitante!\nTente novamente em alguns instantes!');
-		}
-
-		if (queue.status === 201) {
-			const nameVisitorAndNrRoom = [{
-				name: name,
-				nrRoom: nrRoom,
-				// checkIn: now()
-			}];
-
-			Object.assign(queue.data, nameVisitorAndNrRoom[0])
-
-			setQueues([ ...queues, queue.data ]);
-		} else {
-			if (queue.status === 203) return setMensage('Visitante já se encontra na fila de espera!');
 		}
 	}
 
@@ -150,16 +150,16 @@ export default function Dashboard() {
 				  Authorization: `Bearer ${Cookies.get('token')}`
 				}
 			});
+
+			if (arrival.status === 201)  {
+				loadArrivals();
+	
+				loadQueues();
+			} else {
+				setArrivals(arrivals.filter(arrival => arrival.id !== id));
+			}
 		} catch (err) {
 			alert('Erro ao tentar realizar o CHECKOUT do visitante!\nTente novamente em alguns instantes!');
-		}
-		
-		if (arrival.status === 201)  {
-			loadArrivals();
-
-			loadQueues();
-		} else {
-			setArrivals(arrivals.filter(arrival => arrival.id !== id));
 		}		
 	};
 	

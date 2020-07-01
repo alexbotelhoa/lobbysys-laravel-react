@@ -51,15 +51,15 @@ export default function Visitors() {
 				  Authorization: `Bearer ${Cookies.get('token')}`
 				}
 			});
+
+			if (visitor.status === 201) {
+				setVisitors([ visitor.data, ...visitors ]);
+			} else {
+				if (visitor.status === 226) return setMensage('Visitante já se encontra cadastrado!');
+			}
 		} catch (err) {
 			alert('Erro ao tentar ADICIONAR o visitante!\nVerifique se o CPF já foi cadastrado.\nCaso não, tente novamente em alguns instantes!');
 		}	
-
-		if (visitor.status === 201) {
-			setVisitors([ visitor.data, ...visitors ]);
-		} else {
-			if (visitor.status === 226) return setMensage('Visitante já se encontra cadastrado!');
-		}
 	}
 
 	async function handleDeleteVisitor(id) {
@@ -86,7 +86,7 @@ export default function Visitors() {
 						<form onSubmit={checkInputsForm}>						
 							<div className="field-group">
 								<div className="field">
-									<label htmlFor="name">Nome * (Máx. de 50 caracteres)</label>
+									<label htmlFor="name">Nome * (Máx. 50 caracteres)</label>
 									<input 
 										id="name" 
 										name="name"
@@ -125,7 +125,7 @@ export default function Visitors() {
 									/>
 								</div>
 								<div className="field">
-									<label htmlFor="email">E-mail * (Máx. de 30 caracteres)</label>
+									<label htmlFor="email">E-mail (Máx. 30 caracteres)</label>
 									<input 
 										id="email" 
 										name="email"

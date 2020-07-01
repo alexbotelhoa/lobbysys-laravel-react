@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Visitor;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class VisitorController extends Controller
 {
@@ -27,17 +28,26 @@ class VisitorController extends Controller
      */
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:50',
+            'cpf' => 'required|string|max:14',
+            'birth' => 'string|date',
+            'email' => 'string|email|max:30|unique:visitors',
+        ]);
+
+        if ($validator->fails()) return response([ 'error' => $validator->errors() ], 401);
+
         $countVisitor = Visitor::where('cpf', $request->cpf)->count();
 
         if ($countVisitor > 0) return response([ "message" => "Visitor already registered"], 226);
 
         try {
             $visitor = Visitor::create($request->all());
+
+            return response($visitor, 201);
         } catch (\Exception $e) {
             return response([ "message" => "Visitor Bad Request"], 400);
         }
-
-        return response($visitor, 201);
     }
 
     /**

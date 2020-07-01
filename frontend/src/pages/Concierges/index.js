@@ -49,20 +49,20 @@ export default function Concierges() {
 		let concierge;
 
 		try {
-			concierge = await api.get(`concierges?visitor=${selectedVisitor}&room=${selectedRoom}&date=${selectedCheckIn}`, {
+			concierge = await api.get(`concierges?visitor=${selectedVisitor}&room=${selectedRoom}&checkIn=${selectedCheckIn}`, {
 				headers: {
 				  Authorization: `Bearer ${Cookies.get('token')}`
 				}
 			});
+
+			if (concierge.data.length > 0) {
+				setConcierges(concierge.data);
+			} else {
+				setConcierges([]);
+				return setMensage('Não há registros nessa pesquisa. Tente novamente!');
+			}
 		} catch (err) {
 			alert('Erro ao tentar pesquisar as informações!\nTente novamente em alguns instantes!');
-		}	
-
-		if (concierge.data.length > 0) {
-			setConcierges(concierge.data);
-		} else {
-			setConcierges([]);
-			return setMensage('Não há registros nessa pesquisa. Tente novamente!');
 		}
 	};
 

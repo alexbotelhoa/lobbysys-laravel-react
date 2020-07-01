@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Arrival;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class ArrivalController extends Controller
 {
@@ -33,24 +34,33 @@ class ArrivalController extends Controller
      */
     public function store(Request $request)
     {
-        $visitorAndRoomExist = Arrival::where([
-            ['visitor_id', '=', $request->visitor_id],
-            ['room_id', '=', $request->room_id]
-        ])->count();
+        $validator = Validator::make($request->all(), [
+            'visitor_id' => 'numeric',
+            'room_id' => 'numeric',
+            'checkIn' => 'string|date',
+        ]);
 
-        if ($visitorAndRoomExist > 0) return response([ "message" => "Visitor already registered in the room"], 226);
+        if ($validator->fails()) return response([ 'error' => $validator->errors() ], 401);
 
-        $countArrival = Arrival::where('room_id', $request->room_id)->count();
 
-        if ($countArrival > 2) return response([ "message" => "Limit of visitors in the room exceeded"], 203);
+            $visitorAndRoomExist = Arrival::where([
+                ['visitor_id', '=', $request->visitor_id],
+                ['room_id', '=', $request->room_id]
+            ])->count();
+
+            if ($visitorAndRoomExist > 0) return response([ "message" => "Visitor already registered in the room"], 226);
+
+            $countArrival = Arrival::where('room_id', $request->room_id)->count();
+
+            if ($countArrival > 2) return response([ "message" => "Limit of visitors in the room exceeded"], 203);
 
         try {
             $arrival = Arrival::create($request->all());
+
+            return response($arrival, 201);
         } catch (\Exception $e) {
             return response([ "message" => "Arrival Bad Request"], 400);
         }
-
-        return response($arrival, 201);
     }
 
     /**
@@ -74,9 +84,9 @@ class ArrivalController extends Controller
             ->limit(1)
             ->get();
 
-        DB::beginTransaction();
-
         try {
+            DB::beginTransaction();
+
             DB::table('concierges')->insert([
                 'visitor_id' => $arrival->visitor_id,
                 'room_id' => $arrival->room_id,

@@ -44,15 +44,15 @@ export default function Rooms() {
 				  Authorization: `Bearer ${Cookies.get('token')}`
 				}
 			});
+
+			if (room.status === 201) {
+				setRooms([ room.data, ...rooms ]);
+			} else {
+				if (room.status === 226) return setMensage('Sala já se encontra cadastrada!');
+			}
 		} catch (err) {
 			alert('Erro ao tentar ADICIONAR a sala!\nVerifique se a mesma já não está cadastrada.\nCaso não, tente novamente em alguns instantes!');
 		}	
-
-		if (room.status === 201) {
-			setRooms([ room.data, ...rooms ]);
-		} else {
-			if (room.status === 226) return setMensage('Sala já se encontra cadastrada!');
-		}
 	}
 
 	async function handleDeleteRoom(id) {
@@ -79,7 +79,7 @@ export default function Rooms() {
 						<form onSubmit={checkInputsForm}>
 							<div className="field-group">
 								<div className="field">
-									<label htmlFor="name">Número da Sala *</label>
+									<label htmlFor="name">Número da Sala * (Máx. 4 dígitos)</label>
 									<InputMask 
 										id="nrRoom" 
 										name="nrRoom"
