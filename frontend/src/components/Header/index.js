@@ -26,13 +26,13 @@ export default function Header() {
   return (
     <header id="mainHeader">
       <div className="contentHeader">
-        <span>
-          <img data-testid="imageLogo" src={logo} alt="LobbySys"/>
+        <span data-testid="imageLogo">
+          <img src={logo} alt="LobbySys"/>
         </span>
 
         <div className="btnNavegacao">
           <Link className="button" to="/dashboard">
-            <button className="btn" title="Dashboard">Dashboard</button>
+            <button className="btn">Dashboard</button>
           </Link>
           <Link className="button" to="/users">
             <button className="btn">Usuários</button>
@@ -48,7 +48,7 @@ export default function Header() {
           </Link>
         </div>
 
-        <span data-testid="links">
+        <span data-testid="links">dashboard
           <a href="https://www.linkedin.com/in/alex-botelho-almeida/">
             <FaLinkedin size="28" />
           </a>
