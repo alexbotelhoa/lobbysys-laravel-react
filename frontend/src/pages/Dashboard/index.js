@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-// import { useHistory } from 'react-router-dom';
 import { GiExitDoor } from 'react-icons/gi';
 import { FaAddressCard } from 'react-icons/fa';
 import { BsBoxArrowRight } from 'react-icons/bs';
@@ -8,10 +7,6 @@ import Cookies from 'js-cookie';
 import './styles.css';
 import api from '../../services/api';
 import person from '../../assets/person.gif'
-
-// const history = useHistory();
-// const cookies = Cookies.get('token'); 
-// if (!cookies) history.push('/');
 
 export default function Dashboard() {
 	const [mensage, setMensage] = useState(null);

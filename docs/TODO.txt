@@ -19,7 +19,7 @@
 
 - Tirar regras de negocio do Dashboard (frontend) para o Backend
 
-- Colocar realce na opção do menu selecionado
+- Colocar realce na opção do menu selecionado (feito...)
 
 - Postar projeto
 

@@ -8,19 +8,23 @@ import './styles.css';
 import api from '../../services/api';
 import logo from '../../assets/logo.png';
 
-export default function Header() {
+export default function Header({ selected }) {
   const history = useHistory();
+  const cookie = Cookies.get('token');
+  // if (!cookie) history.push('/');
 
   function handleLogout() {
     api.post('logout', '', {
       headers: {
-        Authorization: `Bearer ${Cookies.get('token')}`
+        Authorization: `Bearer ${cookie}`
       }
     });
 
     Cookies.remove('token');
 
     history.push('/');
+
+    return true;
   }
 
   return (
@@ -32,37 +36,47 @@ export default function Header() {
 
         <div className="btnNavegacao">
           <Link className="button" to="/dashboard">
-            <button className="btn">Dashboard</button>
+            <button className="btn"
+              style={selected === 'dashboard' ? { background: "#dcdce6" } : {}}
+            >Dashboard</button>
           </Link>
           <Link className="button" to="/users">
-            <button className="btn">Usuários</button>
+            <button className="btn"
+            style={selected === 'users' ? { background: "#dcdce6" } : {}}
+            >Usuários</button>
           </Link>
           <Link className="button" to="/visitors">
-            <button className="btn">Visitantes</button>
+            <button className="btn"
+            style={selected === 'visitors' ? { background: "#dcdce6" } : {}}
+            >Visitantes</button>
           </Link>
           <Link className="button" to="/rooms">
-            <button className="btn">Salas</button>
+            <button className="btn"
+            style={selected === 'rooms' ? { background: "#dcdce6" } : {}}
+            >Salas</button>
           </Link>
           <Link className="button" to="/concierges">
-            <button className="btn">Portaria</button>
+            <button className="btn"
+            style={selected === 'concierges' ? { background: "#dcdce6" } : {}}
+            >Portaria</button>
           </Link>
         </div>
 
-        <span data-testid="links">dashboard
+        <span>
           <a href="https://www.linkedin.com/in/alex-botelho-almeida/">
-            <FaLinkedin size="28" />
+            <FaLinkedin size="28" data-testid="linkLinkedIn" />
           </a>
           <a href="https://www.facebook.com/alexbotelhoa">
-            <FaFacebookSquare size="28" />
+            <FaFacebookSquare size="28" data-testid="linkFacebook" />
           </a>
           <a href="https://www.instagram.com/alexbotelhoa">
-            <FaInstagramSquare size="28" />
+            <FaInstagramSquare size="28" data-testid="linkInstagram" />
           </a>
-          <a href="https://www.instagram.com/alexbotelhoa">
-            <FaTwitterSquare size="28" />
+          <a href="https://twitter.com/alexbotelhoa">
+            <FaTwitterSquare size="28" data-testid="linkTwitter" />
           </a>
           <button className="logout" type="button" onClick={() => handleLogout()}>
-            <FiLogOut size="28" /> 
+            <FiLogOut size="28" data-testid="linkCheckOut" /> 
           </button>
         </span>
       </div>

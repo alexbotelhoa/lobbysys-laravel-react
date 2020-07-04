@@ -1,20 +1,11 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { createMemoryHistory } from "history";
-import { MemoryRouter } from 'react-router';
-import { render, fireEvent } from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect'
-import { mount } from 'enzyme';
+import { render, screen } from '@testing-library/react';
 
 import App from '../../App';
 
-const history = createMemoryHistory();
-
-test("shoul be true when find component Header", () => {
-    const { container } = render(
-      <React.StrictMode>
-        <App />
-      </React.StrictMode>
-    );
-    expect(container.innerHTML).toMatch('Header');
+describe(`Page App Component's`, () => {
+  test("shoul be true when find component App", () => {
+      const { container } = render(<App />);
+      expect(container.innerHTML).toMatch('Informe sua senha');
+  });
 });

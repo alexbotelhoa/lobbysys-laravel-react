@@ -1,104 +1,79 @@
 import React from 'react';
-import { Router } from "react-router-dom";
-import { createMemoryHistory } from "history";
-import { render, fireEvent } from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect'
+// import { Router } from "react-router-dom";
+// import { createMemoryHistory } from "history";
+import { render } from '@testing-library/react';
 
-import Header from '../../components/Header';
 import Routes from '../../Routes';
 
-// test("shoul be true when find component Header", () => {
-//     const history = createMemoryHistory();
-//     const { container } = render(
-//         <Router history={history}>
-//           <Routes />
-//         </Router>
-//     );
-//     expect(container.innerHTML).toMatch('Header');
-// });
+describe(`Routes Component's`, () => {
+  test("shoul be true when find component Routes", () => {
+    const { container } = render(<Routes />);
+    expect(container.innerHTML).toMatch('Sistema de Controle de Portaria');
+  });
 
-test("shoul be true when not find route Not Found", () => {
-    const history = createMemoryHistory();
-    const { container, getByText, getByTestId } = render(
-        <Router history={history}>
-          <Routes />
-        </Router>
-    );
+  // test("shoul be true when not find route Login", () => {
+  //   const history = createMemoryHistory();
+  //   history.push('/');
+  //   render(
+  //     <Router history={history}>
+  //       <Routes />
+  //     </Router>
+  //   );
+  //   expect(history.location.pathname).toBe("/");
+  // });
 
-    expect(container.innerHTML).toMatch("Informe sua senha");
+  // test("shoul be true when not find route Dashboard", () => {
+  //   const history = createMemoryHistory();
+  //   history.push('/dashboard');
+  //   render(
+  //     <Router history={history}>
+  //       <Routes />
+  //     </Router>
+  //   );
+  //   expect(history.location.pathname).toBe("/dashboard");
+  // });
 
-    fireEvent.click(getByText("Dashboard"));
+  // test("shoul be true when not find route Users", () => {
+  //   const history = createMemoryHistory();
+  //   history.push('/users');
+  //   render(
+  //     <Router history={history}>
+  //       <Routes />
+  //     </Router>
+  //   );
+  //   expect(history.location.pathname).toBe("/users");
+  // });
 
-    expect(container.innerHTML).toMatch("contentVisitors");
+  // test("shoul be true when not find route Visitors", () => {
+  //   const history = createMemoryHistory();
+  //   history.push('/visitors');
+  //   render(
+  //     <Router history={history}>
+  //       <Routes />
+  //     </Router>
+  //   );
+  //   expect(history.location.pathname).toBe("/visitors");
+  // });
 
-    fireEvent.click(getByText("Usuários"));
+  // test("shoul be true when not find route Rooms", () => {
+  //   const history = createMemoryHistory();
+  //   history.push('/rooms');
+  //   render(
+  //     <Router history={history}>
+  //       <Routes />
+  //     </Router>
+  //   );
+  //   expect(history.location.pathname).toBe("/rooms");
+  // });
 
-    expect(container.innerHTML).toMatch("contentUser");
-
+  // test("shoul be true when not find route Concierges", () => {
+  //   const history = createMemoryHistory();
+  //   history.push('/concierges');
+  //   render(
+  //     <Router history={history}>
+  //       <Routes />
+  //     </Router>
+  //   );
+  //   expect(history.location.pathname).toBe("/concierges");
+  // });
 });
-
-
-
-
-
-
-
-// test("shoul be true when not find route Login", () => {
-//     history.push('/');
-//     render(
-//       <Router history={history}>
-//         <Routes />
-//       </Router>
-//     );
-//     expect(history.location.pathname).toBe("/");
-// });
-
-// test("shoul be true when not find route Dashboard", () => {
-//     history.push('/dashboard');
-//     render(
-//       <Router history={history}>
-//         <Routes />
-//       </Router>
-//     );
-//     expect(history.location.pathname).toBe("/dashboard");
-// });
-
-// test("shoul be true when not find route Users", () => {
-//     history.push('/users');
-//     render(
-//       <Router history={history}>
-//         <Routes />
-//       </Router>
-//     );
-//     expect(history.location.pathname).toBe("/users");
-// });
-
-// test("shoul be true when not find route Visitors", () => {
-//     history.push('/visitors');
-//     render(
-//       <Router history={history}>
-//         <Routes />
-//       </Router>
-//     );
-//     expect(history.location.pathname).toBe("/visitors");
-// });
-
-// test("shoul be true when not find route Rooms", () => {
-//     history.push('/rooms');
-//     render(
-//       <Router history={history}>
-//         <Routes />
-//       </Router>
-//     );
-//     expect(history.location.pathname).toBe("/rooms");
-// });
-
-// test("shoul be true when not find route Concierges", () => {
-//     history.push('/concierges');
-//     render(
-//       <Router history={history}>
-//         <Routes />
-//       </Router>
-//     );
-//     expect(history.location.pathname).toBe("/concierges");
-// });
