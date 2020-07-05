@@ -1,53 +1,73 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, fireEvent, screen, act } from '@testing-library/react';
+import MockAdapter from "axios-mock-adapter";
 
 import Login from '../../pages/Login';
+import api from "../../services/api";
+const apiMock = new MockAdapter(api);
 
 describe(`Page Login DOM's`, () => {
-
-
-  test("should be able when the function works checkInput", () => {
-    const checkInput = jest.fn();
-
+  test("should be able when form exist", async () => {
     const { getByText } = render(<Login />);
 
-    expect(getByText('Entrar')).toBeTruthy();
-
-    // fireEvent.click(getByText('Entrar'));
-    
-    // expect(checkInput).toHaveBeenCalledTimes(1);
+    await act(async () => {
+      fireEvent.click(getByText("Entrar"));
+    });
   });
 
+  test("should be able when form exist", async () => {
+    const { getByText, getByTestId } = render(<Login />);
 
-  // test("should be able when the function works handleSubmit", () => {
-  //   const handleSubmit = jest.fn();
+    await act(async () => {
+      fireEvent.change(getByTestId('email'), {
+        target: { value: 'teste@lobbysys.com' }
+      });
+    });
 
-  //   const { getByText } = render(<Login />);
-
-  //   expect(getByText('Entrar')).toBeTruthy();
-
-  //   fireEvent.click(getByText('Entrar'));
-    
-  //   expect(handleSubmit).toHaveBeenCalledTimes(1);
-  // });
-
-
-
-  test("should be able to get Input Email", () => {
-    const { getByTestId } = render(<Login />);
-    const domFormInput = getByTestId("email");
-    expect(domFormInput).toBeInTheDocument();  
+    await act(async () => {
+      fireEvent.click(getByText("Entrar"));
+    });
   });
 
-  // test("should be able to get Input Password", () => {
-  //   const { getByTestId } = render(<Login />);
-  //   const domFormInput = getByTestId("password");
-  //   expect(domFormInput).toBeInTheDocument();  
-  // });
+  test("should be able when form exist", async () => {
+    const { getByText, getByTestId } = render(<Login />);
 
-  // test("should be able to get Button Login", () => {
-  //   const { getByText } = render(<Login />);
-  //   const domFormButton = getByText("Entrar");
-  //   expect(domFormButton).toBeInTheDocument();
-  // });
+    await act(async () => {
+      fireEvent.change(getByTestId('email'), {
+        target: { value: 'teste@lobbysys.com' }
+      });
+      
+      fireEvent.change(getByTestId('password'), {
+        target: { value: '123' }
+      });
+    });
+
+    await act(async () => {
+      fireEvent.click(getByText("Entrar"));
+    });
+  });
+
+  test("should be able when form exist", async () => {
+    const { getByText, getByTestId } = render(<Login />);
+
+    await act(async () => {
+      apiMock.onPost("login").reply(200, {
+        name: "Admin",
+        token: "123",
+      });
+
+
+      fireEvent.change(getByTestId('email'), {
+        target: { value: 'admin@lobbysys.com' }
+      });
+      
+      fireEvent.change(getByTestId('password'), {
+        target: { value: '12345678' }
+      });
+    });
+
+    await act(async () => {
+      fireEvent.click(getByText("Entrar"));
+    });
+  });
 });
