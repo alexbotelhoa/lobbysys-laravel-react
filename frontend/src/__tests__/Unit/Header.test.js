@@ -10,7 +10,7 @@ const apiMock = new MockAdapter(api);
 import Header from '../../components/Header';
 
 describe('Testing The Header', () => {
-  it("should be valid when ...", async () => {
+  it("should be valid when it is possible logout", async () => {
     const history = createMemoryHistory();
     const { getByTestId } = render(
       <Router history={history}>

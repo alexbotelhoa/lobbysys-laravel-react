@@ -70,7 +70,6 @@ export default function Dashboard() {
 		event.preventDefault();
 
 		if (selectedVisitor === '0') return setMensage('Selecione um visitante!');
-
 		if (selectedRoom === '0') return setMensage('Selecione uma sala!');
 		
 		createPositionArrival();
@@ -182,31 +181,31 @@ export default function Dashboard() {
 					<div className="contentDashboardVisitors" data-testid="contentVisitors">
 						<form onSubmit={checkInputsForm}>
 							<select 
-								data-testid="visitor" 
+								id="visitor" 
 								name="visitor"
 								value={selectedVisitor} 
 								onChange={e => setSelectedVisitor(e.target.value)}
 							>
-								<option value="0">Selecione um Visitante</option>
+								<option data-testid="visitor" value="0">Selecione um Visitante</option>
 								{visitors.map(visitor => (
 									<option key={visitor.id} value={[visitor.id, visitor.name]}>{visitor.name}</option>
 								))}
 							</select>
 
 							<select 
-								data-testid="room" 
+								id="room" 
 								name="room"
 								value={selectedRoom} 
 								onChange={e => setSelectedRoom(e.target.value)}
 							>
-								<option value="0">Selecione uma Sala</option>
+								<option data-testid="room" value="0">Selecione uma Sala</option>
 								{rooms.map(room => (
 									<option key={room.id} value={[room.id, room.nrRoom]}>{room.nrRoom}</option>
 								))}
 							</select>
 
 							<button className="btnCheckin" type="submit">
-								<FaAddressCard size="26" title="CkeckIn" />
+								<FaAddressCard size="26" data-testid="linkCkeckIn" />
 							</button>
 						</form>
 					</div>

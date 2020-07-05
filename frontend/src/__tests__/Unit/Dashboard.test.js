@@ -1,14 +1,51 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, fireEvent, screen, act } from '@testing-library/react';
+import MockAdapter from "axios-mock-adapter";
 
-import Dashboard from '../../pages/Dashboard/index';
+import Dashboard from '../../pages/Dashboard';
+import api from "../../services/api";
 
-// describe(`Page Dashboard DOM's`, () => {
-  test("should be able to get Select Visitor", () => {
-    const { getByText, getByTestId } = render(<Dashboard />)
-    const domFormSelect = getByTestId("visitor");
+const apiMock = new MockAdapter(api);
 
-    expect(domFormSelect).toBeInTheDocument();
+describe('Testing The Dashboard Page', () => {
+  it("should be valid when ...", async () => {
+    render(<Dashboard />)
+
+    await act(async () => {
+      apiMock
+        .onGet("visitors")
+        .reply(200, [
+          { 
+            id: "123", 
+            name: "Fulano de Tal" 
+          }
+        ])
+        .onGet("rooms")
+        .reply(200, [
+          { 
+            id: "123", 
+            nrRoom: "9999" 
+          }
+        ])
+        .onGet("arrivals")
+        .reply(200, [
+          { 
+            id: "123", 
+            nrRoom: "9999", 
+            name: "Fulano de Tal",
+            checkIn: "01/01/2001"
+          }
+        ])
+        .onGet("queues")
+        .reply(200, [
+          {
+            id: "123", 
+            nrRoom: "9999", 
+            name: "Fulano de Tal",
+            created_at: "01/01/2001"
+          }
+        ]);
+    });
   });
 
 
@@ -16,42 +53,48 @@ import Dashboard from '../../pages/Dashboard/index';
 
 
 
+  it("should be valid when has no information", async () => {
+    const { getByTestId } = render(<Dashboard />);
+
+    await act(async () => {
+      fireEvent.click(getByTestId("linkCkeckIn"));
+    });
+  });
+
+  it("should be valid when has the visitor", async () => {
+    const { getByTestId } = render(<Dashboard />);
+
+    await act(async () => {
+      fireEvent.change(getByTestId('visitor'), {
+        target: { value: ['123', 'Fulano de Tal'] }
+      });
+    });
+
+    await act(async () => {
+      fireEvent.click(getByTestId("linkCkeckIn"));
+    });
+  });
+
+  it("should be valid when has the visitor and the room", async () => {
+    const { getByTestId } = render(<Dashboard />);
+
+    await act(async () => {
+      fireEvent.change(getByTestId('visitor'), {
+        target: { value: ['123', 'Fulano de Tal'] }
+      });
+      
+      fireEvent.change(getByTestId('room'), {
+        target: { value: ['123', '9999'] }
+      });
+    });
+
+    await act(async () => {
+      fireEvent.click(getByTestId("linkCkeckIn"));
+    });
+
+    // screen.debug()
+  });
 
 
 
-  // test("should be able to get Content Visitors", () => {
-  //   const { getByTestId } = render(<Dashboard />);
-  //   const domContentVisitors = getByTestId("contentVisitors");
-  //   expect(domContentVisitors).toBeInTheDocument();
-  // });
-
-  // test("should be able to get Select Visitor", () => {
-  //   const { getByTestId } = render(<Dashboard />);
-  //   const domFormSelect = getByTestId("visitor");
-  //   expect(domFormSelect).toBeInTheDocument();  
-  // });
-
-  // test("should be able to get Input Room", () => {
-  //   const { getByTestId } = render(<Dashboard />);
-  //   const domFormInput = getByTestId("room");
-  //   expect(domFormInput).toBeInTheDocument();  
-  // });
-
-  // test("should be able to get Button CkeckIn", () => {
-  //   const { getByTitle } = render(<Dashboard />);
-  //   const domFormButton = getByTitle("CkeckIn");
-  //   expect(domFormButton).toBeInTheDocument();
-  // });
-
-  // test("should be able to get Content Rooms", () => {
-  //   const { getByTestId } = render(<Dashboard />);
-  //   const domContentRooms = getByTestId("contentRooms");
-  //   expect(domContentRooms).toBeInTheDocument();
-  // });
-
-  // test("should be able to get Content Queue", () => {
-  //   const { getByTestId } = render(<Dashboard />);
-  //   const domContentQueue = getByTestId("contentQueue");
-  //   expect(domContentQueue).toBeInTheDocument();
-  // });
-// });
+});

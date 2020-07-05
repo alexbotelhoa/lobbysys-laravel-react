@@ -4,6 +4,7 @@ import MockAdapter from "axios-mock-adapter";
 
 import Login from '../../pages/Login';
 import api from "../../services/api";
+
 const apiMock = new MockAdapter(api);
 
 describe('Testing The Login Page', () => {
