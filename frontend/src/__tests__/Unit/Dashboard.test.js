@@ -57,7 +57,7 @@ describe('Testing The Dashboard Page', () => {
     const { getByTestId } = render(<Dashboard />);
 
     await act(async () => {
-      fireEvent.click(getByTestId("linkCkeckIn"));
+      fireEvent.click(getByTestId("btnCkeckIn"));
     });
   });
 
@@ -71,7 +71,7 @@ describe('Testing The Dashboard Page', () => {
     });
 
     await act(async () => {
-      fireEvent.click(getByTestId("linkCkeckIn"));
+      fireEvent.click(getByTestId("btnCkeckIn"));
     });
   });
 
@@ -89,7 +89,7 @@ describe('Testing The Dashboard Page', () => {
     });
 
     await act(async () => {
-      fireEvent.click(getByTestId("linkCkeckIn"));
+      fireEvent.click(getByTestId("btnCkeckIn"));
     });
 
     // screen.debug()

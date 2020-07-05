@@ -205,7 +205,7 @@ export default function Dashboard() {
 							</select>
 
 							<button className="btnCheckin" type="submit">
-								<FaAddressCard size="26" data-testid="linkCkeckIn" />
+								<FaAddressCard size="26" data-testid="btnCkeckIn" />
 							</button>
 						</form>
 					</div>
