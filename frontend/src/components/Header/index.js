@@ -11,7 +11,7 @@ import logo from '../../assets/logo.png';
 export default function Header({ selected }) {
   const history = useHistory();
   const cookie = Cookies.get('token');
-  // if (!cookie) history.push('/');
+  if (!cookie) history.push('/');
 
   function handleLogout() {
     api.post('logout', '', {
@@ -23,8 +23,6 @@ export default function Header({ selected }) {
     Cookies.remove('token');
 
     history.push('/');
-
-    return true;
   }
 
   return (

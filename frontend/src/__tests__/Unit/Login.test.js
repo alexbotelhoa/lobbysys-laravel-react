@@ -6,8 +6,8 @@ import Login from '../../pages/Login';
 import api from "../../services/api";
 const apiMock = new MockAdapter(api);
 
-describe(`Page Login DOM's`, () => {
-  test("should be able when form exist", async () => {
+describe('Testing The Login Page', () => {
+  it("should be valid when has no information", async () => {
     const { getByText } = render(<Login />);
 
     await act(async () => {
@@ -15,7 +15,7 @@ describe(`Page Login DOM's`, () => {
     });
   });
 
-  test("should be able when form exist", async () => {
+  it("should be valid when has the email", async () => {
     const { getByText, getByTestId } = render(<Login />);
 
     await act(async () => {
@@ -29,7 +29,7 @@ describe(`Page Login DOM's`, () => {
     });
   });
 
-  test("should be able when form exist", async () => {
+  it("should be valid when has the email and the password", async () => {
     const { getByText, getByTestId } = render(<Login />);
 
     await act(async () => {
@@ -47,7 +47,7 @@ describe(`Page Login DOM's`, () => {
     });
   });
 
-  test("should be able when form exist", async () => {
+  it("should be valid when login is valid  ", async () => {
     const { getByText, getByTestId } = render(<Login />);
 
     await act(async () => {
