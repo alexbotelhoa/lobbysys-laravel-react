@@ -39,27 +39,22 @@ export default function Concierges() {
 	function checkInputsForm(event) {	
 		event.preventDefault();
 
-		if (selectedVisitor === '' && selectedRoom === '' && selectedCheckIn === '') return setMensage('Selecione pelo menos um opção!');
+		if (selectedVisitor === "" && selectedRoom === "" && selectedCheckIn === "") return setMensage('Selecione pelo menos um opção!');
 		
 		searchVisitors();
 	};
 
 	async function searchVisitors() {
-		let concierge;
-
 		try {
-			concierge = await api.get(`concierges?visitor=${selectedVisitor}&room=${selectedRoom}&checkIn=${selectedCheckIn}`, {
+			const response = await api.get(`concierges?visitor=${selectedVisitor}&room=${selectedRoom}&checkIn=${selectedCheckIn}`, {
 				headers: {
-				  Authorization: `Bearer ${Cookies.get('token')}`
+					Authorization: `Bearer ${Cookies.get('token')}`
 				}
 			});
 
-			if (concierge.data.length > 0) {
-				setConcierges(concierge.data);
-			} else {
-				setConcierges([]);
-				return setMensage('Não há registros nessa pesquisa. Tente novamente!');
-			}
+			setConcierges(response.data);
+
+			if (response.data.length === 0) setMensage('Não há registros nessa pesquisa. Tente novamente!');
 		} catch (err) {
 			alert('Erro ao tentar pesquisar as informações!\nTente novamente em alguns instantes!');
 		}
@@ -135,8 +130,8 @@ export default function Concierges() {
 						</form>
 					</div>
 
-					<div className="contentConcierges" data-testid="contentConcierges">					
-						<ul>
+					<div className="contentConcierges">					
+						<ul data-testid="contentConcierges">
 							<li className="titleFilteredConcierges">
 								<div style={{ width: '30px' }}>Nr</div>
 								<div style={{ width: '250px' }}>Nome do Visitante</div>

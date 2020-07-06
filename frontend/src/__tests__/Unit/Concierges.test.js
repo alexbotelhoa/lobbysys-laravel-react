@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent, screen, act, waitFor } from '@testing-library/react';
+import { render, fireEvent, screen, act } from '@testing-library/react';
 import MockAdapter from "axios-mock-adapter";
 
 import Concierges from '../../pages/Concierges';
@@ -17,14 +17,14 @@ describe('Testing The Concierge Page', () => {
         .onGet("visitors")
         .reply(200, [
           { 
-            id: "123", 
+            id: "666", 
             name: "Fulano de Tal" 
           }
         ])
         .onGet("rooms")
         .reply(200, [
           { 
-            id: "123", 
+            id: "555", 
             nrRoom: "9999" 
           }
         ]);
@@ -47,154 +47,27 @@ describe('Testing The Concierge Page', () => {
     });
   });
 
-
-
-
-
-
   it("should be valid when has ...", async () => {
     const { getByTestId } = render(<Concierges />);
 
-    // jest.spyOn(window, 'alert').mockReturnValue();
-
-    // await act(async () => {
-    //   apiMock
-    //     .onGet("concierges")
-    //     .reply(200, [
-    //       { 
-    //         id: "123", 
-    //         name: "Fulano de Tal",
-    //         cpf: "999.999.999-99",
-    //         nrRoom: "9999",
-    //         checkIn: "2000-01-01 00:00:00",
-    //         checkOut: "2000-01-02 00:00:00",
-    //       }
-    //     ]);
-    // });
-
-    await act(async () => {
-      apiMock
-      .onPost("concierges", {
-        params: {
-          visitor: "",
-          room: "",
-          checkIn: "2000-01-01",
-        }
-      })
-      .reply(200, [
-        { 
-          id: "123", 
-          name: "Fulano de Tal",
-          cpf: "999.999.999-99",
-          nrRoom: "9999",
-          checkIn: "2000-01-01 00:00:00",
-          checkOut: "2000-01-02 00:00:00",
-        }
-      ])
-    });
+    jest.spyOn(window, 'alert').mockReturnValue();
 
     await act(async () => {
       fireEvent.change(getByTestId('visitor'), {
-        target: { value: '' }
+        target: { value: 0 }
       });
       
       fireEvent.change(getByTestId('room'), {
-        target: { value: '' }
+        target: { value: 0 }
       });
 
       fireEvent.change(getByTestId('checkIn'), {
-        target: { value: '2000-01-01' }
+        target: { value: "9999-12-30" }
       });
     });
 
     await act(async () => {
       fireEvent.click(getByTestId("btnSearchConcierge"));
     });
-
-
-
-
-    // await act(async () => {
-    //   apiMock
-    //     .onGet("concierges")
-    //     .reply(200, {
-    //       data: [{ 
-    //         id: "123", 
-    //         name: "Fulano de Tal",
-    //         cpf: "999.999.999-99",
-    //         nrRoom: "9999",
-    //         checkIn: "2000-01-01 00:00:00",
-    //         checkOut: "2000-01-02 00:00:00",
-    //       }]
-    //     });
-    // });
-
-
-
-
-
   });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // it("should be able to get Content Concierge", () => {
-  //   const { getByTestId } = render(<Concierges />);
-  //   const domContentConcierge = getByTestId("contentConcierge");
-  //   expect(domContentConcierge).toBeInTheDocument();
-  // });
-
-  // it("should be able to get Input Visitor", () => {
-  //   const { getByTestId } = render(<Concierges />);
-  //   const domFormInput = getByTestId("visitor");
-  //   expect(domFormInput).toBeInTheDocument();  
-  // });
-
-  // it("should be able to get Input Room", () => {
-  //   const { getByTestId } = render(<Concierges />);
-  //   const domFormInput = getByTestId("room");
-  //   expect(domFormInput).toBeInTheDocument();  
-  // });
-
-  // it("should be able to get Input CheckIn", () => {
-  //   const { getByTestId } = render(<Concierges />);
-  //   const domFormInput = getByTestId("checkIn");
-  //   expect(domFormInput).toBeInTheDocument();  
-  // });
-
-  // it("should be able to get Button Reset Concierge", () => {
-  //   const { getByTestId } = render(<Concierges />);
-  //   const domFormButton = getByTestId("btnResetConcierge");
-  //   expect(domFormButton).toBeInTheDocument();
-  // });
-
-  // it("should be able to get Button Search Concierge", () => {
-  //   const { getByTestId } = render(<Concierges />);
-  //   const domFormButton = getByTestId("btnSearchConcierge");
-  //   expect(domFormButton).toBeInTheDocument();
-  // });
-
-  // it("should be able to get Content Concierges", () => {
-  //   const { getByTestId } = render(<Concierges />);
-  //   const domContentConcierges = getByTestId("contentConcierges");
-  //   expect(domContentConcierges).toBeInTheDocument();
-  // });
 });

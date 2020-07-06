@@ -57,7 +57,6 @@ describe('Testing The Login Page', () => {
         token: "123",
       });
 
-
       fireEvent.change(getByTestId('email'), {
         target: { value: 'admin@lobbysys.com' }
       });
