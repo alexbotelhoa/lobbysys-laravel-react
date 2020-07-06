@@ -105,9 +105,9 @@ export default function Concierges() {
 									<input 
 										data-testid="checkIn" 
 										name="checkIn"
-										value={selectedCheckIn}
 										type="date"
 										placeholder="Selecione uma DATA DE CHECKIN"
+										value={selectedCheckIn}
 										onChange={e => setSelectedCheckIn(e.target.value)}
 									/>
 								</div>

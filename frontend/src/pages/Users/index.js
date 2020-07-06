@@ -10,10 +10,10 @@ export default function Users() {
     const [mensage, setMensage] = useState(null);
     const [users, setUsers] = useState([]);
 
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [passwordConfirm, setPasswordConfirm] = useState('');
+	const [inputName, setInputName] = useState('');
+	const [inputEmail, setInputEmail] = useState('');
+    const [inputPassword, setInputPassword] = useState('');
+    const [inputPasswordConfirm, setInputPasswordConfirm] = useState('');
 
     useEffect(() => {
         api.get('users', {
@@ -28,26 +28,24 @@ export default function Users() {
     function checkInputsForm(event) {
         event.preventDefault();
 
-        if (name === '') return setMensage('Informe o nome do usuário!');
-        if (email === '') return setMensage('Informe o e-mail do usuário!');
-        if (password === '') return setMensage('Informe o password do visitante!');
-        if (passwordConfirm === '') return setMensage('Confirme o password informado!');
-        if (password !== passwordConfirm) return setMensage('As senhas não se correpondem!');
+        if (inputName === '') return setMensage('Informe o nome do usuário!');
+        if (inputEmail === '') return setMensage('Informe o e-mail do usuário!');
+        if (inputPassword === '') return setMensage('Informe o password do visitante!');
+        if (inputPasswordConfirm === '') return setMensage('Confirme o password informado!');
+        if (inputPassword !== inputPasswordConfirm) return setMensage('As senhas não se correpondem!');
 
         createUser();
     }
 
     async function createUser() {
         const data = new FormData();
-        data.append('name', name);
-        data.append('email', email);
-        data.append('password', password);
-        data.append('c_password', passwordConfirm);
-
-        let user;
+        data.append('name', inputName);
+        data.append('email', inputEmail);
+        data.append('password', inputPassword);
+        data.append('c_password', inputPasswordConfirm);
 
         try {
-            user = await api.post('users', data, {
+            const user = await api.post('users', data, {
 				headers: {
 				  Authorization: `Bearer ${Cookies.get('token')}`
 				}
@@ -81,7 +79,7 @@ export default function Users() {
 		<>
 			<div className="container">
 				<div className="contentMain">
-					<div className="contentUser" data-testid="contentUser">
+					<div className="contentUser">
 						<form onSubmit={checkInputsForm}>
 							<div className="field-group">
 								<div className="field">
@@ -92,11 +90,10 @@ export default function Users() {
 										type="text"
 										maxLength="50"
 										placeholder="Informe seu NOME"
-										value={name}
-										onChange={e => setName(e.target.value)}
+										value={inputName}
+										onChange={e => setInputName(e.target.value)}
 									/>
 								</div>
-
 								<div className="field">
 									<label htmlFor="email">E-mail * (Máx. 30 caracteres)</label>
 									<input
@@ -105,8 +102,8 @@ export default function Users() {
 										type="email"
 										maxLength="30"
 										placeholder="Informe seu E-MAIL"
-										value={email}
-										onChange={e => setEmail(e.target.value)}
+										value={inputEmail}
+										onChange={e => setInputEmail(e.target.value)}
 									/>
 								</div>
 							</div>
@@ -119,8 +116,8 @@ export default function Users() {
 										name="password"
 										type="password"
 										placeholder="Informe uma SENHA"
-										value={password}
-										onChange={e => setPassword(e.target.value)}
+										value={inputPassword}
+										onChange={e => setInputPassword(e.target.value)}
 									/>
 								</div>
 								<div className="field">
@@ -130,15 +127,15 @@ export default function Users() {
 										name="passwordConfirm"
 										type="password"
 										placeholder="Confirme sua SENHA"
-										value={passwordConfirm}
-										onChange={e => setPasswordConfirm(e.target.value)}
+										value={inputPasswordConfirm}
+										onChange={e => setInputPasswordConfirm(e.target.value)}
 									/>
 								</div>
 							</div>
 							<div className="btnSalveUser">
-									<span>
-										<FiSave size="26" title="Novo Usuário" />
-									</span>
+								<span>
+									<FiSave size="26" title="Novo Usuário" />
+								</span>
 								<button data-testid="btnSalveUser" type="submit" onClick={() => {}}>
 									<strong>Cadastrar novo usuário</strong>
 								</button>
@@ -146,14 +143,14 @@ export default function Users() {
 						</form>
 					</div>
 
-					<div className="contentUsers" data-testid="contentUsers">
+					<div className="contentUsers">
 						<ul>
 							{users.map((user, index) => (
 								<li key={user.id}>
 									<h3>{index + 1}</h3>
 									<header>{user.name}</header>
 									<footer>{user.email}</footer>
-									<button onClick={() => handleDeleteUser(user.id)}>
+									<button data-testid="btnDeleteUser" onClick={() => handleDeleteUser(user.id)}>
 										<RiDeleteBinLine size="16" />
 									</button>
 								</li>

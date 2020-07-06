@@ -9,7 +9,7 @@ const apiMock = new MockAdapter(api);
 
 describe('Testing The Visitors Page', () => {
   jest.spyOn(window, 'alert').mockReturnValue();
-  
+
   it("should be valid when loading page success", async () => {
     render(<Visitors />)
 
@@ -159,50 +159,4 @@ describe('Testing The Visitors Page', () => {
       fireEvent.click(getByTestId("btnDeleteVisitor"));
     });
   });
-
-
-
-
-
-  // test("should be able to get Content Visitor", () => {
-  //   const { getByTestId } = render(<Visitors />);
-  //   const domContentVisitor = getByTestId("contentVisitor");
-  //   expect(domContentVisitor).toBeInTheDocument();
-  // });
-
-  // test("should be able to get Input Name", () => {
-  //   const { getByTestId } = render(<Visitors />);
-  //   const domFormInput = getByTestId("name");
-  //   expect(domFormInput).toBeInTheDocument();  
-  // });
-
-  // test("should be able to get Input CPF", () => {
-  //   const { getByTestId } = render(<Visitors />);
-  //   const domFormInput = getByTestId("cpf");
-  //   expect(domFormInput).toBeInTheDocument();  
-  // });
-
-  // test("should be able to get Input Birth", () => {
-  //   const { getByTestId } = render(<Visitors />);
-  //   const domFormInput = getByTestId("birth");
-  //   expect(domFormInput).toBeInTheDocument();  
-  // });
-
-  // test("should be able to get Input E-mail", () => {
-  //   const { getByTestId } = render(<Visitors />);
-  //   const domFormInput = getByTestId("email");
-  //   expect(domFormInput).toBeInTheDocument();  
-  // });
-
-  // test("should be able to get Button New Visitor", () => {
-  //   const { getByTestId } = render(<Visitors />);
-  //   const domFormButton = getByTestId("btnSalveVisitor");
-  //   expect(domFormButton).toBeInTheDocument();
-  // });
-
-  // test("should be able to get Content Visitors", () => {
-  //   const { getByTestId } = render(<Visitors />);
-  //   const domContentVisitors = getByTestId("contentVisitors");
-  //   expect(domContentVisitors).toBeInTheDocument();
-  // });
 });

@@ -10,7 +10,7 @@ export default function Rooms() {
 	const [mensage, setMensage] = useState(null);
 	const [rooms, setRooms] = useState([]);
 
-	const [selectedRoom, setSelectedRoom] = useState('');
+	const [inputRoom, setInputRoom] = useState('');
 
 	useEffect(() => {
         api.get('rooms', {
@@ -25,14 +25,14 @@ export default function Rooms() {
 	function checkInputsForm(event) {	
 		event.preventDefault();
 
-		if (selectedRoom === "") return setMensage('Informe o número da sala!');
+		if (inputRoom === "") return setMensage('Informe o número da sala!');
 		
 		createRoom();
 	};
 
 	async function createRoom() {
 		const data = new FormData();
-		data.append('nrRoom', selectedRoom);
+		data.append('nrRoom', inputRoom);
 		
 		try {
 			const room = await api.post('rooms', data, {
@@ -77,11 +77,11 @@ export default function Rooms() {
 									<input 
 										data-testid="nrRoom" 
 										name="nrRoom"
-										value={selectedRoom}
 										type="text"
 										maxLength="4"
 										placeholder="Informe o NÚMERO da sala"
-										onChange={e => setSelectedRoom(e.target.value)}
+										value={inputRoom}
+										onChange={e => setInputRoom(e.target.value)}
 									/>
 								</div>
 								<div className="btnSalveRoom">	

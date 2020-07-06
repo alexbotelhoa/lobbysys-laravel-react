@@ -11,10 +11,10 @@ export default function Visitors() {
 	const [mensage, setMensage] = useState(null);
 	const [visitors, setVisitors] = useState([]);
 
-	const [name, setName] = useState('');
-	const [cpf, setCpf] = useState('');
-	const [birth, setBirth] = useState('');
-	const [email, setEmail] = useState('');
+	const [inputName, setInputName] = useState('');
+	const [inputCpf, setInputCpf] = useState('');
+	const [inputBirth, setInputBirth] = useState('');
+	const [inputEmail, setInputEmail] = useState('');
 
 	useEffect(() => {
         api.get('visitors', {
@@ -29,23 +29,21 @@ export default function Visitors() {
 	function checkInputsForm(event) {	
 		event.preventDefault();
 
-		if (name === '') return setMensage('Informe o nome do visitante!');
-		if (cpf === '') return setMensage('Informe o CPF do visitante!');
+		if (inputName === '') return setMensage('Informe o nome do visitante!');
+		if (inputCpf === '') return setMensage('Informe o CPF do visitante!');
 		
 		createVisitor();
 	};
 
 	async function createVisitor() {
 		const data = new FormData();
-		data.append('name', name);
-        data.append('cpf', cpf);
-        data.append('birth', birth);
-		data.append('email', email);
+		data.append('name', inputName);
+        data.append('cpf', inputCpf);
+        data.append('birth', inputBirth);
+		data.append('email', inputEmail);
 		
-		let visitor;
-
 		try {
-			visitor = await api.post('visitors', data, {
+			const visitor = await api.post('visitors', data, {
 				headers: {
 				  Authorization: `Bearer ${Cookies.get('token')}`
 				}
@@ -87,11 +85,11 @@ export default function Visitors() {
 									<input 
 										data-testid="name" 
 										name="name"
-										value={name}
 										type="text"
 										maxLength="50"
 										placeholder="Informe seu NOME"
-										onChange={e => setName(e.target.value)}
+										value={inputName}
+										onChange={e => setInputName(e.target.value)}
 									/>
 								</div>
 								<div className="field">
@@ -99,11 +97,11 @@ export default function Visitors() {
 									<input 
 										data-testid="cpf" 
 										name="cpf"
-										value={cpf}
 										type="text"
 										maxLength="14"
 										placeholder="Informe seu CPF"
-										onChange={e => setCpf(e.target.value)}
+										value={inputCpf}
+										onChange={e => setInputCpf(e.target.value)}
 									/>
 								</div>
 							</div>
@@ -114,10 +112,10 @@ export default function Visitors() {
 									<input 
 										data-testid="birth" 
 										name="birth"
-										value={birth}
 										type="date"
 										placeholder="Informe sua DATA DE NASCIMENTO"
-										onChange={e => setBirth(e.target.value)}
+										value={inputBirth}
+										onChange={e => setInputBirth(e.target.value)}
 									/>
 								</div>
 								<div className="field">
@@ -125,11 +123,11 @@ export default function Visitors() {
 									<input 
 										data-testid="email" 
 										name="email"
-										value={email}
 										type="email"
 										maxLength="30"
 										placeholder="Informe seu E-MAIL"
-										onChange={e => setEmail(e.target.value)}
+										value={inputEmail}
+										onChange={e => setInputEmail(e.target.value)}
 									/>
 								</div>
 							</div>							
