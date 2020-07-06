@@ -2,8 +2,8 @@ import React from 'react';
 import { render, fireEvent, screen, act } from '@testing-library/react';
 import MockAdapter from "axios-mock-adapter";
 
-import Dashboard from '../../pages/Dashboard';
-import api from "../../services/api";
+import Dashboard from '../pages/Dashboard';
+import api from "../services/api";
 
 const apiMock = new MockAdapter(api);
 
@@ -50,11 +50,6 @@ describe('Testing The Dashboard Page', () => {
     });
   });
 
-
-
-
-
-
   it("should be valid when has less information", async () => {
     const { getByTestId } = render(<Dashboard />);
 
@@ -72,9 +67,6 @@ describe('Testing The Dashboard Page', () => {
       fireEvent.click(getByTestId("btnCkeckIn"));
     });
   });
-
-
-
 
   it("should be valid when has creation success", async () => {
     const { getByTestId } = render(<Dashboard />);
@@ -101,9 +93,6 @@ describe('Testing The Dashboard Page', () => {
     });
   });
 
-
-
-
   it("should be valid when has visitor already existed", async () => {
     const { getByTestId } = render(<Dashboard />);
 
@@ -126,8 +115,6 @@ describe('Testing The Dashboard Page', () => {
     });
   });
 
-
-
   it("should be valid when has fail tring try create one visitor", async () => { 
     const { getByTestId } = render(<Dashboard />);
 
@@ -149,10 +136,6 @@ describe('Testing The Dashboard Page', () => {
       fireEvent.click(getByTestId("btnCkeckIn"));
     });
   });
-
-
-
-
 
   it("should be valid when has visitor goes to queue", async () => {
     const { getByTestId } = render(<Dashboard />);
@@ -181,10 +164,6 @@ describe('Testing The Dashboard Page', () => {
     });
   });
 
-
-
-
-
   it("should be valid when has position in the queue already existed", async () => {
     const { getByTestId } = render(<Dashboard />);
 
@@ -209,9 +188,6 @@ describe('Testing The Dashboard Page', () => {
     });
   });
 
-
-
-
   it("should be valid when has fail tring try of create one position in the queue", async () => {
     const { getByTestId } = render(<Dashboard />);
 
@@ -235,17 +211,6 @@ describe('Testing The Dashboard Page', () => {
       fireEvent.click(getByTestId("btnCkeckIn"));
     });
   });
-
-
-
-
-
-
-
-
-
-
-
 
   it("should be valid when has delete success one visitor", async () => {
     const { getByTestId } = render(<Dashboard />);
@@ -298,26 +263,12 @@ describe('Testing The Dashboard Page', () => {
       ]);
 
       apiMock.onDelete("arrivals/123").reply(500);
-
     });
 
     await act(async () => {
       fireEvent.click(getByTestId("btnCheckOut"));
     });
   });
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   it("should be valid when has delete success one position in the queue", async () => {
     const { getByTestId } = render(<Dashboard />);
@@ -331,7 +282,6 @@ describe('Testing The Dashboard Page', () => {
       ]);
 
       apiMock.onDelete("queues/123").reply(204);
-
     });
 
     await act(async () => {
@@ -351,15 +301,10 @@ describe('Testing The Dashboard Page', () => {
       ]);
 
       apiMock.onDelete("queues/123").reply(500);
-
     });
 
     await act(async () => {
       fireEvent.click(getByTestId("btnExitQueue"));
     });
   });
-
-
-
-
 });

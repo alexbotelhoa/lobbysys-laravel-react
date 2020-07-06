@@ -2,8 +2,8 @@ import React from 'react';
 import { render, fireEvent, screen, act } from '@testing-library/react';
 import MockAdapter from "axios-mock-adapter";
 
-import Users from '../../pages/Users';
-import api from "../../services/api";
+import Users from '../pages/Users';
+import api from "../services/api";
 
 const apiMock = new MockAdapter(api);
 

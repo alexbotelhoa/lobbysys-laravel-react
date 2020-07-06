@@ -2,8 +2,8 @@ import React from 'react';
 import { render, fireEvent, screen, act } from '@testing-library/react';
 import MockAdapter from "axios-mock-adapter";
 
-import Login from '../../pages/Login';
-import api from "../../services/api";
+import Login from '../pages/Login';
+import api from "../services/api";
 
 const apiMock = new MockAdapter(api);
 
@@ -55,7 +55,7 @@ describe('Testing The Login Page', () => {
       apiMock.onPost("login").reply(200, {
         name: "Admin",
         token: "123",
-      });
+      });3
 
       fireEvent.change(getByTestId('email'), {
         target: { value: 'admin@lobbysys.com' }
