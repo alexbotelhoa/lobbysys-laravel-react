@@ -63,8 +63,6 @@ class ConciergeController extends Controller
             return response(["message" => "Concierge Bad Request"], 400);
         }
 
-        if (!$concierge) return response([ "message" => "Concierge Not Found!" ], 404);
-
-        return response($concierge, 200);        
+        return response($concierge, 200);
     }
 }

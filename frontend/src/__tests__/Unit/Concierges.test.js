@@ -8,8 +8,9 @@ import api from "../../services/api";
 const apiMock = new MockAdapter(api);
 
 describe('Testing The Concierge Page', () => {
-
-  it("should be valid when loading select success", async () => {
+  jest.spyOn(window, 'alert').mockReturnValue();
+  
+  it("should be valid when loading page success", async () => {
     render(<Concierges />)
 
     await act(async () => {
@@ -17,21 +18,21 @@ describe('Testing The Concierge Page', () => {
         .onGet("visitors")
         .reply(200, [
           { 
-            id: "666", 
+            id: "123", 
             name: "Fulano de Tal" 
           }
         ])
         .onGet("rooms")
         .reply(200, [
           { 
-            id: "555", 
+            id: "123", 
             nrRoom: "9999" 
           }
         ]);
     });
   });
 
-  it("should be valid when has no information", async () => {
+  it("should be valid when has less information", async () => {
     const { getByTestId } = render(<Concierges />);
 
     await act(async () => {
@@ -47,22 +48,70 @@ describe('Testing The Concierge Page', () => {
     });
   });
 
-  it("should be valid when has ...", async () => {
+  it("should be valid when has search found", async () => {
     const { getByTestId } = render(<Concierges />);
 
-    jest.spyOn(window, 'alert').mockReturnValue();
+    await act(async () => {
+      apiMock
+        .onGet("concierges?visitor=&room=&checkIn=2000-01-01")
+        .reply(200, [
+          {
+            id: "123"
+          }
+        ]);
+    });
 
     await act(async () => {
       fireEvent.change(getByTestId('visitor'), {
-        target: { value: 0 }
+        target: { value: "" }
       });
       
       fireEvent.change(getByTestId('room'), {
-        target: { value: 0 }
+        target: { value: "" }
       });
 
       fireEvent.change(getByTestId('checkIn'), {
-        target: { value: "9999-12-30" }
+        target: { value: "2000-01-01" }
+      });
+    });
+
+    await act(async () => {
+      fireEvent.click(getByTestId("btnSearchConcierge"));
+    });
+  });
+
+  it("should be valid when has search not found", async () => {
+    const { getByTestId } = render(<Concierges />);
+
+    await act(async () => {
+      apiMock
+        .onGet("concierges?visitor=&room=&checkIn=2000-01-01")
+        .reply(200, []);
+    });
+
+    await act(async () => {
+      fireEvent.change(getByTestId('checkIn'), {
+        target: { value: "2000-01-01" }
+      });
+    });
+
+    await act(async () => {
+      fireEvent.click(getByTestId("btnSearchConcierge"));
+    });
+  });
+
+  it("should be valid when has search fail", async () => {
+    const { getByTestId } = render(<Concierges />);
+
+    await act(async () => {
+      apiMock
+        .onGet("concierges?visitor=&room=&checkIn=2000-01-01")
+        .reply(500);
+    });
+
+    await act(async () => {
+      fireEvent.change(getByTestId('checkIn'), {
+        target: { value: "2000-01-01" }
       });
     });
 

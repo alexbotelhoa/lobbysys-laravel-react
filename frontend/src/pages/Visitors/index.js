@@ -79,7 +79,7 @@ export default function Visitors() {
 		<>
 			<div className="container">
 				<div className="contentMain">
-					<div className="contentVisitor" data-testid="contentVisitor">
+					<div className="contentVisitor">
 						<form onSubmit={checkInputsForm}>						
 							<div className="field-group">
 								<div className="field">
@@ -96,13 +96,12 @@ export default function Visitors() {
 								</div>
 								<div className="field">
 									<label htmlFor="cpf">CPF *</label>
-									<InputMask 
+									<input 
 										data-testid="cpf" 
 										name="cpf"
 										value={cpf}
 										type="text"
-										mask="999.999.999-99"
-										maskChar=""
+										maxLength="14"
 										placeholder="Informe seu CPF"
 										onChange={e => setCpf(e.target.value)}
 									/>
@@ -145,7 +144,7 @@ export default function Visitors() {
 						</form>
 					</div>
 
-					<div className="contentVisitors" data-testid="contentVisitors">			
+					<div className="contentVisitors">			
 						<ul>
 							{visitors.map((visitor, index) => (
 								<li key={visitor.id}>
@@ -154,7 +153,7 @@ export default function Visitors() {
 									<p>{visitor.cpf}</p>
 									<span>{new Date(visitor.birth).toLocaleDateString()}</span>
 									<footer>{visitor.email}</footer>
-									<button onClick={() => handleDeleteVisitor(visitor.id)}>
+									<button data-testid="btnDeleteVisitor" onClick={() => handleDeleteVisitor(visitor.id)}>
 										<RiDeleteBinLine size="16" />
 									</button>
 								</li>

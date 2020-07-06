@@ -68,7 +68,7 @@ export default function Concierges() {
 		<>
 			<div className="container">
 				<div className="contentMain">
-					<div className="contentConcierge" data-testid="contentConcierge">
+					<div className="contentConcierge">
 						<form onSubmit={checkInputsForm}>
 							<div className="field-group">
 								<div className="field">
@@ -101,7 +101,7 @@ export default function Concierges() {
 
 							<div className="field-group">
 								<div className="field">
-									<label htmlFor="name">Selecione uma Data</label>
+									<label htmlFor="checkIn">Selecione uma Data</label>
 									<input 
 										data-testid="checkIn" 
 										name="checkIn"
@@ -131,7 +131,7 @@ export default function Concierges() {
 					</div>
 
 					<div className="contentConcierges">					
-						<ul data-testid="contentConcierges">
+						<ul>
 							<li className="titleFilteredConcierges">
 								<div style={{ width: '30px' }}>Nr</div>
 								<div style={{ width: '250px' }}>Nome do Visitante</div>

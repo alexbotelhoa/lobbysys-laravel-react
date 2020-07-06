@@ -1,7 +1,6 @@
 import React, { useState, useEffect }  from 'react';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { FiSave } from 'react-icons/fi';
-import InputMask from 'react-input-mask';
 import Cookies from 'js-cookie';
 
 import './styles.css';
@@ -11,7 +10,7 @@ export default function Rooms() {
 	const [mensage, setMensage] = useState(null);
 	const [rooms, setRooms] = useState([]);
 
-	const [nrRoom, setNrRoom] = useState('4567');
+	const [selectedRoom, setSelectedRoom] = useState('');
 
 	useEffect(() => {
         api.get('rooms', {
@@ -26,19 +25,17 @@ export default function Rooms() {
 	function checkInputsForm(event) {	
 		event.preventDefault();
 
-		if (nrRoom === '') return setMensage('Informe o número da sala!');
+		if (selectedRoom === "") return setMensage('Informe o número da sala!');
 		
 		createRoom();
 	};
 
 	async function createRoom() {
 		const data = new FormData();
-		data.append('nrRoom', nrRoom);
+		data.append('nrRoom', selectedRoom);
 		
-		let room;
-
 		try {
-			room = await api.post('rooms', data, {
+			const room = await api.post('rooms', data, {
 				headers: {
 				  Authorization: `Bearer ${Cookies.get('token')}`
 				}
@@ -72,19 +69,19 @@ export default function Rooms() {
 		<>
 			<div className="container">
 				<div className="contentMain">
-					<div className="contentRoom" data-testid="contentRoom">
+					<div className="contentRoom">
 						<form onSubmit={checkInputsForm}>
 							<div className="field-group">
 								<div className="field">
-									<label htmlFor="name">Número da Sala * (Máx. 4 dígitos)</label>
-									<InputMask 
+									<label htmlFor="nrRoom">Número da Sala * (Máx. 4 dígitos)</label>
+									<input 
 										data-testid="nrRoom" 
 										name="nrRoom"
-										value={nrRoom}
-										mask="9999"
-										maskChar=""
+										value={selectedRoom}
+										type="text"
+										maxLength="4"
 										placeholder="Informe o NÚMERO da sala"
-										onChange={e => setNrRoom(e.target.value)}
+										onChange={e => setSelectedRoom(e.target.value)}
 									/>
 								</div>
 								<div className="btnSalveRoom">	
@@ -99,12 +96,12 @@ export default function Rooms() {
 						</form>
 					</div>
 
-					<div className="contentRooms" data-testid="contentRooms">
+					<div className="contentRooms">
 						<ul>
 							{rooms.map(room => (
 								<li key={room.id}>
 									<header>{room.nrRoom}</header>
-									<button onClick={() => handleDeleteRoom(room.id)}>
+									<button data-testid="btnDeleteRoom" onClick={() => handleDeleteRoom(room.id)}>
 										<RiDeleteBinLine size="16" />
 									</button>
 								</li>
