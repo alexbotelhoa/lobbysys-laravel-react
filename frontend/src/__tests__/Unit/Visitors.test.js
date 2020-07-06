@@ -98,7 +98,7 @@ describe('Testing The Visitors Page', () => {
     });
   });
 
-  it("should be valid when has try create fail", async () => { 
+  it("should be valid when has fail tring try create", async () => { 
     const { getByTestId } = render(<Visitors />);
 
     await act(async () => {

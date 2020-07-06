@@ -100,7 +100,7 @@ describe('Testing The Concierge Page', () => {
     });
   });
 
-  it("should be valid when has search fail", async () => {
+  it("should be valid when has fail tring try search", async () => {
     const { getByTestId } = render(<Concierges />);
 
     await act(async () => {

@@ -46,11 +46,21 @@
     <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="VisitorController.php" pinned="false" current-in-tab="true">
+          <file leaf-file-name="VisitorController.php" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/Http/Controllers/VisitorController.php">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="306">
                   <caret line="32" column="44" lean-forward="false" selection-start-line="32" selection-start-column="44" selection-end-line="32" selection-end-column="44" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="ArrivalController.php" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ArrivalController.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="1476">
+                  <caret line="113" column="12" lean-forward="true" selection-start-line="113" selection-start-column="12" selection-end-line="113" selection-end-column="35" />
                   <folding />
                 </state>
               </provider>
@@ -514,7 +524,7 @@
       <workItem from="1593229799561" duration="66596000" />
       <workItem from="1593564554738" duration="6799000" />
       <workItem from="1593608112610" duration="1833000" />
-      <workItem from="1593630726626" duration="26212000" />
+      <workItem from="1593630726626" duration="26960000" />
     </task>
     <servers />
   </component>
@@ -551,7 +561,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="104611000" />
+    <option name="totallyTimeSpent" value="105359000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
@@ -916,16 +926,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AuthController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="453">
-          <caret line="38" column="54" lean-forward="false" selection-start-line="38" selection-start-column="42" selection-end-line="38" selection-end-column="54" />
-          <folding>
-            <element signature="e#40#68#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/DashboardController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -939,7 +939,7 @@
         <state relative-caret-position="493">
           <caret line="29" column="8" lean-forward="false" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="37" />
           <folding>
-            <element signature="e#33#52#0#PHP" expanded="true" />
+            <element signature="e#33#52#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -969,7 +969,7 @@
         <state relative-caret-position="278">
           <caret line="51" column="56" lean-forward="true" selection-start-line="51" selection-start-column="56" selection-end-line="51" selection-end-column="56" />
           <folding>
-            <element signature="e#7#35#0#PHP" expanded="true" />
+            <element signature="e#7#35#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -978,16 +978,6 @@
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ArrivalController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="651">
-          <caret line="113" column="12" lean-forward="true" selection-start-line="113" selection-start-column="12" selection-end-line="113" selection-end-column="35" />
-          <folding>
-            <element signature="e#40#63#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1021,10 +1011,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AuthController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="453">
+          <caret line="38" column="54" lean-forward="false" selection-start-line="38" selection-start-column="42" selection-end-line="38" selection-end-column="54" />
+          <folding>
+            <element signature="e#40#68#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/VisitorController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="32" column="44" lean-forward="false" selection-start-line="32" selection-start-column="44" selection-end-line="32" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ArrivalController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1476">
+          <caret line="113" column="12" lean-forward="true" selection-start-line="113" selection-start-column="12" selection-end-line="113" selection-end-column="35" />
           <folding />
         </state>
       </provider>

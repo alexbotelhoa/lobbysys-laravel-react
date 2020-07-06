@@ -15,8 +15,8 @@ export default function Dashboard() {
 	const [arrivals, setArrivals] = useState([]);
 	const [queues, setQueues] = useState([]);
 
-	const [selectedVisitor, setSelectedVisitor] = useState('0');
-	const [selectedRoom, setSelectedRoom] = useState('0');
+	const [selectedVisitor, setSelectedVisitor] = useState('');
+	const [selectedRoom, setSelectedRoom] = useState('');
 
     useEffect(() => {
         api.get('visitors', {
@@ -69,8 +69,8 @@ export default function Dashboard() {
 	function checkInputsForm(event) {	
 		event.preventDefault();
 
-		if (selectedVisitor === '0') return setMensage('Selecione um visitante!');
-		if (selectedRoom === '0') return setMensage('Selecione uma sala!');
+		if (selectedVisitor === "") return setMensage('Selecione um visitante!');
+		if (selectedRoom === "") return setMensage('Selecione uma sala!');
 		
 		createPositionArrival();
 	};
@@ -139,10 +139,8 @@ export default function Dashboard() {
 	}
 
 	async function handleCheckOut(id) {
-		let arrival;
-
 		try {
-			arrival = await api.delete(`/arrivals/${id}`, {
+			const arrival = await api.delete(`/arrivals/${id}`, {
 				headers: {
 				  Authorization: `Bearer ${Cookies.get('token')}`
 				}
@@ -178,38 +176,38 @@ export default function Dashboard() {
 		<>
 			<div className="containerMain">
 				<div className="contentLeft">
-					<div className="contentDashboardVisitors" data-testid="contentVisitors">
+					<div className="contentDashboardVisitors">
 						<form onSubmit={checkInputsForm}>
 							<select 
-								id="visitor" 
+								data-testid="visitor" 
 								name="visitor"
 								value={selectedVisitor} 
 								onChange={e => setSelectedVisitor(e.target.value)}
 							>
-								<option data-testid="visitor" value="0">Selecione um Visitante</option>
+								<option value="">Selecione um Visitante</option>
 								{visitors.map(visitor => (
 									<option key={visitor.id} value={[visitor.id, visitor.name]}>{visitor.name}</option>
 								))}
 							</select>
 
 							<select 
-								id="room" 
+								data-testid="room" 
 								name="room"
 								value={selectedRoom} 
 								onChange={e => setSelectedRoom(e.target.value)}
 							>
-								<option data-testid="room" value="0">Selecione uma Sala</option>
+								<option value="">Selecione uma Sala</option>
 								{rooms.map(room => (
 									<option key={room.id} value={[room.id, room.nrRoom]}>{room.nrRoom}</option>
 								))}
 							</select>
 
-							<button className="btnCheckin" type="submit">
-								<FaAddressCard size="26" data-testid="btnCkeckIn" />
+							<button data-testid="btnCkeckIn" className="btnCheckin" type="submit">
+								<FaAddressCard size="26" />
 							</button>
 						</form>
 					</div>
-					<div className="contentDashboardRooms" data-testid="contentRooms">
+					<div className="contentDashboardRooms">
 						<ul>
 						{arrivals.map(arrival => (
 							<li className="cardPerson" key={arrival.id}>
@@ -221,7 +219,7 @@ export default function Dashboard() {
 									<p>{String(arrival.name).substring(0,18)}...</p>
 									<h6>{new Date(arrival.checkIn).toLocaleString().replace(/[,]+/g, '')}</h6>
 								</footer>
-								<button className="btnCard" onClick={() => handleCheckOut(arrival.id)}>
+								<button data-testid="btnCheckOut" className="btnCard" onClick={() => handleCheckOut(arrival.id)}>
 									<BsBoxArrowRight size="26" title="CheckOut" />
 								</button>
 							</li>							
@@ -234,7 +232,7 @@ export default function Dashboard() {
 					<div className="titleQueue">
 						<p>Fila de Espera</p>
 					</div>
-					<div className="contentDashboardQueue" data-testid="contentQueue">
+					<div className="contentDashboardQueue">
 						<ul>
 							{queues.map(queue => (
 								<li className="cardPerson" key={queue.id}>
@@ -246,7 +244,7 @@ export default function Dashboard() {
 										<p>{String(queue.name).substring(0,18)}...</p>
 										<h6>{new Date(queue.created_at).toLocaleString().replace(/[,]+/g, '')}</h6>						
 									</footer>
-									<button className="btnCard" onClick={() => handleExitQueue(queue.id)}>
+									<button data-testid="btnExitQueue" className="btnCard" onClick={() => handleExitQueue(queue.id)}>
 										<GiExitDoor size="26" title="Exit" />
 									</button>
 								</li>
