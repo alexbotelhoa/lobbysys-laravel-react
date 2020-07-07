@@ -1,12 +1,12 @@
 <?php
 
-namespace Tests\Request;
+namespace Tests\Feature;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use App\Http\Controllers\DashboardController;
 
-class DashboardControllerTest extends TestCase
+class DashboardTest extends TestCase
 {
     /**
      * Testando instanciamento do Controller Dashboard

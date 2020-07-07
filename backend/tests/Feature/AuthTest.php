@@ -1,11 +1,11 @@
 <?php
 
-namespace Tests\Request;
+namespace Tests\Feature;
 
 use Tests\TestCase;
 use App\Http\Controllers\AuthController;
 
-class AuthControllerTest extends TestCase
+class AuthTest extends TestCase
 {
     /**
      * Testando instanciamento do Controller Auth
@@ -22,12 +22,12 @@ class AuthControllerTest extends TestCase
      *
      * @test
      */
-    public function shoulBeTrueWhenFunctionIndexReturnView()
-    {
-        $auth = New AuthController();
-
-        $result = $auth->index();
-
-        $this->assertNotEmpty($result);
-    }
+//    public function shoulBeTrueWhenFunctionIndexReturnView()
+//    {
+//        $auth = New AuthController();
+//
+//        $result = $auth->index();
+//
+//        $this->assertNotEmpty($result);
+//    }
 }

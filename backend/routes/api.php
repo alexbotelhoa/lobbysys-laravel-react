@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 // Routas de Controle de Autenticação
 Route::post('/login', 'AuthController@login');
 
-//Route::get('/arrivals', 'ArrivalController@index');
+//Route::get('/arrivals', 'ArrivalController@index')->name('arrivals.index');
 
 Route::group(['middleware' => 'auth:api'], function () {
     // Routas de Controle de Autenticação
@@ -49,8 +49,8 @@ Route::group(['middleware' => 'auth:api'], function () {
 
     // Routas de Controle do Registro de Visitantes
     Route::get('/arrivals', 'ArrivalController@index')->name('arrivals.index');
-    Route::post('/arrivals', 'ArrivalController@store');
-    Route::delete('/arrivals/{id}', 'ArrivalController@destroy');
+    Route::post('/arrivals', 'ArrivalController@store')->name('arrivals.store');
+    Route::delete('/arrivals/{id}', 'ArrivalController@destroy')->name('arrivals.destroy');
 
     // Routas de Controle do Histórico dos Registros de Portaria
     Route::post('/concierges', 'ConciergeController@store');

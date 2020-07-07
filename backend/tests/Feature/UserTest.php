@@ -1,11 +1,11 @@
 <?php
 
-namespace Tests\Request;
+namespace Tests\Feature;
 
 use Tests\TestCase;
 use App\Http\Controllers\UserController;
 
-class UserControllerTest extends TestCase
+class UserTest extends TestCase
 {
     /**
      * Testando instanciamento do Controller User

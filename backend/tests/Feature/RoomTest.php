@@ -1,11 +1,11 @@
 <?php
 
-namespace Tests\Request;
+namespace Tests\Feature;
 
 use Tests\TestCase;
 use App\Http\Controllers\RoomController;
 
-class RoomControllerTest extends TestCase
+class RoomTest extends TestCase
 {
     /**
      * Testando instanciamento do Controller Room

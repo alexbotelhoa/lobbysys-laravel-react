@@ -35,13 +35,12 @@ class ArrivalController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'visitor_id' => 'numeric',
-            'room_id' => 'numeric',
-            'checkIn' => 'string|date',
+            'visitor_id' => 'required|numeric',
+            'room_id' => 'required|numeric',
+            'checkIn' => 'required|string|date',
         ]);
 
-        if ($validator->fails()) return response([ 'error' => $validator->errors() ], 401);
-
+        if ($validator->fails()) return response([ 'error' => $validator->errors() ], 422);
 
             $visitorAndRoomExist = Arrival::where([
                 ['visitor_id', '=', $request->visitor_id],
