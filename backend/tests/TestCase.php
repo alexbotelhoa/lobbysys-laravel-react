@@ -2,18 +2,20 @@
 
 namespace Tests;
 
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Faker\Factory;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
-use Illuminate\Support\Facades\Artisan;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase
 {
     use CreatesApplication, DatabaseMigrations, WithoutMiddleware;
 
+    protected $faker;
+
     public function setUp(): void
     {
         parent::setUp();
-        Artisan::call('passport:install');
+        $this->faker = Factory::create();
     }
 }

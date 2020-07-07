@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
             RoomTableSeeder::class,
             UserTableSeeder::class,
             VisitorTableSeeder::class,
+            ArrivalTableSeeder::class,
         ]);
     }
 }

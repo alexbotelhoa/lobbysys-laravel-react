@@ -3,6 +3,8 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
+use App\Models\Visitor;
+use App\Models\Room;
 use App\Models\Arrival;
 
 class ArrivalTest extends TestCase
@@ -16,7 +18,8 @@ class ArrivalTest extends TestCase
      */
     public function shouldBeValidWhenTheRouteIndexHasCharge()
     {
-        $response = $this->getJson('/api/arrivals');
+        $response = $this->getJson(route('arrivals.index'));
+
         $response->assertStatus(200);
     }
 
@@ -30,12 +33,14 @@ class ArrivalTest extends TestCase
     public function shouldBeValidWhenTheRouteStoreHasDenied()
     {
         $arrival = [
-            'visitor_id' => "",
-            'room_id' => "",
-            'checkIn' => ""
+            'visitor_id' => '',
+            'room_id' => '',
+            'checkIn' => ''
         ];
 
-        $this->json('POST', 'api/arrivals', $arrival)
+        $response = $this->postJson(route('arrivals.store'), $arrival);
+
+        $response
             ->assertStatus(422)
             ->assertJson([
                 "error" => [
@@ -50,28 +55,51 @@ class ArrivalTest extends TestCase
      * Deve ser VÁLIDO quando
      * as VALIDAÇÕES da rota POST (Store)
      * forem APROVADAS
-     * e o VISITANTE já estar VISITANDO
+     * mas o VISITANTE já estar na SALA
+     * e retorna o status 201
      *
      * @test
      */
-//    public function shouldBeValidWhenTheRouteStoreHasApproved()
-//    {
-//        $arrival = [
-//            'visitor_id' => 10,
-//            'room_id' => 10,
-//            'checkIn' => "2000-01-01",
-//        ];
+    public function shouldBeValidWhenTheRouteStoreHasSuccess()
+    {
+//        $visitor = factory(Visitor::class)->create();
 //
-//        $this->json('POST', 'api/arrivals', $arrival)
-//            ->assertStatus(422)
-//            ->assertJson([
-//                "errors" => [
-//                    "visitor_id" => ["The visitor id field is required."],
-//                    "room_id" => ["The room id field is required."],
-//                    "checkIn" => ["The check id field is required."],
-//                ]
-//            ]);
-//    }
+//        $room = factory(Room::class)->create();
+//
+//        $arrival = [
+//            'visitor_id' => $visitor->id,
+//            'room_id' => $room->id,
+//            'checkIn' => $this->faker->date(),
+//        ];
+
+
+
+//        $arrival = factory(Arrival::class, function($fake) {
+//            return [
+//                'visitor_id' => factory(Visitor::class),
+//                'room_id' => factory(Room::class),
+//                'checkIn' => $this->faker->date(),
+//            ];
+//        });
+
+//        $response = $this->actingAs($arrival)->post(route('arrivals.store')
+
+        $arrival = factory(Arrival::class)->create();
+
+        $response = $this->postJson(route('arrivals.store'), $arrival);
+
+        $response
+            ->assertStatus(201);
+
+//            ->assertJsonStructure([
+//                'visitor_id',
+//                'room_id',
+//                'checkIn',
+//                'updated_at',
+//                'created_at',
+//                'id',
+//        ]);
+    }
 
 
     /**

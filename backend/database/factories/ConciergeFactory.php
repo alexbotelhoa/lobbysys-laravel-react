@@ -2,7 +2,7 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Models\Arrival;
+use App\Models\Concierge;
 use App\Models\Visitor;
 use App\Models\Room;
 use Faker\Generator as Faker;
@@ -18,7 +18,7 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(Arrival::class, function (Faker $faker) {
+$factory->define(Concierge::class, function (Faker $faker) {
     return [
         'visitor_id' => factory(Visitor::class),
         'room_id' => factory(Room::class),

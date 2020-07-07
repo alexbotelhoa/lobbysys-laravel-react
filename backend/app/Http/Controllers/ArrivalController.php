@@ -35,23 +35,24 @@ class ArrivalController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'visitor_id' => 'required|numeric',
-            'room_id' => 'required|numeric',
-            'checkIn' => 'required|string|date',
+            'visitor_id' => 'required',
+            'room_id' => 'required',
+            'checkIn' => 'required',
         ]);
 
         if ($validator->fails()) return response([ 'error' => $validator->errors() ], 422);
 
-            $visitorAndRoomExist = Arrival::where([
-                ['visitor_id', '=', $request->visitor_id],
-                ['room_id', '=', $request->room_id]
-            ])->count();
+        $visitorAndRoomExist = Arrival::where([
+            ['visitor_id', '=', $request->visitor_id],
+            ['room_id', '=', $request->room_id],
+            ['checkIn', 'LIKE', '%' . substr($request->checkIn, 0, 10) . '%']
+        ])->count();
 
-            if ($visitorAndRoomExist > 0) return response([ "message" => "Visitor already registered in the room"], 226);
+        if ($visitorAndRoomExist > 0) return response([ "message" => "Visitor already registered in the room"], 226);
 
-            $countArrival = Arrival::where('room_id', $request->room_id)->count();
+        $countArrival = Arrival::where('room_id', $request->room_id)->count();
 
-            if ($countArrival > 2) return response([ "message" => "Limit of visitors in the room exceeded"], 203);
+        if ($countArrival > 2) return response([ "message" => "Limit of visitors in the room exceeded"], 203);
 
         try {
             $arrival = Arrival::create($request->all());
