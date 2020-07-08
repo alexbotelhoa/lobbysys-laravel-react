@@ -16,6 +16,8 @@ class DatabaseSeeder extends Seeder
             UserTableSeeder::class,
             VisitorTableSeeder::class,
             ArrivalTableSeeder::class,
+            QueueTableSeeder::class,
+            ConciergeTableSeeder::class,
         ]);
     }
 }

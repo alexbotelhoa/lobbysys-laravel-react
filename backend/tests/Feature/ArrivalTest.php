@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Queue;
 use Tests\TestCase;
 use App\Models\Visitor;
 use App\Models\Room;
@@ -11,8 +12,8 @@ class ArrivalTest extends TestCase
 {
     /**
      * Deve ser VÁLIDO quando
-     * a ROTA GET (Index)
-     * for CARREGADA com status 200
+     * a ROTA GET (Index) for CARREGADA
+     * e retornar o STATUS '200'
      *
      * @test
      */
@@ -25,8 +26,8 @@ class ArrivalTest extends TestCase
 
     /**
      * Deve ser VÁLIDO quando
-     * as VALIDAÇÕES da rota POST (Store)
-     * forem NEGADAS com status 422
+     * as VALIDAÇÕES da rota POST (Store) forem NEGADAS
+     * e retornar o STATUS '422'
      *
      * @test
      */
@@ -38,7 +39,7 @@ class ArrivalTest extends TestCase
             'checkIn' => ''
         ];
 
-        $response = $this->postJson(route('arrivals.store'), $arrival);
+        $response = $this->post(route('arrivals.store'), $arrival);
 
         $response
             ->assertStatus(422)
@@ -53,97 +54,92 @@ class ArrivalTest extends TestCase
 
     /**
      * Deve ser VÁLIDO quando
-     * as VALIDAÇÕES da rota POST (Store)
-     * forem APROVADAS
+     * as VALIDAÇÕES da rota POST (Store) forem APROVADAS
      * mas o VISITANTE já estar na SALA
-     * e retorna o status 201
+     * e retorna o STATUS '226'
+     *
+     * @test
+     */
+    public function shouldBeValidWhenVisitorAlreadExist()
+    {
+        $arrival = factory(Arrival::class)->create();
+
+        $response = $this->post(route('arrivals.store'), $arrival->toArray());
+
+        $response
+            ->assertStatus(226)
+            ->assertJson([ 'message' => 'Visitor already registered in the room' ]);
+    }
+
+
+
+
+
+    /**
+     * Deve ser VÁLIDO quando
+     * as VALIDAÇÕES da rota POST (Store) forem APROVADAS
+     * e retorna o STATUS '201'
      *
      * @test
      */
     public function shouldBeValidWhenTheRouteStoreHasSuccess()
     {
-//        $visitor = factory(Visitor::class)->create();
-//
-//        $room = factory(Room::class)->create();
-//
-//        $arrival = [
-//            'visitor_id' => $visitor->id,
-//            'room_id' => $room->id,
-//            'checkIn' => $this->faker->date(),
-//        ];
-
-
-
-//        $arrival = factory(Arrival::class, function($fake) {
-//            return [
-//                'visitor_id' => factory(Visitor::class),
-//                'room_id' => factory(Room::class),
-//                'checkIn' => $this->faker->date(),
-//            ];
-//        });
-
-//        $response = $this->actingAs($arrival)->post(route('arrivals.store')
-
         $arrival = factory(Arrival::class)->create();
 
-        $response = $this->postJson(route('arrivals.store'), $arrival);
+//        $arrival = [
+//            'visitor_id' => '1',
+//            'room_id' => '1',
+//            'checkIn' => '2000-01-01 10:01:01',
+//        ];
+
+//        var_dump(\GuzzleHttp\json_encode($arrival->toArray()));
+
+        $response = $this->post(route('arrivals.store'), $arrival->toArray());
 
         $response
-            ->assertStatus(201);
-
-//            ->assertJsonStructure([
-//                'visitor_id',
-//                'room_id',
-//                'checkIn',
-//                'updated_at',
-//                'created_at',
-//                'id',
-//        ]);
+            ->assertStatus(201)
+            ->assertJson([ 'message' => 'Visitor already registered in the room' ]);
     }
 
 
+
+
+
     /**
-     * Deve ser válido quando a rota POST (Store) for carregada
+     * Deve ser VÁLIDO quando
+     * as VALIDAÇÕES da rota POST (Store) forem APROVADAS
+     * e retorna o STATUS '400'
      *
      * @test
      */
-//    public function shouldBeValidWhenHasValidationSuccess()
-//    {
-//        $arrival = [
-//            'visitor_id' => '123',
-//            'room_id' => '123',
-//            'checkIn' => '2000-01-01',
-//        ];
-//
-//        $this->post(route('arrivals.store'), $arrival)
-//            ->assertStatus(201)
-//            ->assertJsonStructure([
-//                "id",
-//                "visitor_id",
-//                "room_id",
-//                "checkIn",
-//                "updated_at",
-//                "created_at",
-//        ]);
-//    }
+    public function shouldBeValidWhenTheRouteStoreHasBadRequest()
+    {
+        $arrival = [
+            'visitor_id' => 'abc',
+            'room_id' => 'abc',
+            'checkIn' => 'abc',
+        ];
 
+        $response = $this->post(route('arrivals.store'), $arrival);
 
+        $response
+            ->assertStatus(400)
+            ->assertJson([ 'message' => 'Arrival Bad Request' ]);
+    }
 
-//    /**
-//     * Deve ser válido quando a rota POST (Store) for carregada
-//     *
-//     * @test
-//     */
-//    public function shouldBeValidWhenTheRouteStoreHasCharge()
-//    {
-//        $arrival = [
-//            'visitor_id' => '123',
-//            'room_id' => '123',
-//            'checkIn' => '',
-//        ];
-//
-//        $this->post(route('arrivals.store'), $data)
-//            ->assertStatus(201)
-//            ->assertJson($data);
-//    }
+    /**
+     * Deve ser VÁLIDO quando
+     * as VALIDAÇÕES da rota DELETE (Destroy) forem APROVADAS
+     * e retorna o STATUS '204'
+     *
+     * @test
+     */
+    public function shouldBeValidWhenTheRouteDeleteHasSuccess()
+    {
+        $arrival = factory(Arrival::class)->create();
+
+        $response = $this->delete(route('arrivals.destroy', $arrival->id));
+
+        $response->assertStatus(204);
+    }
 }

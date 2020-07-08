@@ -48,7 +48,7 @@
       <Position>3</Position>
       <DataType>datetime|0</DataType>
       <NotNull>1</NotNull>
-      <DefaultExpression>&apos;2020-06-30 09:51:13&apos;</DefaultExpression>
+      <DefaultExpression>&apos;2020-07-07 20:43:10&apos;</DefaultExpression>
     </column>
     <column id="26" parent="6" name="created_at">
       <Position>4</Position>

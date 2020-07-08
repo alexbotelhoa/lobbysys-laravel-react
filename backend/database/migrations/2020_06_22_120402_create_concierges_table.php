@@ -2,7 +2,6 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Schema;
 
 class CreateConciergesTable extends Migration
@@ -22,6 +21,7 @@ class CreateConciergesTable extends Migration
             $table->foreign('room_id')->references('id')->on('rooms');
             $table->timestamp('checkIn');
             $table->timestamp('checkOut');
+            $table->timestamps();
         });
     }
 

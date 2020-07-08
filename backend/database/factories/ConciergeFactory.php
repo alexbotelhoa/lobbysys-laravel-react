@@ -23,5 +23,6 @@ $factory->define(Concierge::class, function (Faker $faker) {
         'visitor_id' => factory(Visitor::class),
         'room_id' => factory(Room::class),
         'checkIn' => now(),
+        'checkOut' => now(),
     ];
 });

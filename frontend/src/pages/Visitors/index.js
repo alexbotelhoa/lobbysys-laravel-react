@@ -1,7 +1,6 @@
 import React, { useState, useEffect }  from 'react';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { FiSave } from 'react-icons/fi';
-import InputMask from 'react-input-mask';
 import Cookies from 'js-cookie';
 
 import './styles.css';
