@@ -31,7 +31,7 @@ class ArrivalTest extends TestCase
      *
      * @test
      */
-    public function shouldBeValidWhenTheRouteStoreHasDenied()
+    public function shouldBeValidWhenTheRouteStoreHasDeniedValidator()
     {
         $arrival = [
             'visitor_id' => '',
@@ -74,7 +74,6 @@ class ArrivalTest extends TestCase
 
 
 
-
     /**
      * Deve ser VÁLIDO quando
      * as VALIDAÇÕES da rota POST (Store) forem APROVADAS
@@ -82,6 +81,7 @@ class ArrivalTest extends TestCase
      *
      * @test
      */
+/*
     public function shouldBeValidWhenTheRouteStoreHasSuccess()
     {
         $arrival = factory(Arrival::class)->create();
@@ -100,7 +100,7 @@ class ArrivalTest extends TestCase
             ->assertStatus(201)
             ->assertJson([ 'message' => 'Visitor already registered in the room' ]);
     }
-
+*/
 
 
 

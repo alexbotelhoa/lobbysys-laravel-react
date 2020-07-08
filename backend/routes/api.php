@@ -19,13 +19,11 @@ use Illuminate\Support\Facades\Route;
  */
 
 // Routas de Controle de Autenticação
-Route::post('/login', 'AuthController@login');
-
-//Route::get('/arrivals', 'ArrivalController@index')->name('arrivals.index');
+Route::post('/login', 'AuthController@login')->name('auth.login');
 
 Route::group(['middleware' => 'auth:api'], function () {
     // Routas de Controle de Autenticação
-    Route::post('/logout', 'AuthController@logout');
+    Route::post('/logout', 'AuthController@logout')->name('auth.logout');
 
     // Routas de Controle de Usuários
     Route::get('/users', 'UserController@index');

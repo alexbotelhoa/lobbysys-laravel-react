@@ -125,13 +125,11 @@
           <root url="phar://$MODULE_DIR$/vendor/phar-io/manifest/tests/_fixture/test.phar/" />
           <root url="phar://$MODULE_DIR$/composer.phar/" />
           <root url="phar://$MODULE_DIR$/phpunit.phar/" />
-          <root url="phar://$MODULE_DIR$/composer_2.phar/" />
         </CLASSES>
         <SOURCES>
           <root url="phar://$MODULE_DIR$/vendor/phar-io/manifest/tests/_fixture/test.phar/" />
           <root url="phar://$MODULE_DIR$/composer.phar/" />
           <root url="phar://$MODULE_DIR$/phpunit.phar/" />
-          <root url="phar://$MODULE_DIR$/composer_2.phar/" />
         </SOURCES>
       </library>
     </orderEntry>

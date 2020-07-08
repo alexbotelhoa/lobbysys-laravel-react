@@ -19,6 +19,6 @@ class UserTableSeeder extends Seeder
             'password' => Hash::make('12345678'),
         ]);
 
-        factory(App\User::class, 30)->create();
+        factory(App\Models\User::class, 30)->create();
     }
 }

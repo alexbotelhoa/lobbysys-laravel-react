@@ -2,6 +2,12 @@
 
 namespace App\Http\Controllers;
 
+//namespace App\Http\Controllers\API\Auth;
+
+
+use App\Models\User;
+use App\Http\Controllers\Controller;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -17,22 +23,18 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'email' => 'required|string|email|max:50',
-            'password' => 'required|string|min:6',
+            'email' => 'required|email|max:30',
+            'password' => 'required',
         ]);
 
         if ($validator->fails()) return response([ 'errors' => $validator->errors()->all() ], 422);
 
         if (Auth::attempt(['email' => request('email'), 'password' => request('password')]))
         {
-            try {
-                $user = Auth::user();
-            } catch (\Exception $e) {
-                return response([ "message" => "User Bad Request" ], 400);
-            }
+            $user = Auth::user();
 
             $response['name'] = $user->name;
-            $response['token'] =  $user->createToken('MyApp')-> accessToken;
+            $response['token'] =  $user->createToken('MyApp')->accessToken;
 
             return response($response, 200);
         } else {
