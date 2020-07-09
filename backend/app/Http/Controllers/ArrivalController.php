@@ -42,6 +42,11 @@ class ArrivalController extends Controller
 
         if ($validator->fails()) return response([ 'error' => $validator->errors() ], 422);
 
+
+        /**
+         * Verifica o Visitante está sendo registrado novamente
+         * de forma equivocada na mesma SALA e no mesmo DIA
+         */
         $visitorAndRoomExist = Arrival::where([
             ['visitor_id', '=', $request->visitor_id],
             ['room_id', '=', $request->room_id],
@@ -50,10 +55,19 @@ class ArrivalController extends Controller
 
         if ($visitorAndRoomExist > 0) return response([ "message" => "Visitor already registered in the room"], 226);
 
+
+        /**
+         * Verifica se a quantidade de visitante vai ultrapassar 3 visitantes ao mesmo tempo
+         * com isso o visitante será registrado na Fila de Espera dessa Sala
+         */
         $countArrival = Arrival::where('room_id', $request->room_id)->count();
 
         if ($countArrival > 2) return response([ "message" => "Limit of visitors in the room exceeded"], 203);
 
+
+        /**
+         * Se tudo estiver OK o Visitante será liberado e registrado a sua entrada na Sala
+         */
         $arrival = Arrival::create($request->all());
 
         return response($arrival, 201);
@@ -71,6 +85,10 @@ class ArrivalController extends Controller
 
         if (!$arrival) return response([ "message" => "Arrival Not Found!" ], 404);
 
+
+        /**
+         * Verifica se há Visitante na Fila de Espera para essa Sala
+         */
         $personQueue = DB::table('queues')
             ->join('visitors', 'queues.visitor_id', '=', 'visitors.id')
             ->join('rooms', 'queues.room_id', '=', 'rooms.id')
@@ -83,8 +101,9 @@ class ArrivalController extends Controller
         try {
             DB::beginTransaction();
 
+
             /**
-             * Adiciona
+             * Regsitra a Saída do Visitante
              */
             DB::table('concierges')->insert([
                 'visitor_id' => $arrival->visitor_id,
@@ -93,6 +112,10 @@ class ArrivalController extends Controller
                 'checkOut' => now()
             ]);
 
+
+            /**
+             * Regsitra o Visitante no Histórico de Visita
+             */
             DB::table('arrivals')->where('id', $id)->delete($id);
 
             if (count($personQueue) > 0) {
@@ -101,7 +124,11 @@ class ArrivalController extends Controller
                     'room_id' => $personQueue[0]->room_id,
                     'checkIn' => now()
                 ]);
-                
+
+
+                /**
+                 * Resgata o Visitante da Fila de Espera
+                 */
                 DB::table('queues')->where('id', $personQueue[0]->id)->delete($personQueue[0]->id);
             }
         

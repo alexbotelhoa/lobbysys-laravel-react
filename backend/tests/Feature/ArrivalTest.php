@@ -126,6 +126,31 @@ class ArrivalTest extends TestCase
 
     /**
      * Deve ser VÁLIDO quando
+     * as VALIDAÇÕES da rota POST (Store) forem APROVADAS
+     * é o REGISTRO foi criado com SUCESSO
+     * e retornar o STATUS '201'
+     *
+     * @test
+     */
+    public function shouldBeValidWhenTheRegisterHasCreatedWithSuccess()
+    {
+        $visitor = factory(Visitor::class)->create();
+
+        $room = factory(Room::class)->create();
+
+        $arrival = [
+            "visitor_id" => $visitor->id,
+            "room_id" => $room->id,
+            "checkIn" => "2000-01-01 00:00:00",
+        ];
+
+        $response = $this->post(route('arrivals.store'), $arrival);
+
+        $response->assertStatus(201);
+    }
+
+    /**
+     * Deve ser VÁLIDO quando
      * as VALIDAÇÕES da rota DELETE (Destroy) forem APROVADAS
      * mas o registro NÃO é encontrado
      * e retorna o STATUS '404'

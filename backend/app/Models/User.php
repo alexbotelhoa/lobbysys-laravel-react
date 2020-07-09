@@ -47,12 +47,4 @@ class User extends Authenticatable
     ];
 
     protected $table = 'users';
-
-    public function generateToken()
-    {
-        $this->api_token = Str::random(60);
-        $this->save();
-
-        return $this->api_token;
-    }
 }

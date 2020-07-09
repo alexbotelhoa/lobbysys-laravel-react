@@ -70,8 +70,7 @@ class ConciergeTest extends TestCase
 
         $response = $this->post(route('concierges.store'), $concierge);
 
-        $response
-            ->assertStatus(201);
+        $response->assertStatus(201);
     }
 
     /**
@@ -93,8 +92,7 @@ class ConciergeTest extends TestCase
 
         $response = $this->post(route('concierges.store'), $concierge);
 
-        $response
-            ->assertStatus(400);
+        $response->assertStatus(400);
     }
 
     /**
@@ -115,7 +113,6 @@ class ConciergeTest extends TestCase
 
         $response = $this->get(route('concierges.filter', $filter));
 
-        $response
-            ->assertStatus(200);
+        $response->assertStatus(200);
     }
 }

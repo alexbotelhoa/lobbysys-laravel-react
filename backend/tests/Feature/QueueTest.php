@@ -74,8 +74,7 @@ class QueueTest extends TestCase
 
         $response = $this->post(route('queues.store'), $queue);
 
-        $response
-            ->assertStatus(201);
+        $response->assertStatus(201);
     }
 
     /**
@@ -95,8 +94,7 @@ class QueueTest extends TestCase
 
         $response = $this->post(route('queues.store'), $queue);
 
-        $response
-            ->assertStatus(400);
+        $response->assertStatus(400);
     }
 
     /**
