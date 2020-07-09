@@ -8,26 +8,52 @@ use App\Http\Controllers\ConciergeController;
 class ConciergeTest extends TestCase
 {
     /**
-     * Testando instanciamento do Controller Concierge
+     * Deve ser VÁLIDO quando
+     * as VALIDAÇÕES da rota POST (Store) forem NEGADAS
+     * e retornar o STATUS '422'
      *
      * @test
      */
-    public function shoulBeTrueWhenInstanciateClass()
+    public function shouldBeValidWhenTheRouteLoginHasDeniedValidator()
     {
-        $this->assertInstanceOf(ConciergeController::class, new ConciergeController());
+        $concierge = [
+            "visitor_id" => "",
+            "room_id" => "",
+            "checkIn" => "",
+            "checkOut" => "",
+        ];
+
+        $response = $this->post(route('concierges.store'), $concierge);
+
+        $response
+            ->assertStatus(422)
+            ->assertJson([
+                "error" => [
+                    "visitor_id" => [
+                        "The visitor id field is required."
+                    ],
+                    "room_id" => [
+                        "The room id field is required."
+                    ],
+                    "checkIn" => [
+                        "The check in field is required."
+                    ]
+                ]
+            ]);
     }
 
-    /**
-     * Testando a function Index do Controller Concierge
-     *
-     * @test
-     */
-//    public function shoulBeTrueWhenFunctionIndexReturnView()
-//    {
-//        $concierge = New ConciergeController();
-//
-//        $result = $concierge->index();
-//
-//        $this->assertNotEmpty($result);
-//    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

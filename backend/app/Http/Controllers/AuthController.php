@@ -23,11 +23,11 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'email' => 'required|email|max:30',
-            'password' => 'required',
+            'email' => 'email|max:30|required',
+            'password' => 'string|required',
         ]);
 
-        if ($validator->fails()) return response([ 'errors' => $validator->errors()->all() ], 422);
+        if ($validator->fails()) return response([ 'errors' => $validator->errors() ], 422);
 
         if (Auth::attempt(['email' => request('email'), 'password' => request('password')]))
         {

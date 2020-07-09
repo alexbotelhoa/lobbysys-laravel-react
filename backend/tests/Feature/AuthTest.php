@@ -17,19 +17,23 @@ class AuthTest extends TestCase
      */
     public function shouldBeValidWhenTheRouteLoginHasDeniedValidator()
     {
-        $arrival = [
-            'email' => '',
-            'password' => ''
+        $auth = [
+            'email' => "",
+            'password' => "",
         ];
 
-        $response = $this->post(route('auth.login'), $arrival);
+        $response = $this->post(route('auth.login'), $auth);
 
         $response
             ->assertStatus(422)
             ->assertJson([
                 "errors" => [
-                    "The email field is required.",
-                    "The password field is required."
+                    "email" => [
+                        "The email field is required."
+                    ],
+                    "password" => [
+                        "The password field is required."
+                    ]
                 ]
             ]);
     }
@@ -84,6 +88,13 @@ class AuthTest extends TestCase
         $response->assertStatus(401);
     }
 
+
+
+
+
+
+
+
     /**
      * Deve ser VÁLIDO quando
      * e houver SUCESSO na tentiva de LOGOUT
@@ -91,8 +102,8 @@ class AuthTest extends TestCase
      *
      * @test
      */
-    public function shouldBeValidWhenTheRouteLogoutHasAuthorised()
-    {
+//    public function shouldBeValidWhenTheRouteLogoutHasAuthorised()
+//    {
 //        $user = factory(User::class)->create([
 //            'email' => 'teste@lobbysys.com',
 //            'password' => bcrypt('123')
@@ -121,18 +132,12 @@ class AuthTest extends TestCase
 //
 //        var_dump($headers);
 
-        $response = $this->withHeaders([
-            'Authorization' => "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI5MGZkMTY0Ny1jODZiLTRjYjItYmM0Mi1mNzE1NDBmMzhiMzYiLCJqdGkiOiIzOWZkMDZhOWY3NDU0ODRkOTkzZTFiZmNlN2Y2Y2UwZTc5OWU0OGU5ZmNlZmYzYjc2YzU1ODc5NTFiODk2ZDgzODE2NmQwMjE1M2U4YWI1MSIsImlhdCI6MTU5NDE3MTEzOCwibmJmIjoxNTk0MTcxMTM4LCJleHAiOjE2MjU3MDcxMzgsInN1YiI6IjEiLCJzY29wZXMiOltdfQ.vzNbaOUwmKA1szBixWMUt7nRbZbD6tHdMZU7d3u49gCcBKe_bmvl0oVkXc8OgPmhe0kt7Lmthe52xgXCj9HlYIN4TgGDjBX0d3UewFNgwe4mfyLVSAgNBK9I15WR94ds3qEHidRsFZDR2l7e_mgWzVqn9RccT8FmNZGYKDRuGV352ThH0ZwdKPg--qNiua7Tjk312ZwMEEcTUQQ7GHsgKO5ensJyKkZfFjx_Kbv0F-jPqoFuv8DTfgvHwJfSmdHaefbqBNW9UoChrrgOdUiO6ApaWPkpLHFEqO9zk-vakHaRFOnhE4mMIULTCU6d5-OWBD5QR5tqw8YRfv_VV3p8_WLH8WduRFsHa_MBzCds9eE-UOi-vt0AYnCd5zvK3sLNCU3S7Zl7QRZFR-X2wLe3x9niSDR2UUWOkMRnpeh_v7vmDxYfc6MFszoVfm_wKKyY4leseFIjmDEVfujvAYx0dyiGh_kRgUWHbBZcdOFhA5s_u1h0HoCcDY19zT0ZXWm7Ka_hWWyid8PNfBnlo5yGa87DssSzL2pnKwFTZd5s86e9i6PfgIgjTlgbucsAXviYRKUwRkkuGJgzU9dF4UDFOPxAIpuwO8kMV21JkRdqARQvw24jx_JgmV8jGBzyAgSWtYPQJROD1rtQhoW5LhnbCdt6BM32h1Yvcqg5v73VnaM"
-        ])->post(route('auth.logout'));
-
-        $response
-            ->assertStatus(200);
-
-
-
-
-
-
+//        $response = $this->withHeaders([
+//            'Authorization' => "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI5MGZkMTY0Ny1jODZiLTRjYjItYmM0Mi1mNzE1NDBmMzhiMzYiLCJqdGkiOiIzOWZkMDZhOWY3NDU0ODRkOTkzZTFiZmNlN2Y2Y2UwZTc5OWU0OGU5ZmNlZmYzYjc2YzU1ODc5NTFiODk2ZDgzODE2NmQwMjE1M2U4YWI1MSIsImlhdCI6MTU5NDE3MTEzOCwibmJmIjoxNTk0MTcxMTM4LCJleHAiOjE2MjU3MDcxMzgsInN1YiI6IjEiLCJzY29wZXMiOltdfQ.vzNbaOUwmKA1szBixWMUt7nRbZbD6tHdMZU7d3u49gCcBKe_bmvl0oVkXc8OgPmhe0kt7Lmthe52xgXCj9HlYIN4TgGDjBX0d3UewFNgwe4mfyLVSAgNBK9I15WR94ds3qEHidRsFZDR2l7e_mgWzVqn9RccT8FmNZGYKDRuGV352ThH0ZwdKPg--qNiua7Tjk312ZwMEEcTUQQ7GHsgKO5ensJyKkZfFjx_Kbv0F-jPqoFuv8DTfgvHwJfSmdHaefbqBNW9UoChrrgOdUiO6ApaWPkpLHFEqO9zk-vakHaRFOnhE4mMIULTCU6d5-OWBD5QR5tqw8YRfv_VV3p8_WLH8WduRFsHa_MBzCds9eE-UOi-vt0AYnCd5zvK3sLNCU3S7Zl7QRZFR-X2wLe3x9niSDR2UUWOkMRnpeh_v7vmDxYfc6MFszoVfm_wKKyY4leseFIjmDEVfujvAYx0dyiGh_kRgUWHbBZcdOFhA5s_u1h0HoCcDY19zT0ZXWm7Ka_hWWyid8PNfBnlo5yGa87DssSzL2pnKwFTZd5s86e9i6PfgIgjTlgbucsAXviYRKUwRkkuGJgzU9dF4UDFOPxAIpuwO8kMV21JkRdqARQvw24jx_JgmV8jGBzyAgSWtYPQJROD1rtQhoW5LhnbCdt6BM32h1Yvcqg5v73VnaM"
+//        ])->post(route('auth.logout'));
+//
+//        $response
+//            ->assertStatus(200);
 
 //        $user = factory(User::class)->create([
 //            'email' => 'teste@lobbysys.com'
@@ -143,7 +148,7 @@ class AuthTest extends TestCase
 //
 //        $response = $this->post(route('auth.logout'), [], $headers);
 //
-////        var_dump($response);
+//        var_dump($response);
 //
 //        $response
 //            ->assertStatus(200);
@@ -151,7 +156,13 @@ class AuthTest extends TestCase
 //        $user = User::find($user->id);
 //
 //        $this->assertEquals(null, $user->api_token);
-    }
+//    }
+
+
+
+
+
+
 
 
 

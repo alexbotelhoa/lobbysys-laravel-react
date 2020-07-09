@@ -2,10 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Models\Queue;
 use Tests\TestCase;
-use App\Models\Visitor;
-use App\Models\Room;
 use App\Models\Arrival;
 
 class ArrivalTest extends TestCase
@@ -34,9 +31,9 @@ class ArrivalTest extends TestCase
     public function shouldBeValidWhenTheRouteStoreHasDeniedValidator()
     {
         $arrival = [
-            'visitor_id' => '',
-            'room_id' => '',
-            'checkIn' => ''
+            'visitor_id' => "",
+            'room_id' => "",
+            'checkIn' => "",
         ];
 
         $response = $this->post(route('arrivals.store'), $arrival);
@@ -45,9 +42,15 @@ class ArrivalTest extends TestCase
             ->assertStatus(422)
             ->assertJson([
                 "error" => [
-                    "visitor_id" => ["The visitor id field is required."],
-                    "room_id" => ["The room id field is required."],
-                    "checkIn" => ["The check in field is required."]
+                    "visitor_id" => [
+                        "The visitor id field is required."
+                    ],
+                    "room_id" => [
+                        "The room id field is required."
+                    ],
+                    "checkIn" => [
+                        "The check in field is required."
+                    ]
                 ]
             ]);
     }
@@ -60,16 +63,22 @@ class ArrivalTest extends TestCase
      *
      * @test
      */
-    public function shouldBeValidWhenVisitorAlreadExist()
-    {
-        $arrival = factory(Arrival::class)->create();
+//    public function shouldBeValidWhenVisitorAlreadExist()
+//    {
+//        $arrival = factory(Arrival::class)->create();
+//
+//        $response = $this->post(route('arrivals.store'), $arrival->toArray());
+//
+//        $response
+//            ->assertStatus(226)
+//            ->assertJson([ 'message' => 'Visitor already registered in the room' ]);
+//    }
 
-        $response = $this->post(route('arrivals.store'), $arrival->toArray());
 
-        $response
-            ->assertStatus(226)
-            ->assertJson([ 'message' => 'Visitor already registered in the room' ]);
-    }
+
+
+
+
 
 
 
@@ -81,26 +90,31 @@ class ArrivalTest extends TestCase
      *
      * @test
      */
-/*
-    public function shouldBeValidWhenTheRouteStoreHasSuccess()
-    {
-        $arrival = factory(Arrival::class)->create();
-
+//    public function shouldBeValidWhenTheRouteStoreHasSuccess()
+//    {
+//        $arrival = factory(Arrival::class)->create();
+//
 //        $arrival = [
 //            'visitor_id' => '1',
 //            'room_id' => '1',
 //            'checkIn' => '2000-01-01 10:01:01',
 //        ];
-
+//
 //        var_dump(\GuzzleHttp\json_encode($arrival->toArray()));
+//
+//        $response = $this->post(route('arrivals.store'), $arrival->toArray());
+//
+//        $response
+//            ->assertStatus(201)
+//            ->assertJson([ 'message' => 'Visitor already registered in the room' ]);
+//    }
 
-        $response = $this->post(route('arrivals.store'), $arrival->toArray());
 
-        $response
-            ->assertStatus(201)
-            ->assertJson([ 'message' => 'Visitor already registered in the room' ]);
-    }
-*/
+
+
+
+
+
 
 
 
@@ -115,9 +129,9 @@ class ArrivalTest extends TestCase
     public function shouldBeValidWhenTheRouteStoreHasBadRequest()
     {
         $arrival = [
-            'visitor_id' => 'abc',
-            'room_id' => 'abc',
-            'checkIn' => 'abc',
+            'visitor_id' => "0",
+            'room_id' => "0",
+            'checkIn' => "9999-12-31",
         ];
 
         $response = $this->post(route('arrivals.store'), $arrival);

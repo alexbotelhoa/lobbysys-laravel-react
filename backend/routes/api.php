@@ -51,6 +51,6 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::delete('/arrivals/{id}', 'ArrivalController@destroy')->name('arrivals.destroy');
 
     // Routas de Controle do Histórico dos Registros de Portaria
-    Route::post('/concierges', 'ConciergeController@store');
-    Route::get('/concierges', 'ConciergeController@filter');
+    Route::post('/concierges', 'ConciergeController@store')->name('concierges.store');
+    Route::get('/concierges', 'ConciergeController@filter')->name('concierges.filter');
 });

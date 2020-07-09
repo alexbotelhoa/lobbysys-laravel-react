@@ -18,12 +18,12 @@ class ConciergeController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'visitor_id' => 'numeric',
-            'room_id' => 'numeric',
-            'checkIn' => 'string|date',
+            'visitor_id' => 'numeric|required',
+            'room_id' => 'numeric|required',
+            'checkIn' => 'string|date|required',
         ]);
 
-        if ($validator->fails()) return response([ 'error' => $validator->errors() ], 401);
+        if ($validator->fails()) return response([ 'error' => $validator->errors() ], 422);
 
         try {
             $concierge = Concierge::create($request->all());
@@ -45,6 +45,7 @@ class ConciergeController extends Controller
         $validator = Validator::make($request->all(), [
             'visitor_id' => 'string',
             'room_id' => 'string',
+            'checkIn' => 'string|date',
         ]);
 
         if ($validator->fails()) return response([ 'error' => $validator->errors() ], 401);
