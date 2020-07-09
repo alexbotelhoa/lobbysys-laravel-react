@@ -17,7 +17,7 @@
     <pharPath>$PROJECT_DIR$/composer_2.phar</pharPath>
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/LobbySys_Lara_Reac$PHPUnit.coverage" NAME="PHPUnit Coverage Results" MODIFIED="1594327568816" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="PhpCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/LobbySys_Lara_Reac$PHPUnit.coverage" NAME="PHPUnit Coverage Results" MODIFIED="1594328639091" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="PhpCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/LobbySys_Lara_Reac$DashboardTest.coverage" NAME="DashboardTest Coverage Results" MODIFIED="1594327000162" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="PhpCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/LobbySys_Lara_Reac$ConciergeTest.coverage" NAME="ConciergeTest Coverage Results" MODIFIED="1594263188878" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="PhpCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
@@ -49,6 +49,16 @@
     <splitter split-orientation="horizontal" split-proportion="0.5106823">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file leaf-file-name="phpunit.xml" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/phpunit.xml">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="153">
+                  <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
           <file leaf-file-name="ConciergeController.php" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ConciergeController.php">
               <provider selected="true" editor-type-id="text-editor">
@@ -59,27 +69,29 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="phpunit.xml" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/phpunit.xml">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="0">
-                  <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
         </leaf>
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="ConciergeTest.php" pinned="false" current-in-tab="true">
+          <file leaf-file-name="ConciergeTest.php" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/tests/Feature/ConciergeTest.php">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="400">
                   <caret line="115" column="17" lean-forward="false" selection-start-line="115" selection-start-column="17" selection-end-line="115" selection-end-column="17" />
                   <folding>
                     <element signature="e#33#58#0#PHP" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="MiddlewaresTest.php" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/tests/Feature/MiddlewaresTest.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="102">
+                  <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+                  <folding>
+                    <element signature="e#33#53#0#PHP" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -103,7 +115,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/tests/Request/QueueControllerTest.php" />
         <option value="$PROJECT_DIR$/tests/Request/VisitorControllerTest.php" />
         <option value="$PROJECT_DIR$/tests/Request/DashboardControllerTest.php" />
         <option value="$PROJECT_DIR$/app/Http/Middleware/Authenticate.php" />
@@ -131,7 +142,6 @@
         <option value="$PROJECT_DIR$/tests/Feature/HandlerTest.php" />
         <option value="$PROJECT_DIR$/app/User.php" />
         <option value="$PROJECT_DIR$/tests/TestCase.php" />
-        <option value="$PROJECT_DIR$/phpunit.xml" />
         <option value="$PROJECT_DIR$/app/Providers/EventServiceProvider.php" />
         <option value="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" />
         <option value="$PROJECT_DIR$/config/auth.php" />
@@ -154,6 +164,8 @@
         <option value="$PROJECT_DIR$/tests/Feature/ArrivalTest.php" />
         <option value="$PROJECT_DIR$/tests/Feature/DashboardTest.php" />
         <option value="$PROJECT_DIR$/app/Models/User.php" />
+        <option value="$PROJECT_DIR$/phpunit.xml" />
+        <option value="$PROJECT_DIR$/tests/Feature/MiddlewaresTest.php" />
       </list>
     </option>
   </component>
@@ -513,8 +525,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\lobbysys-laravel-react\backend\app\Models" />
       <recent name="C:\xampp\htdocs\lobbysys-laravel-react\backend\tests\Feature" />
+      <recent name="C:\xampp\htdocs\lobbysys-laravel-react\backend\app\Models" />
       <recent name="C:\xampp\htdocs\lobbysys-laravel-react\backend\database\seeds" />
       <recent name="C:\xampp\htdocs\lobbysys-laravel-react\backend\database\factories" />
       <recent name="C:\xampp\htdocs\lobbysys-laravel-react\backend\tests\Request" />
@@ -590,25 +602,16 @@
       <workItem from="1593608112610" duration="1833000" />
       <workItem from="1593630726626" duration="33002000" />
       <workItem from="1594078816645" duration="26154000" />
-      <workItem from="1594147194621" duration="92111000" />
+      <workItem from="1594147194621" duration="93139000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="ArrivalTest - 2020.07.09 at 17h 15m 21s.xml">
-      <configuration name="ArrivalTest" configurationId="PHPUnitRunConfigurationType" />
-    </history-entry>
     <history-entry file="DashboardTest - 2020.07.09 at 17h 36m 31s.xml">
       <configuration name="DashboardTest" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
     <history-entry file="DashboardTest - 2020.07.09 at 17h 36m 47s.xml">
       <configuration name="DashboardTest" configurationId="PHPUnitRunConfigurationType" />
-    </history-entry>
-    <history-entry file="PHPUnit - 2020.07.09 at 17h 16m 51s.xml">
-      <configuration name="PHPUnit" configurationId="PHPUnitRunConfigurationType" />
-    </history-entry>
-    <history-entry file="PHPUnit - 2020.07.09 at 17h 32m 26s.xml">
-      <configuration name="PHPUnit" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
     <history-entry file="PHPUnit - 2020.07.09 at 17h 38m 36s.xml">
       <configuration name="PHPUnit" configurationId="PHPUnitRunConfigurationType" />
@@ -625,9 +628,18 @@
     <history-entry file="PHPUnit - 2020.07.09 at 17h 47m 34s.xml">
       <configuration name="PHPUnit" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
+    <history-entry file="PHPUnit - 2020.07.09 at 18h 00m 01s.xml">
+      <configuration name="PHPUnit" configurationId="PHPUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="PHPUnit - 2020.07.09 at 18h 02m 55s.xml">
+      <configuration name="PHPUnit" configurationId="PHPUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="PHPUnit - 2020.07.09 at 18h 05m 24s.xml">
+      <configuration name="PHPUnit" configurationId="PHPUnitRunConfigurationType" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="229666000" />
+    <option name="totallyTimeSpent" value="230694000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -636,15 +648,15 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39891306" sideWeight="0.5029333" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="NativeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34673914" sideWeight="0.49706668" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.38586956" sideWeight="0.49706668" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.3293348" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10714286" sideWeight="0.36605656" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10714286" sideWeight="0.3663717" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19673914" sideWeight="0.49813333" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13486141" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Nativescript Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10714286" sideWeight="0.63394344" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10714286" sideWeight="0.6336283" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
@@ -703,14 +715,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/config/auth.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1173">
-          <caret line="69" column="0" lean-forward="false" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/seeds/VisitorTableSeeder.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1110,9 +1114,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/phpunit.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="153">
+          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/Feature/MiddlewaresTest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding>
+            <element signature="e#33#53#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

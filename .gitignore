@@ -1,0 +1,8 @@
+#Particular
+*/uploads/*
+backups/
+docs/
+*.code-workspace
+*.keystore
+*.psd
+*.sqlite

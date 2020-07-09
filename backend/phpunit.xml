@@ -8,26 +8,24 @@
          processIsolation="false"
          stopOnFailure="false">
 
-
     <testsuites>
         <testsuite name="Feature">
             <directory suffix="Test.php">./tests</directory>
         </testsuite>
     </testsuites>
 
-
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
-            <!--<directory suffix=".php">./app/Http/Controllers</directory>-->
-            <!--<directory suffix=".php">./app/Models</directory>-->
             <directory suffix=".php">./app</directory>
+            <!--<exclude>-->
+                <!--<directory suffix=".php">./app/Http/Middleware</directory>-->
+            <!--</exclude>-->
         </whitelist>
     </filter>
 
     <logging>
         <log type="coverage-html" target="./reports" lowUpperBound="35" highLowerBound="70"/>
     </logging>
-
 
     <php>
         <server name="APP_ENV" value="testing"/>
