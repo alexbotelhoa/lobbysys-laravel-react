@@ -17,7 +17,8 @@
     <pharPath>$PROJECT_DIR$/composer_2.phar</pharPath>
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/LobbySys_Lara_Reac$PHPUnit.coverage" NAME="PHPUnit Coverage Results" MODIFIED="1594254783439" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="PhpCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/LobbySys_Lara_Reac$PHPUnit.coverage" NAME="PHPUnit Coverage Results" MODIFIED="1594263276915" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="PhpCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/LobbySys_Lara_Reac$ConciergeTest.coverage" NAME="ConciergeTest Coverage Results" MODIFIED="1594263188878" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="PhpCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
   <component name="CoverageOptionsProvider">
     <option name="myAddOrReplace" value="1" />
@@ -50,8 +51,8 @@
           <file leaf-file-name="api.php" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/routes/api.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="487">
-                  <caret line="53" column="57" lean-forward="false" selection-start-line="53" selection-start-column="52" selection-end-line="53" selection-end-column="57" />
+                <state relative-caret-position="198">
+                  <caret line="45" column="61" lean-forward="false" selection-start-line="45" selection-start-column="61" selection-end-line="45" selection-end-column="61" />
                   <folding />
                 </state>
               </provider>
@@ -84,8 +85,8 @@
           <file leaf-file-name="ConciergeController.php" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ConciergeController.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="221">
-                  <caret line="25" column="89" lean-forward="false" selection-start-line="25" selection-start-column="89" selection-end-line="25" selection-end-column="89" />
+                <state relative-caret-position="131">
+                  <caret line="45" column="22" lean-forward="false" selection-start-line="45" selection-start-column="22" selection-end-line="55" selection-end-column="21" />
                   <folding />
                 </state>
               </provider>
@@ -108,8 +109,8 @@
           <file leaf-file-name="ArrivalTest.php" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/tests/Feature/ArrivalTest.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="337">
-                  <caret line="65" column="24" lean-forward="false" selection-start-line="65" selection-start-column="24" selection-end-line="74" selection-end-column="7" />
+                <state relative-caret-position="473">
+                  <caret line="67" column="10" lean-forward="false" selection-start-line="67" selection-start-column="10" selection-end-line="67" selection-end-column="55" />
                   <folding>
                     <element signature="e#33#52#0#PHP" expanded="true" />
                   </folding>
@@ -132,11 +133,21 @@
           <file leaf-file-name="ConciergeTest.php" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/tests/Feature/ConciergeTest.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="373">
-                  <caret line="30" column="22" lean-forward="false" selection-start-line="30" selection-start-column="22" selection-end-line="30" selection-end-column="22" />
+                <state relative-caret-position="139">
+                  <caret line="98" column="5" lean-forward="false" selection-start-line="98" selection-start-column="5" selection-end-line="98" selection-end-column="5" />
                   <folding>
-                    <element signature="e#33#52#0#PHP" expanded="true" />
+                    <element signature="e#33#58#0#PHP" expanded="true" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="2020_06_22_120402_create_concierges_table.php" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/database/migrations/2020_06_22_120402_create_concierges_table.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="0">
+                  <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -575,18 +586,23 @@
     <configuration name="AuthTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <TestRunner class="Tests\Feature\AuthTest" configuration_file="$PROJECT_DIR$/phpunit.xml" directory="$PROJECT_DIR$/tests" file="$PROJECT_DIR$/tests/Feature/AuthTest.php" scope="Class" use_alternative_configuration_file="true" />
     </configuration>
+    <configuration name="ConciergeTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\ConciergeTest" file="$PROJECT_DIR$/tests/Feature/ConciergeTest.php" scope="Class" />
+    </configuration>
     <configuration name="PHPUnit" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner configuration_file="$PROJECT_DIR$/phpunit.xml" directory="$PROJECT_DIR$/tests" use_alternative_configuration_file="true" />
     </configuration>
     <configuration name="Server" type="PhpLocalRunConfigurationType" factoryName="PHP Console" path="$PROJECT_DIR$/artisan" scriptParameters="serve --host 192.168.1.101" />
-    <list size="3">
+    <list size="4">
       <item index="0" class="java.lang.String" itemvalue="PHP Script.Server" />
       <item index="1" class="java.lang.String" itemvalue="PHPUnit.PHPUnit" />
       <item index="2" class="java.lang.String" itemvalue="PHPUnit.AuthTest" />
+      <item index="3" class="java.lang.String" itemvalue="PHPUnit.ConciergeTest" />
     </list>
     <recent_temporary>
-      <list size="1">
-        <item index="0" class="java.lang.String" itemvalue="PHPUnit.AuthTest" />
+      <list size="2">
+        <item index="0" class="java.lang.String" itemvalue="PHPUnit.ConciergeTest" />
+        <item index="1" class="java.lang.String" itemvalue="PHPUnit.AuthTest" />
       </list>
     </recent_temporary>
   </component>
@@ -609,44 +625,44 @@
       <workItem from="1593608112610" duration="1833000" />
       <workItem from="1593630726626" duration="33002000" />
       <workItem from="1594078816645" duration="26154000" />
-      <workItem from="1594147194621" duration="58116000" />
+      <workItem from="1594147194621" duration="66144000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="PHPUnit - 2020.07.08 at 21h 20m 24s.xml">
-      <configuration name="PHPUnit" configurationId="PHPUnitRunConfigurationType" />
+    <history-entry file="ConciergeTest - 2020.07.08 at 23h 20m 21s.xml">
+      <configuration name="ConciergeTest" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="PHPUnit - 2020.07.08 at 21h 24m 20s.xml">
-      <configuration name="PHPUnit" configurationId="PHPUnitRunConfigurationType" />
+    <history-entry file="ConciergeTest - 2020.07.08 at 23h 20m 34s.xml">
+      <configuration name="ConciergeTest" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="PHPUnit - 2020.07.08 at 21h 25m 54s.xml">
-      <configuration name="PHPUnit" configurationId="PHPUnitRunConfigurationType" />
+    <history-entry file="ConciergeTest - 2020.07.08 at 23h 24m 22s.xml">
+      <configuration name="ConciergeTest" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="PHPUnit - 2020.07.08 at 21h 27m 12s.xml">
-      <configuration name="PHPUnit" configurationId="PHPUnitRunConfigurationType" />
+    <history-entry file="ConciergeTest - 2020.07.08 at 23h 26m 20s.xml">
+      <configuration name="ConciergeTest" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="PHPUnit - 2020.07.08 at 21h 28m 19s.xml">
-      <configuration name="PHPUnit" configurationId="PHPUnitRunConfigurationType" />
+    <history-entry file="ConciergeTest - 2020.07.08 at 23h 26m 59s.xml">
+      <configuration name="ConciergeTest" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="PHPUnit - 2020.07.08 at 21h 28m 57s.xml">
-      <configuration name="PHPUnit" configurationId="PHPUnitRunConfigurationType" />
+    <history-entry file="ConciergeTest - 2020.07.08 at 23h 27m 38s.xml">
+      <configuration name="ConciergeTest" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="PHPUnit - 2020.07.08 at 21h 31m 41s.xml">
-      <configuration name="PHPUnit" configurationId="PHPUnitRunConfigurationType" />
+    <history-entry file="ConciergeTest - 2020.07.08 at 23h 28m 03s.xml">
+      <configuration name="ConciergeTest" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="PHPUnit - 2020.07.08 at 21h 32m 32s.xml">
-      <configuration name="PHPUnit" configurationId="PHPUnitRunConfigurationType" />
+    <history-entry file="ConciergeTest - 2020.07.08 at 23h 28m 26s.xml">
+      <configuration name="ConciergeTest" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="PHPUnit - 2020.07.08 at 21h 32m 51s.xml">
-      <configuration name="PHPUnit" configurationId="PHPUnitRunConfigurationType" />
+    <history-entry file="ConciergeTest - 2020.07.08 at 23h 53m 13s.xml">
+      <configuration name="ConciergeTest" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="PHPUnit - 2020.07.08 at 21h 33m 37s.xml">
+    <history-entry file="PHPUnit - 2020.07.08 at 23h 54m 18s.xml">
       <configuration name="PHPUnit" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="195671000" />
+    <option name="totallyTimeSpent" value="203699000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -655,15 +671,15 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39891306" sideWeight="0.5029333" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="NativeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34130436" sideWeight="0.49706668" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.43913043" sideWeight="0.49706668" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.3293348" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.09754797" sideWeight="0.5330033" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18070363" sideWeight="0.53488374" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19673914" sideWeight="0.49813333" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13486141" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Nativescript Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.09754797" sideWeight="0.4669967" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18070363" sideWeight="0.4651163" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
@@ -722,24 +738,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/routes/channels.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/Feature/HandlerTest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="28" column="49" lean-forward="false" selection-start-line="28" selection-start-column="49" selection-end-line="28" selection-end-column="49" />
-          <folding>
-            <element signature="e#33#60#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Models/Visitor.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
@@ -983,7 +981,7 @@
         <state relative-caret-position="585">
           <caret line="52" column="28" lean-forward="false" selection-start-line="52" selection-start-column="28" selection-end-line="52" selection-end-column="28" />
           <folding>
-            <element signature="e#30#85#0#PHP" expanded="true" />
+            <element signature="e#30#85#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1038,22 +1036,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/api.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="487">
-          <caret line="53" column="57" lean-forward="false" selection-start-line="53" selection-start-column="52" selection-end-line="53" selection-end-column="57" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2020_06_22_120402_create_concierges_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Models/Concierge.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1072,30 +1054,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Testing/Constraints/ArraySubset.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="219" column="0" lean-forward="false" selection-start-line="219" selection-start-column="0" selection-end-line="219" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ArrivalController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="42" column="82" lean-forward="false" selection-start-line="42" selection-start-column="82" selection-end-line="42" selection-end-column="82" />
           <folding>
             <element signature="e#40#63#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/Feature/ArrivalTest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="337">
-          <caret line="65" column="24" lean-forward="false" selection-start-line="65" selection-start-column="24" selection-end-line="74" selection-end-column="7" />
-          <folding>
-            <element signature="e#33#52#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1110,28 +1074,77 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/tests/Feature/ArrivalTest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="473">
+          <caret line="67" column="10" lean-forward="false" selection-start-line="67" selection-start-column="10" selection-end-line="67" selection-end-column="55" />
+          <folding>
+            <element signature="e#33#52#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Testing/TestResponse.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
+        <state relative-caret-position="163">
           <caret line="184" column="0" lean-forward="false" selection-start-line="184" selection-start-column="0" selection-end-line="184" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2020_06_22_120402_create_concierges_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/factories/ConciergeFactory.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="23" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/api.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="45" column="61" lean-forward="false" selection-start-line="45" selection-start-column="61" selection-end-line="45" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Testing/Constraints/ArraySubset.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="163">
+          <caret line="219" column="0" lean-forward="false" selection-start-line="219" selection-start-column="0" selection-end-line="219" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/a9baf205/b8a52086-e417-4c6d-85d2-4060bd96584b/main.concierges">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ConciergeController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="25" column="89" lean-forward="false" selection-start-line="25" selection-start-column="89" selection-end-line="25" selection-end-column="89" />
+        <state relative-caret-position="131">
+          <caret line="45" column="22" lean-forward="false" selection-start-line="45" selection-start-column="22" selection-end-line="55" selection-end-column="21" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/Feature/ConciergeTest.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="373">
-          <caret line="30" column="22" lean-forward="false" selection-start-line="30" selection-start-column="22" selection-end-line="30" selection-end-column="22" />
+        <state relative-caret-position="139">
+          <caret line="98" column="5" lean-forward="false" selection-start-line="98" selection-start-column="5" selection-end-line="98" selection-end-column="5" />
           <folding>
-            <element signature="e#33#52#0#PHP" expanded="true" />
+            <element signature="e#33#58#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -21,6 +21,7 @@ class ConciergeController extends Controller
             'visitor_id' => 'numeric|required',
             'room_id' => 'numeric|required',
             'checkIn' => 'string|date|required',
+            'checkOut' => 'string|date|required',
         ]);
 
         if ($validator->fails()) return response([ 'error' => $validator->errors() ], 422);
@@ -42,27 +43,15 @@ class ConciergeController extends Controller
      */
     public function filter(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'visitor_id' => 'string',
-            'room_id' => 'string',
-            'checkIn' => 'string|date',
-        ]);
-
-        if ($validator->fails()) return response([ 'error' => $validator->errors() ], 401);
-
-        try {
-            $concierge = DB::table('concierges')
-                ->join('visitors', 'concierges.visitor_id', '=', 'visitors.id')
-                ->join('rooms', 'concierges.room_id', '=', 'rooms.id')
-                ->where('concierges.visitor_id', 'LIKE', $request->visitor)
-                ->where('concierges.room_id', 'LIKE', $request->room)
-                ->where('concierges.checkIn', 'LIKE', '%' . $request->checkIn . '%')
-                ->select('concierges.*', 'visitors.name', 'visitors.cpf', 'rooms.nrRoom')
-                ->orderBy('concierges.checkIn')
-                ->get();
-        } catch (\Exception $e) {
-            return response(["message" => "Concierge Bad Request"], 400);
-        }
+        $concierge = DB::table('concierges')
+            ->join('visitors', 'concierges.visitor_id', '=', 'visitors.id')
+            ->join('rooms', 'concierges.room_id', '=', 'rooms.id')
+            ->where('concierges.visitor_id', 'LIKE', $request->visitor)
+            ->where('concierges.room_id', 'LIKE', $request->room)
+            ->where('concierges.checkIn', 'LIKE', '%' . $request->checkIn . '%')
+            ->select('concierges.*', 'visitors.name', 'visitors.cpf', 'rooms.nrRoom')
+            ->orderBy('concierges.checkIn')
+            ->get();
 
         return response($concierge, 200);
     }
