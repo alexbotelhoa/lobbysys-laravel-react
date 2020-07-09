@@ -37,7 +37,7 @@ class ArrivalController extends Controller
         $validator = Validator::make($request->all(), [
             'visitor_id' => 'numeric|required',
             'room_id' => 'numeric|required',
-            'checkIn' => 'string|date|required',
+            'checkIn' => 'date|required',
         ]);
 
         if ($validator->fails()) return response([ 'error' => $validator->errors() ], 422);
@@ -54,14 +54,10 @@ class ArrivalController extends Controller
 
         if ($countArrival > 2) return response([ "message" => "Limit of visitors in the room exceeded"], 203);
 
-        try {
-            $arrival = Arrival::create($request->all());
+        $arrival = Arrival::create($request->all());
 
-            return response($arrival, 201);
-        } catch (\Exception $e) {
-            return response([ "message" => "Arrival Bad Request"], 400);
-        }
-    }
+        return response($arrival, 201);
+}
 
     /**
      * Remove the specified resource from storage.
@@ -87,6 +83,9 @@ class ArrivalController extends Controller
         try {
             DB::beginTransaction();
 
+            /**
+             * Adiciona
+             */
             DB::table('concierges')->insert([
                 'visitor_id' => $arrival->visitor_id,
                 'room_id' => $arrival->room_id,
@@ -111,10 +110,9 @@ class ArrivalController extends Controller
             DB::rollback();
         };
 
-        if (count($personQueue) > 0) {
-            return response($personQueue, 201);
-        } else {
-            return response('', 204);
-        }
+        if (count($personQueue) > 0) return response($personQueue, 201);
+
+        return response('', 204);
+
     }
 }

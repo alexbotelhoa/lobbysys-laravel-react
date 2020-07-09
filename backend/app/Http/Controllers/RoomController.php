@@ -29,22 +29,18 @@ class RoomController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'nrRoom' => 'required|string|max:4|unique:rooms',
+            'nrRoom' => 'max:4|required',
         ]);
 
-        if ($validator->fails()) return response([ 'error' => $validator->errors() ], 401);
+        if ($validator->fails()) return response([ 'error' => $validator->errors() ], 422);
 
         $countRoom = Room::where('nrRoom', $request->nrRoom)->count();
 
         if ($countRoom > 0) return response([ "message" => "Room already registered" ], 226);
 
-        try {
-            $room = Room::create($request->all());
+        $room = Room::create($request->all());
 
-            return response($room, 201);
-        } catch (\Exception $e) {
-            return response([ "message" => "Room Bad Request" ], 400);
-        }
+        return response($room, 201);
     }
 
     /**

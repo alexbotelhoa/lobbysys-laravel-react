@@ -36,11 +36,11 @@ class QueueController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'visitor_id' => 'numeric',
-            'room_id' => 'numeric',
+            'visitor_id' => 'numeric|required',
+            'room_id' => 'numeric|required',
         ]);
 
-        if ($validator->fails()) return response([ 'error' => $validator->errors() ], 401);
+        if ($validator->fails()) return response([ 'error' => $validator->errors() ], 422);
 
         $visitorCount = Queue::where('visitor_id', $request->visitor_id)->count();
 

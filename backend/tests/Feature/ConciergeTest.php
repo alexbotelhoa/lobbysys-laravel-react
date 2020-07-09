@@ -6,7 +6,6 @@ use App\Models\Concierge;
 use App\Models\Room;
 use App\Models\Visitor;
 use Tests\TestCase;
-use App\Http\Controllers\ConciergeController;
 
 class ConciergeTest extends TestCase
 {

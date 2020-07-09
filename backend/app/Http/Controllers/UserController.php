@@ -29,25 +29,22 @@ class UserController extends Controller
     protected function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:50',
-            'email' => 'required|string|email|max:30|unique:users',
-            'password' => 'required|string|min:6',
-            'c_password' => 'required|same:password',
+            'name' => 'string|max:50|required',
+            'email' => 'string|email|max:30|unique:users|required',
+            'password' => 'string|min:6|required',
+            'c_password' => 'same:password|required',
         ]);
 
-        if ($validator->fails()) return response([ 'error' => $validator->errors() ], 401);
+        if ($validator->fails()) return response([ 'error' => $validator->errors() ], 422);
 
-        try {
-            $user = User::create([
-                'name' => $request->name,
-                'email' => $request->email,
-                'password' => bcrypt($request->password),
-            ]);
 
-            return response($user, 201);
-        } catch (\Exception $e) {
-            return response([ "message" => "User Bad Request" ], 400);
-        }
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+        ]);
+
+        return response($user, 201);
     }
 
     /**

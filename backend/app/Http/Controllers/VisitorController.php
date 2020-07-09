@@ -29,25 +29,21 @@ class VisitorController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:50',
-            'cpf' => 'required|string|max:14',
+            'name' => 'string|max:50|required',
+            'cpf' => 'string|max:14|required',
             'birth' => 'string|date',
             'email' => 'string|email|max:30|unique:visitors',
         ]);
 
-        if ($validator->fails()) return response([ 'error' => $validator->errors() ], 401);
+        if ($validator->fails()) return response([ 'error' => $validator->errors() ], 422);
 
         $countVisitor = Visitor::where('cpf', $request->cpf)->count();
 
         if ($countVisitor > 0) return response([ "message" => "Visitor already registered"], 226);
 
-        try {
-            $visitor = Visitor::create($request->all());
+        $visitor = Visitor::create($request->all());
 
-            return response($visitor, 201);
-        } catch (\Exception $e) {
-            return response([ "message" => "Visitor Bad Request"], 400);
-        }
+        return response($visitor, 201);
     }
 
     /**

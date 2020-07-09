@@ -2,8 +2,11 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
 use App\Models\Arrival;
+use App\Models\Queue;
+use App\Models\Room;
+use App\Models\Visitor;
+use Tests\TestCase;
 
 class ArrivalTest extends TestCase
 {
@@ -63,17 +66,115 @@ class ArrivalTest extends TestCase
      *
      * @test
      */
-//    public function shouldBeValidWhenVisitorAlreadExist()
-//    {
-//        $arrival = factory(Arrival::class)->create();
-//
-//        $response = $this->post(route('arrivals.store'), $arrival->toArray());
-//
-//        $response
-//            ->assertStatus(226)
-//            ->assertJson([ 'message' => 'Visitor already registered in the room' ]);
-//    }
+    public function shouldBeValidWhenVisitorAlreadExist()
+    {
+        $arrival = factory(Arrival::class)->create();
 
+        $data = [
+            "visitor_id" => intval($arrival->visitor_id),
+            "room_id" => intval($arrival->room_id),
+            "checkIn" => $arrival->checkIn,
+        ];
+
+        $response = $this->post(route('arrivals.store'), $data);
+
+        $response->assertStatus(226);
+    }
+
+    /**
+     * Deve ser VÁLIDO quando
+     * as VALIDAÇÕES da rota POST (Store) forem APROVADAS
+     * mas o VISITANTE já estar na SALA
+     * e retorna o STATUS '226'
+     *
+     * @test
+     */
+    public function shouldBeValidWhenLimitOfVisitorsInTheRoomExceeded()
+    {
+        $visitor = factory(Visitor::class, 4)->create();
+
+        $room = factory(Room::class)->create();
+
+        $arrival = factory(Arrival::class)->create([
+            "visitor_id" => 1,
+            "room_id" => $room->id,
+            "checkIn" => "2000-01-01 00:00:00",
+        ]);
+
+        $arrival = factory(Arrival::class)->create([
+            "visitor_id" => 2,
+            "room_id" => $room->id,
+            "checkIn" => "2000-01-01 00:00:00",
+        ]);
+
+        $arrival = factory(Arrival::class)->create([
+            "visitor_id" => 3,
+            "room_id" => $room->id,
+            "checkIn" => "2000-01-01 00:00:00",
+        ]);
+
+        $data = [
+            "visitor_id" => 4,
+            "room_id" => $room->id,
+            "checkIn" => "2000-01-01 00:00:00",
+        ];
+
+        $response = $this->post(route('arrivals.store'), $data);
+
+        $response->assertStatus(203);
+    }
+
+    /**
+     * Deve ser VÁLIDO quando
+     * as VALIDAÇÕES da rota DELETE (Destroy) forem APROVADAS
+     * mas o registro NÃO é encontrado
+     * e retorna o STATUS '404'
+     *
+     * @test
+     */
+    public function shouldBeValidWhenTheRouteDeleteHasDenied()
+    {
+        $arrival = [
+            "id" => 1,
+        ];
+
+        $response = $this->delete(route('arrivals.destroy', $arrival));
+
+        $response->assertStatus(404);
+    }
+
+    /**
+     * Deve ser VÁLIDO quando
+     * as VALIDAÇÕES da rota DELETE (Destroy) forem APROVADAS
+     * mas o registro NÃO é encontrado
+     * e retorna o STATUS '404'
+     *
+     * @test
+     */
+    public function shouldBeValidWhenTheVisitorDoesCheckOut()
+    {
+        $visitor = factory(Visitor::class)->create();
+
+        $room = factory(Room::class)->create();
+
+        $queue = factory(Queue::class)->create([
+            'visitor_id' => 1,
+            'room_id' => $room->id,
+        ]);
+
+        $arrival = factory(Arrival::class)->create([
+            'visitor_id' => 1,
+            'room_id' => $room->id,
+        ]);
+
+        $data = [
+            "id" => $arrival->id,
+        ];
+
+        $response = $this->delete(route('arrivals.destroy', $data));
+
+        $response->assertStatus(201);
+    }
 
 
 
@@ -118,28 +219,6 @@ class ArrivalTest extends TestCase
 
 
 
-
-    /**
-     * Deve ser VÁLIDO quando
-     * as VALIDAÇÕES da rota POST (Store) forem APROVADAS
-     * e retorna o STATUS '400'
-     *
-     * @test
-     */
-    public function shouldBeValidWhenTheRouteStoreHasBadRequest()
-    {
-        $arrival = [
-            'visitor_id' => "0",
-            'room_id' => "0",
-            'checkIn' => "9999-12-31",
-        ];
-
-        $response = $this->post(route('arrivals.store'), $arrival);
-
-        $response
-            ->assertStatus(400)
-            ->assertJson([ 'message' => 'Arrival Bad Request' ]);
-    }
 
     /**
      * Deve ser VÁLIDO quando
