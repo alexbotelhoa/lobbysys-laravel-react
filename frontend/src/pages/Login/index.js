@@ -8,8 +8,8 @@ import api from '../../services/api';
 export default function Login() {
   const history = useHistory();
   const [mensage, setMensage] = useState(null);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('admin@lobbysys.com');
+  const [password, setPassword] = useState('12345678');
 
   function checkInput(e) {
     e.preventDefault();

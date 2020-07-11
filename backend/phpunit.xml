@@ -18,6 +18,8 @@
         <whitelist processUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">./app</directory>
             <exclude>
+                <directory suffix=".php">./app/Http/Middleware</directory>
+            </exclude>
         </whitelist>
     </filter>
 

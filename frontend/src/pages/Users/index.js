@@ -5,8 +5,11 @@ import Cookies from 'js-cookie';
 
 import './styles.css';
 import api from '../../services/api';
+import loading from '../../assets/loading.gif'
 
 export default function Users() {
+	const [chargeUsers, setChargeUsers] = useState(true);
+
     const [mensage, setMensage] = useState(null);
     const [users, setUsers] = useState([]);
 
@@ -22,7 +25,7 @@ export default function Users() {
 			}
 		}).then(response => {
             setUsers(response.data)
-        })
+        }).finally(() => setChargeUsers(null));
     }, []);
 
     function checkInputsForm(event) {
@@ -144,6 +147,11 @@ export default function Users() {
 					</div>
 
 					<div className="contentUsers">
+						{ chargeUsers && (
+							<div className="contentLoading">
+								<img src={loading} width="120px" />
+							</div>
+						) }
 						<ul>
 							{users.map((user, index) => (
 								<li key={user.id}>

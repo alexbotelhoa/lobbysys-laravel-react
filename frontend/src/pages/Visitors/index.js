@@ -5,8 +5,11 @@ import Cookies from 'js-cookie';
 
 import './styles.css';
 import api from '../../services/api';
+import loading from '../../assets/loading.gif'
 
 export default function Visitors() {
+	const [chargeVisitors, setChargeVisitors] = useState(true);
+
 	const [mensage, setMensage] = useState(null);
 	const [visitors, setVisitors] = useState([]);
 
@@ -22,7 +25,7 @@ export default function Visitors() {
 			}
 		}).then(response => {
             setVisitors(response.data)
-        })
+        }).finally(() => setChargeVisitors(null));
 	}, []);
 
 	function checkInputsForm(event) {	
@@ -141,7 +144,12 @@ export default function Visitors() {
 						</form>
 					</div>
 
-					<div className="contentVisitors">			
+					<div className="contentVisitors">	
+						{ chargeVisitors && (
+							<div className="contentLoading">
+								<img src={loading} width="120px" />
+							</div>
+						) }		
 						<ul>
 							{visitors.map((visitor, index) => (
 								<li key={visitor.id}>

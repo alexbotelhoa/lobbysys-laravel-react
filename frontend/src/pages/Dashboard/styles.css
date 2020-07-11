@@ -7,7 +7,6 @@
 }
 
 .contentLeft {
-    width: 100%;
     padding: 20px;
     border-radius: 10px;
     margin: 20px 10px 10px 0px;
@@ -15,6 +14,7 @@
 }
 
 .contentDashboardVisitors {
+    width: 100%;
     height: 45px;
     margin-bottom: 20px;
 }

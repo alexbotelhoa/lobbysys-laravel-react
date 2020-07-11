@@ -2,22 +2,27 @@ import React, { useState, useEffect } from 'react';
 import { GiExitDoor } from 'react-icons/gi';
 import { FaAddressCard } from 'react-icons/fa';
 import { BsBoxArrowRight } from 'react-icons/bs';
+
 import Cookies from 'js-cookie';
 
 import './styles.css';
 import api from '../../services/api';
 import person from '../../assets/person.gif'
+import loading from '../../assets/loading.gif'
 
 export default function Dashboard() {
+	const [chargeArrivals, setChargeArrivals] = useState(true);
+	const [chargeQueues, setChargeQueues] = useState(true);
+
 	const [mensage, setMensage] = useState(null);
 	const [visitors, setVisitors] = useState([]);
 	const [rooms, setRooms] = useState([]);
 	const [arrivals, setArrivals] = useState([]);
 	const [queues, setQueues] = useState([]);
-
+	
 	const [selectedVisitor, setSelectedVisitor] = useState('');
 	const [selectedRoom, setSelectedRoom] = useState('');
-
+	
     useEffect(() => {
         api.get('visitors', {
 			headers: {
@@ -53,7 +58,7 @@ export default function Dashboard() {
 			}
 		}).then(response => {
 			setArrivals(response.data)
-		});
+		}).finally(() => setChargeArrivals(null));
 	};
 
 	function loadQueues() {
@@ -63,7 +68,7 @@ export default function Dashboard() {
 			}
 		}).then(response => {
 			setQueues(response.data)
-		});
+		}).finally(() => setChargeQueues(null));
 	};
 
 	function checkInputsForm(event) {	
@@ -83,10 +88,8 @@ export default function Dashboard() {
 		data.append('visitor_id', visitor[0]);
         data.append('room_id', room[0]);
 
-		let arrival;
-
 		try {
-			arrival = await api.post('arrivals', data, {
+			const arrival = await api.post('arrivals', data, {
 				headers: {
 				  Authorization: `Bearer ${Cookies.get('token')}`
 				}
@@ -112,10 +115,8 @@ export default function Dashboard() {
 	}
 
 	async function createPositionQueue(data, name, nrRoom) {
-		let queue;
-
 		try {
-			queue = await api.post('queues', data, {
+			const queue = await api.post('queues', data, {
 				headers: {
 				  Authorization: `Bearer ${Cookies.get('token')}`
 				}
@@ -170,7 +171,7 @@ export default function Dashboard() {
 		} catch (err) {
 			alert('Erro ao tentar RETIRAR o visitante da fila de espera!\nTente novamente em alguns instantes!');
 		}
-    };	
+	};
 
 	return	( 
 		<>
@@ -207,23 +208,28 @@ export default function Dashboard() {
 							</button>
 						</form>
 					</div>
-					<div className="contentDashboardRooms">
+					<div className="contentDashboardRooms" >
+						{ chargeArrivals && (
+							<div className="contentLoading">
+								<img src={loading} width="120px" />
+							</div>
+						) }
 						<ul>
-						{arrivals.map(arrival => (
-							<li className="cardPerson" key={arrival.id}>
-								<span>
-									<img src={person} title="Visitante" alt="" />
-								</span>
-								<footer>
-									<strong>Sala {arrival.nrRoom}</strong>
-									<p>{String(arrival.name).substring(0,18)}...</p>
-									<h6>{new Date(arrival.checkIn).toLocaleString().replace(/[,]+/g, '')}</h6>
-								</footer>
-								<button data-testid="btnCheckOut" className="btnCard" onClick={() => handleCheckOut(arrival.id)}>
-									<BsBoxArrowRight size="26" title="CheckOut" />
-								</button>
-							</li>							
-						))}
+							{arrivals.map(arrival => (
+								<li className="cardPerson" key={arrival.id}>
+									<span>
+										<img src={person} title="Visitante" alt="" />
+									</span>
+									<footer>
+										<strong>Sala {arrival.nrRoom}</strong>
+										<p>{String(arrival.name).substring(0,18)}...</p>
+										<h6>{new Date(arrival.checkIn).toLocaleString().replace(/[,]+/g, '')}</h6>
+									</footer>
+									<button data-testid="btnCheckOut" className="btnCard" onClick={() => handleCheckOut(arrival.id)}>
+										<BsBoxArrowRight size="26" title="CheckOut" />
+									</button>
+								</li>							
+							))}
 						</ul>
 					</div>
 				</div>
@@ -233,6 +239,11 @@ export default function Dashboard() {
 						<p>Fila de Espera</p>
 					</div>
 					<div className="contentDashboardQueue">
+						{ chargeQueues && (
+							<div className="contentLoading">
+								<img src={loading} width="120px" />
+							</div>
+						) }
 						<ul>
 							{queues.map(queue => (
 								<li className="cardPerson" key={queue.id}>

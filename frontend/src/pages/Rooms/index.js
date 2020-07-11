@@ -5,8 +5,11 @@ import Cookies from 'js-cookie';
 
 import './styles.css';
 import api from '../../services/api';
+import loading from '../../assets/loading.gif'
 
 export default function Rooms() {
+	const [chargeRooms, setChargeRooms] = useState(true);
+
 	const [mensage, setMensage] = useState(null);
 	const [rooms, setRooms] = useState([]);
 
@@ -19,7 +22,7 @@ export default function Rooms() {
 			}
 		}).then(response => {
             setRooms(response.data)
-        })
+        }).finally(() => setChargeRooms(null));
 	}, []);
 
 	function checkInputsForm(event) {	
@@ -97,6 +100,11 @@ export default function Rooms() {
 					</div>
 
 					<div className="contentRooms">
+						{ chargeRooms && (
+							<div className="contentLoading">
+								<img src={loading} width="120px" />
+							</div>
+						) }
 						<ul>
 							{rooms.map(room => (
 								<li key={room.id}>

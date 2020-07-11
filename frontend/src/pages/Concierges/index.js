@@ -4,17 +4,20 @@ import Cookies from 'js-cookie';
 
 import './styles.css';
 import api from '../../services/api';
+import loading from '../../assets/loading.gif'
 
 export default function Concierges() {
+	const [chargeConcierges, setChargeConcierges] = useState(false);
+
 	const [mensage, setMensage] = useState(null);
 	const [visitors, setVisitors] = useState([]);
 	const [rooms, setRooms] = useState([]);
+	const [concierges, setConcierges] = useState([]);
 
 	const [selectedVisitor, setSelectedVisitor] = useState('');
 	const [selectedRoom, setSelectedRoom] = useState('');
 	const [selectedCheckIn, setSelectedCheckIn] = useState('');
 
-	const [concierges, setConcierges] = useState([]);
 
     useEffect(() => {
 		api.get('visitors', {
@@ -23,7 +26,7 @@ export default function Concierges() {
 			}
 		}).then(response => {
             setVisitors(response.data)
-        })
+        });
 	}, []);
 	
 	useEffect(() => {
@@ -46,11 +49,12 @@ export default function Concierges() {
 
 	async function searchVisitors() {
 		try {
+			setChargeConcierges(true)
 			const response = await api.get(`concierges?visitor=${selectedVisitor}&room=${selectedRoom}&checkIn=${selectedCheckIn}`, {
 				headers: {
 					Authorization: `Bearer ${Cookies.get('token')}`
 				}
-			});
+			}).finally(() => setChargeConcierges(null));
 
 			setConcierges(response.data);
 
@@ -140,6 +144,11 @@ export default function Concierges() {
 								<div style={{ width: '200px' }}>Data e Hora do CheckIn</div>
 								<div style={{ width: '200px' }}>Data e Hora do CkeckOut</div>
 							</li>
+							{ chargeConcierges && (
+								<div className="contentLoading" style={{ marginTop: "120px" }}>
+									<img src={loading} width="120px" />
+								</div>
+							) }
 							{concierges.map((concierge, index )=> (
 								<li key={concierge.id} className="contentFilteredConcierges">
 									<h3>{index + 1}</h3>
