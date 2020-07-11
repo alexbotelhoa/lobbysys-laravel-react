@@ -39,7 +39,7 @@
 
 ## :computer: Projeto
 
-O LobbysSys é um sistema de controle de portaria, feito como desafio para uma empresa de Florianópolis. Utilizei o SQLite para banco de dados, para o backend usei a linguagem PHP utilizando o Framework Laravel e para o frontend fiz em Javascript com Framework React.
+O LobbysSys é um sistema de controle de portaria, feito como desafio e desenvolvimento pessoal. Utilizei o SQLite para banco de dados, para o backend usei a linguagem PHP utilizando o Framework Laravel e para o frontend fiz em Javascript com Framework React.
 
 ## :rocket: Tecnologias
 
