@@ -29,10 +29,8 @@ class VisitorController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'string|max:50|required',
-            'cpf' => 'string|max:14|required',
-            'birth' => 'string|date',
-            'email' => 'string|email|max:30|unique:visitors',
+            'name' => 'max:50|required',
+            'cpf' => 'max:14|required',
         ]);
 
         if ($validator->fails()) return response([ 'error' => $validator->errors() ], 422);

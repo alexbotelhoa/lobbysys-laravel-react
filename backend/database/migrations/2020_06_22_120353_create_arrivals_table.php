@@ -19,7 +19,7 @@ class CreateArrivalsTable extends Migration
             $table->foreign('visitor_id')->references('id')->on('visitors');
             $table->integer('room_id')->unsigned();
             $table->foreign('room_id')->references('id')->on('rooms');
-            $table->timestamp('checkIn')->default(now());
+            $table->timestamp('checkIn');
             $table->timestamps();
         });
     }

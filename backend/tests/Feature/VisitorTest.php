@@ -33,8 +33,6 @@ class VisitorTest extends TestCase
         $visitor = [
             'name' => "",
             'cpf' => "",
-            'birth' => "",
-            'email' => "",
         ];
 
         $response = $this->post(route('visitors.store'), $visitor);
@@ -46,7 +44,7 @@ class VisitorTest extends TestCase
                     "name" => [
                         "The name field is required."
                     ],
-                        "cpf" => [
+                    "cpf" => [
                         "The cpf field is required."
                     ]
                 ]

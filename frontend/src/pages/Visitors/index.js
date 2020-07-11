@@ -43,6 +43,8 @@ export default function Visitors() {
         data.append('cpf', inputCpf);
         data.append('birth', inputBirth);
 		data.append('email', inputEmail);
+
+		console.log(data)
 		
 		try {
 			const visitor = await api.post('visitors', data, {
@@ -147,7 +149,7 @@ export default function Visitors() {
 					<div className="contentVisitors">	
 						{ chargeVisitors && (
 							<div className="contentLoading">
-								<img src={loading} width="120px" />
+								<img src={loading} width="120px" alt="" />
 							</div>
 						) }		
 						<ul>
@@ -156,8 +158,8 @@ export default function Visitors() {
 									<h3>{index + 1}</h3>
 									<header>{visitor.name}</header>
 									<p>{visitor.cpf}</p>
-									<span>{new Date(visitor.birth).toLocaleDateString()}</span>
-									<footer>{visitor.email}</footer>
+									<span>{visitor.birth && new Date(visitor.birth).toLocaleDateString()}</span>
+									<footer>{visitor.email && visitor.email}</footer>
 									<button data-testid="btnDeleteVisitor" onClick={() => handleDeleteVisitor(visitor.id)}>
 										<RiDeleteBinLine size="16" />
 									</button>

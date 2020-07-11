@@ -83,12 +83,12 @@ $ cd backend
 # Instale as dependências
 $ composer install && npm install && npm run dev
 # Rode o backend 
-$ php artisan serve
+$ composer start
 ```
 Obs.: 
   1. Crie o arquivo do banco de dados SQLite na pasta 'database' com o nome database.sqlite.
   2. Após rodar o Migrate, não esqueça de rodar os Seeders.
-  3. Usuário padão para login é admin@lobbysys.com e senha 12345678.
+  3. Acerte o composer, na parte dos scripts, no modo start com o IP da sua máquina
 
 ### :computer: Frontend: 
 
@@ -101,6 +101,14 @@ $ npm install
 $ npm start
 ```
 Obs.: 1. Acerte o arquivo de configuração da API que se encontra na pasta services.
+      2. Usuário default para login é admin@lobbysys.com e senha 12345678.
+      3. IMPORTANTE!
+        - Regras de negócio:
+          1. Para cadastro do visitante em uma sala é obrigatório os campos, Nome, CPF e Sala de destino.
+          2. Não pode haver mais de 3 (três) visitantes ao mesmo tempo na mesma sala. Assim o mesmo será colocado na Fila de Espera e será resgatado, automaticamente, assim que liberar uma vaga na sala pretendida.
+          3. Não pode haver dois Usuários do sistema cadastrados com o mesmo CPF
+          4. Não pode haver dois Visitantes cadastrado com o mesmo CPF cadastrado
+          5. Não pode haver duas Salas com o mesmo nome
 
 ## :memo: Licença
 

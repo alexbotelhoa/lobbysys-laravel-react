@@ -50,9 +50,6 @@ class ArrivalTest extends TestCase
                     ],
                     "room_id" => [
                         "The room id field is required."
-                    ],
-                    "checkIn" => [
-                        "The check in field is required."
                     ]
                 ]
             ]);

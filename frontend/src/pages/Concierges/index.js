@@ -146,7 +146,7 @@ export default function Concierges() {
 							</li>
 							{ chargeConcierges && (
 								<div className="contentLoading" style={{ marginTop: "120px" }}>
-									<img src={loading} width="120px" />
+									<img src={loading} width="120px" alt="" />
 								</div>
 							) }
 							{concierges.map((concierge, index )=> (

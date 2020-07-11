@@ -102,7 +102,7 @@ export default function Rooms() {
 					<div className="contentRooms">
 						{ chargeRooms && (
 							<div className="contentLoading">
-								<img src={loading} width="120px" />
+								<img src={loading} width="120px" alt="" />
 							</div>
 						) }
 						<ul>

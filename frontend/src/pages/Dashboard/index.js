@@ -85,8 +85,8 @@ export default function Dashboard() {
 		const room = selectedRoom.split(',');
 		
 		const data = new FormData();
-		data.append('visitor_id', visitor[0]);
-        data.append('room_id', room[0]);
+		data.append('visitor_id', Number(visitor[0]));
+        data.append('room_id', Number(room[0]));
 
 		try {
 			const arrival = await api.post('arrivals', data, {
@@ -203,7 +203,7 @@ export default function Dashboard() {
 								))}
 							</select>
 
-							<button data-testid="btnCkeckIn" className="btnCheckin" type="submit">
+							<button data-testid="btnCkeckIn" className="btnCheckin" type="submit" title="CheckIn">
 								<FaAddressCard size="26" />
 							</button>
 						</form>
@@ -211,7 +211,7 @@ export default function Dashboard() {
 					<div className="contentDashboardRooms" >
 						{ chargeArrivals && (
 							<div className="contentLoading">
-								<img src={loading} width="120px" />
+								<img src={loading} width="120px" alt="" />
 							</div>
 						) }
 						<ul>
@@ -241,7 +241,7 @@ export default function Dashboard() {
 					<div className="contentDashboardQueue">
 						{ chargeQueues && (
 							<div className="contentLoading">
-								<img src={loading} width="120px" />
+								<img src={loading} width="120px" alt="" />
 							</div>
 						) }
 						<ul>

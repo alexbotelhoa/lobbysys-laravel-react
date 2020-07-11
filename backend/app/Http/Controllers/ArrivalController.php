@@ -37,7 +37,6 @@ class ArrivalController extends Controller
         $validator = Validator::make($request->all(), [
             'visitor_id' => 'numeric|required',
             'room_id' => 'numeric|required',
-            'checkIn' => 'date|required',
         ]);
 
         if ($validator->fails()) return response([ 'error' => $validator->errors() ], 422);
@@ -68,7 +67,10 @@ class ArrivalController extends Controller
         /**
          * Se tudo estiver OK o Visitante será liberado e registrado a sua entrada na Sala
          */
-        $arrival = Arrival::create($request->all());
+        $array = $request->all();
+        array_push($array, $array["checkIn"] = now());
+
+        $arrival = Arrival::create($array);
 
         return response($arrival, 201);
 }

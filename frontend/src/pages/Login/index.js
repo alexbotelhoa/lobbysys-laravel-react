@@ -8,8 +8,8 @@ import api from '../../services/api';
 export default function Login() {
   const history = useHistory();
   const [mensage, setMensage] = useState(null);
-  const [email, setEmail] = useState('admin@lobbysys.com');
-  const [password, setPassword] = useState('12345678');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   function checkInput(e) {
     e.preventDefault();
@@ -60,7 +60,7 @@ export default function Login() {
               value={password}
               onChange={event => setPassword(event.target.value)}
             />
-            <button className="btnLogin" type="submit">Entrar</button>
+            <button className="btnLogin" type="submit" title="Logar">Entrar</button>
           </form>
           
         </div>

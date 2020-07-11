@@ -149,7 +149,7 @@ export default function Users() {
 					<div className="contentUsers">
 						{ chargeUsers && (
 							<div className="contentLoading">
-								<img src={loading} width="120px" />
+								<img src={loading} width="120px" alt="" />
 							</div>
 						) }
 						<ul>
