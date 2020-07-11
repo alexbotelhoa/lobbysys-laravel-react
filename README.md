@@ -45,13 +45,31 @@ O LobbysSys é um sistema de controle de portaria, feito como desafio para uma e
 
 :point_down: Esse projeto foi desenvolvido com as seguintes tecnologias: :point_down:
 
--  [VS Code](https://code.visualstudio.com/)
--  [Cors](https://github.com/expressjs/cors)
+Backend:
+-  [PHPStorm](https://www.jetbrains.com/pt-br/phpstorm/)
+-  [Laravel](https://laravel.com/)
 -  [SQLite](https://www.sqlite.org/)
--  [ReactJS](https://reactjs.org/)
+-  [CORS](https://github.com/fruitcake/laravel-cors)
+-  [Passport](https://laravel.com/docs/7.x/passport)
+-  [Tinker](https://github.com/laravel/tinker)
+-  [Facade](https://github.com/facade/ignition)
+-  [Faker](https://github.com/fzaninotto/Faker)
+-  [Mockery](https://github.com/mockery/mockery)
+-  [PHPUnit](https://phpunit.de/)
+
+Frontend:
+-  [VS Code](https://code.visualstudio.com/)
 -  [Axios](https://github.com/axios/axios)
+-  [Axios Mock](https://github.com/ctimmerm/axios-mock-adapter)
+-  [React Bootstrap](https://react-bootstrap.github.io/)
+-  [JS Cookie](https://github.com/js-cookie/js-cookie)
+-  [React](https://pt-br.reactjs.org/)
+-  [ReactJS](https://reactjs.org/)
 -  [React Icons](https://github.com/react-icons/react-icons)
--  (Em processo de atualiazação...)
+-  [React Route DOM](https://reacttraining.com/react-router/web/guides/quick-start)
+-  [Testing Libray](https://testing-library.com/)
+-  [Enzyme](https://enzymejs.github.io/enzyme/)
+-  [Enzyme Adpter](https://www.npmjs.com/package/enzyme-adapter-react-16)
 
 ## :information_source: Desenvolvimento
 
@@ -67,7 +85,10 @@ $ composer install && npm install && npm run dev
 # Rode o backend 
 $ php artisan serve
 ```
--  (Em processo de atualiazação...)
+Obs.: 
+  1. Crie o arquivo do banco de dados SQLite na pasta 'database' com o nome database.sqlite.
+  2. Após rodar o Migrate, não esqueça de rodar os Seeders.
+  3. Usuário padão para login é admin@lobbysys.com e senha 12345678.
 
 ### :computer: Frontend: 
 
@@ -79,6 +100,7 @@ $ npm install
 #Inicie a aplicação 
 $ npm start
 ```
+Obs.: 1. Acerte o arquivo de configuração da API que se encontra na pasta services.
 
 ## :memo: Licença
 
